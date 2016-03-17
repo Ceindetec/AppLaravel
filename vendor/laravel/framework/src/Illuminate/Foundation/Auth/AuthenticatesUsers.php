@@ -32,6 +32,7 @@ trait AuthenticatesUsers
      */
     public function postLogin(Request $request)
     {
+
         $this->validate($request, [
             $this->loginUsername() => 'required', 'password' => 'required',
         ]);
@@ -46,6 +47,9 @@ trait AuthenticatesUsers
         }
 
         $credentials = $this->getCredentials($request);
+
+        var_dump($credentials);
+        exit();
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
             return $this->handleUserWasAuthenticated($request, $throttles);
@@ -117,7 +121,7 @@ trait AuthenticatesUsers
     {
         Auth::logout();
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'index');
     }
 
     /**
