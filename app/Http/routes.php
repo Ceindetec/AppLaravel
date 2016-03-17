@@ -51,4 +51,4 @@ Route::get('main/tesProcedimiento', 'mainController@getViewProcedimientos');
 
 Route::post('main/modalformulario', 'mainController@postMamodalFormulario');
 
-Route::post('main/tesProcedimientogrid', 'mainController@postPrubaproce');
+Route::post('main/usuarioid', 'mainController@postprueba');

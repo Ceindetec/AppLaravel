@@ -3,6 +3,7 @@
 namespace aplicacion\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
 use Utils;
@@ -96,6 +97,12 @@ class mainController extends Controller {
         $util = new Utils();
 
         return $util->getDataRequest($datos, $input);
+    public function postprueba(Request $rq)
+    {
+        return $rq['id'];
+    }
+
+
     }
 
 }
