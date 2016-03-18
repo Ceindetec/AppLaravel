@@ -66,7 +66,7 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Envia la respuesta despues que el usuario fue autenticado
+     * Send the response after the user was authenticated.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  bool $throttles
@@ -86,7 +86,7 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Obtiene las credenciales necesarias para la autenticacion
+     * Get the needed authorization credentials from the request.
      *
      * @param  \Illuminate\Http\Request $request
      * @return array
@@ -109,29 +109,29 @@ trait AuthenticatesUsers
     }
 
     /**
-     * Desloguea al usuario de la aplicacion
-     * Se puede introducir cualquier direccion de salida
+     * Log the user out of the application.
+     *
      * @return \Illuminate\Http\Response
      */
     public function getLogout()
     {
         Auth::logout();
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'index');
     }
 
     /**
-     * Obtiene la direccion a la ruta de loggeo
+     * Get the path to the login route.
      *
      * @return string
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : 'gestion';
+        return property_exists($this, 'loginPath') ? $this->loginPath : 'login';
     }
 
     /**
-     * Obtiene el campo usado de usuario por el controlador
+     * Get the login username to be used by the controller.
      *
      * @return string
      */
