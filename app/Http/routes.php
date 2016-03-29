@@ -18,7 +18,6 @@ Route::get('index', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
 
-Route::get('home', 'gestionController@index');
 Route::get('gestion', 'gestionController@index');
 
 /* METODOS DE LOGIN ############################################################# */
@@ -40,6 +39,19 @@ Route::get('facebook/callback', 'mainController@handleProviderCallback');
 
 /* METODOS DE LOGIN POR LA APP ################################################## */
 
+/* METODOS DE GESTION POR LA APP ################################################ */
+
+Route::get('inicio','gestionController@index');
+Route::get('establecimiento','gestionController@establecimiento');
+Route::get('cliente','gestionController@cliente');
+Route::get('menu','gestionController@menu');
+
+//post de gestion
+
+//Ruta de transporte de grid datos establecimiento en la vista establecimientos
+Route::post('postbdestablecimiento','gestionController@postbdestablecimiento');
+Route::post('postbdusuario','gestionController@postbdusuario');
+Route::post('postbdmenu','gestionController@postbdmenu');
 
 /* METODOS DE PRUEBA ############################################################ */
 

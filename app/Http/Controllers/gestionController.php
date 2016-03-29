@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
 
-class gestionController extends Controller
+use GestionBL;
+use Utils;
+
+class GestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,72 +19,73 @@ class gestionController extends Controller
      */
     public function index()
     {
-        return view('gestion.panelControlGestion');
+        return view('gestion.principal');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+     public function establecimiento()
     {
-        //
+        return view('gestion.establecimiento');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+      public function cliente()
     {
-        //
+        return view('gestion.cliente');
+    }
+    
+        public function menu()
+    {
+        return view('gestion.menu');
+    }
+    
+public function postbdestablecimiento(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridestablecimiento();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+public function postbdusuario(Request $rq)
     {
-        //
+
+        $Bl2 = new GestionBL();
+
+        $datos = $Bl2->getDatosGridusuario();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+public function postbdmenu(Request $rq)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridmenu();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
     }
 }
