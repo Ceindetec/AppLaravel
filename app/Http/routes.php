@@ -45,13 +45,33 @@ Route::get('inicio','gestionController@index');
 Route::get('establecimiento','gestionController@establecimiento');
 Route::get('cliente','gestionController@cliente');
 Route::get('menu','gestionController@menu');
-
+Route::get('menuplato','gestionController@menuplato');
+Route::get('menucategoria','gestionController@menucategoria');
+Route::get('menusucursal','gestionController@menusucursal');
+Route::get('platos','gestionController@platos');
+Route::get('galeria','gestionController@galeria');
+Route::get('puntuacion','gestionController@puntuacion');
+Route::get('sucursal','gestionController@sucursal');
+Route::get('informacion','gestionController@informacion');
 //post de gestion
 
 //Ruta de transporte de grid datos establecimiento en la vista establecimientos
 Route::post('postbdestablecimiento','gestionController@postbdestablecimiento');
-Route::post('postbdusuario','gestionController@postbdusuario');
+Route::post('postbusuario','gestionController@postbusuario');
 Route::post('postbdmenu','gestionController@postbdmenu');
+Route::post('postbdmenuplato','gestionController@postbdmenuplato');
+Route::post('postbdmenucategoria','gestionController@postbdmenucategoria');
+Route::post('postbdmenusucursal','gestionController@postbdmenusucursal');
+Route::post('postbdplatos','gestionController@postbdplatos');
+Route::post('postbdgaleria','gestionController@postbdgaleria');
+Route::post('postbdpuntuacion','gestionController@postbdpuntuacion');
+Route::post('postbdsucursal','gestionController@postbdsucursal');
+Route::post('postbdinformacion','gestionController@postbdinformacion');
+
+//MODALES DE GESTION
+Route::get('modalestablecimiento', 'gestionController@modalestablecimiento');
+Route::get('modalcliente', 'gestionController@modalcliente');
+
 
 /* METODOS DE PRUEBA ############################################################ */
 

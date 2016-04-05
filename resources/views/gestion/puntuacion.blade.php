@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		Gestion Menus
+		Gestion Puntuacion
 	</div>
 	<div class="panel-body">
 		<p></p>
@@ -17,7 +17,7 @@
 
 		//Agregamos atributos al datasource de transporte de lectura
 		$read
-		->url('postbdmenu')
+		->url('postbdpuntuacion')
 		->contentType('application/json')
 		->type('POST');
 		
@@ -37,18 +37,26 @@
 		//Inicializamos las columnas del Modelo
 	
 
-		$nombreMenu = new \Kendo\Data\DataSourceSchemaModelField('nombreMenu');
-		$nombreMenu->type('string');
+		$nombreSucursal = new \Kendo\Data\DataSourceSchemaModelField('nombreSucursal');
+		$nombreSucursal->type('string');
 
-		$descripcionMenu = new \Kendo\Data\DataSourceSchemaModelField('descripcionMenu');
-		$descripcionMenu->type('string');
+		$nombreUsuario = new \Kendo\Data\DataSourceSchemaModelField('nombreUsuario');
+		$nombreUsuario->type('string');
 
-		$establecimientoMenu = new \Kendo\Data\DataSourceSchemaModelField('establecimientoMenu');
-		$establecimientoMenu->type('string');
+		$comentario = new \Kendo\Data\DataSourceSchemaModelField('comentario');
+		$comentario->type('string');
 
+		$puntuacion = new \Kendo\Data\DataSourceSchemaModelField('puntuacion');
+		$puntuacion->type('string');
 
-		$estadoMenu = new \Kendo\Data\DataSourceSchemaModelField('estadoMenu');
-		$estadoMenu->type('string');
+		$fecha = new \Kendo\Data\DataSourceSchemaModelField('fecha');
+		$fecha->type('string');
+
+		$hora = new \Kendo\Data\DataSourceSchemaModelField('hora');
+		$hora->type('string');
+
+		$estadoPuntuacion = new \Kendo\Data\DataSourceSchemaModelField('estadoPuntuacion');
+		$estadoPuntuacion->type('string');
 
 		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
 		$accion-> type('string');
@@ -56,11 +64,14 @@
 
 		//Agregamos las columnas al modelo de l grid
 		$model
-		->addField($nombreMenu)
-		->addField($descripcionMenu)
-		->addField($establecimientoMenu)
+		->addField($nombreSucursal)
+		->addField($nombreUsuario)
+		->addField($comentario)
+		->addField($puntuacion)
+		->addField($fecha)
+		->addField($hora)
 		->addField($accion)
-		->addField($estadoMenu);
+		->addField($estadoPuntuacion);
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -87,28 +98,37 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
-		$nombreMenu = new \Kendo\UI\GridColumn();
-		$nombreMenu->field('nombreMenu')->title('Nombre');
+		$nombreSucursal = new \Kendo\UI\GridColumn();
+		$nombreSucursal->field('nombreSucursal')->title('Sucursal');
 
-		$descripcionMenu = new \Kendo\UI\GridColumn();
-		$descripcionMenu->field('descripcionMenu')->title('Descripcion');
+		$nombreUsuario = new \Kendo\UI\GridColumn();
+		$nombreUsuario->field('nombreUsuario')->title('Usuario');
 
-		$establecimientoMenu = new \Kendo\UI\GridColumn();
-		$establecimientoMenu->field('establecimientoMenu')->title('Establecimiento');
+		$comentario = new \Kendo\UI\GridColumn();
+		$comentario->field('comentario')->title('Comentario');
 
-		$estadoMenu = new \Kendo\UI\GridColumn();
-		$estadoMenu->field('estadoMenu')->title('Estado');
+		$puntuacion = new \Kendo\UI\GridColumn();
+		$puntuacion->field('puntuacion')->title('Puntuacion');
+
+		$fecha = new \Kendo\UI\GridColumn();
+		$fecha->field('fecha')->title('Fecha');
+
+		$hora = new \Kendo\UI\GridColumn();
+		$hora->field('hora')->title('Hora');
+
+		$estadoPuntuacion = new \Kendo\UI\GridColumn();
+		$estadoPuntuacion->field('estadoPuntuacion')->title('estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');;	
+		$accion->field('accion')->title('Accion')->templateId('accion');
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreMenu, $descripcionMenu, $establecimientoMenu, $estadoMenu,$accion)
-		->dataSource($dataSource)
+		->addColumn( $nombreSucursal, $nombreUsuario, $comentario,$puntuacion,$fecha,$hora,$estadoPuntuacion,$accion)
+		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
 		->pageable(true);
@@ -120,16 +140,18 @@
 
 	</div>
 	<div class="panel-footer">
-	
+
 	</div>
 </div>
 
 @endsection
+
 <script id="accion" type="text/x-kendo-tmpl">
 <div>
-
+	   
       <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
 </div>
   
 </script>
+

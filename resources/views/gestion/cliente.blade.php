@@ -3,10 +3,10 @@
 @section('content')
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		Gestion
+		Gestion Cliente
 	</div>
 	<div class="panel-body">
-		<p>Cliente</p>
+		<p></p>
 
 		
 		
@@ -15,7 +15,7 @@
 
 		$read = new \Kendo\Data\DataSourceTransportRead();
 
-		$read->url('postbdusuario')
+		$read->url('postbusuario')
 		->contentType('application/json')
 		->type('POST');
 
@@ -51,6 +51,8 @@
 
 		$telefonoField = new \Kendo\Data\DataSourceSchemaModelField('telefono');
 		$telefonoField->type('string');
+		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
+		$accion-> type('string');
 
 
 		$model->addField($idField)
@@ -62,6 +64,7 @@
 		->addField($papellidoField)
 		->addField($sapellidoField)
 		->addField($emailField)
+		->addField($accion)
 		->addField($telefonoField);
 
 
@@ -113,16 +116,20 @@
 		$telefono->field('telefono')
 		->title('telefono');
 
+		$accion = new \Kendo\UI\GridColumn();
+		$accion->field('accion')->title('Accion')->templateId('accion');;
+
 		
 
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
-		$grid->addColumn(  $username, $pnombre, $snombre, $papellido, $sapellido, $email, $telefono)
+		$grid->addColumn(  $username, $pnombre, $snombre, $papellido, $sapellido, $email, $telefono,$accion)
 		->dataSource($dataSource)
 		->sortable(true)
 		->filterable($gridFilterable)
+		->dataBound('handleAjaxModal')
 		->pageable(true);
 
 		echo $grid->render();
@@ -131,9 +138,17 @@
 
 	</div>
 	<div class="panel-footer">
-		el footer del panel
+		
 	</div>
 </div>
 
 @endsection
 
+<script id="accion" type="text/x-kendo-tmpl">
+<div>
+<a href="../public/modalcliente" class="btn btn-primary" data-modal="">Detalles</a>
+      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+</div>
+  
+</script>

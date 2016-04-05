@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		Gestion Menus
+		Gestion Sucursales de Menus
 	</div>
 	<div class="panel-body">
 		<p></p>
@@ -17,7 +17,7 @@
 
 		//Agregamos atributos al datasource de transporte de lectura
 		$read
-		->url('postbdmenu')
+		->url('postbdmenusucursal')
 		->contentType('application/json')
 		->type('POST');
 		
@@ -40,15 +40,12 @@
 		$nombreMenu = new \Kendo\Data\DataSourceSchemaModelField('nombreMenu');
 		$nombreMenu->type('string');
 
-		$descripcionMenu = new \Kendo\Data\DataSourceSchemaModelField('descripcionMenu');
-		$descripcionMenu->type('string');
+		$nombreSucursal = new \Kendo\Data\DataSourceSchemaModelField('nombreSucursal');
+		$nombreSucursal->type('string');
 
-		$establecimientoMenu = new \Kendo\Data\DataSourceSchemaModelField('establecimientoMenu');
-		$establecimientoMenu->type('string');
+		$estadoSucursal = new \Kendo\Data\DataSourceSchemaModelField('estadoSucursal');
+		$estadoSucursal->type('string');
 
-
-		$estadoMenu = new \Kendo\Data\DataSourceSchemaModelField('estadoMenu');
-		$estadoMenu->type('string');
 
 		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
 		$accion-> type('string');
@@ -57,10 +54,9 @@
 		//Agregamos las columnas al modelo de l grid
 		$model
 		->addField($nombreMenu)
-		->addField($descripcionMenu)
-		->addField($establecimientoMenu)
+		->addField($nombreSucursal)
 		->addField($accion)
-		->addField($estadoMenu);
+		->addField($estadoSucursal);
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -88,27 +84,25 @@
 
 		//Inicializamos las columnas de la grid
 		$nombreMenu = new \Kendo\UI\GridColumn();
-		$nombreMenu->field('nombreMenu')->title('Nombre');
+		$nombreMenu->field('nombreMenu')->title('Menu');
 
-		$descripcionMenu = new \Kendo\UI\GridColumn();
-		$descripcionMenu->field('descripcionMenu')->title('Descripcion');
+		$nombreSucursal = new \Kendo\UI\GridColumn();
+		$nombreSucursal->field('nombreSucursal')->title('Sucursal');
 
-		$establecimientoMenu = new \Kendo\UI\GridColumn();
-		$establecimientoMenu->field('establecimientoMenu')->title('Establecimiento');
-
-		$estadoMenu = new \Kendo\UI\GridColumn();
-		$estadoMenu->field('estadoMenu')->title('Estado');
+		$estadoSucursal = new \Kendo\UI\GridColumn();
+		$estadoSucursal->field('estadoSucursal')->title('estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');;	
+		$accion->field('accion')->title('Accion')->templateId('accion');
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreMenu, $descripcionMenu, $establecimientoMenu, $estadoMenu,$accion)
-		->dataSource($dataSource)
+		->addColumn( $nombreMenu, $nombreSucursal, $estadoSucursal,$accion)
+		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
 		->pageable(true);
@@ -125,6 +119,7 @@
 </div>
 
 @endsection
+
 <script id="accion" type="text/x-kendo-tmpl">
 <div>
 

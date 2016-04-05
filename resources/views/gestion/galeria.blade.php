@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		Gestion Menus
+		Gestion Imagenes
 	</div>
 	<div class="panel-body">
 		<p></p>
@@ -17,7 +17,7 @@
 
 		//Agregamos atributos al datasource de transporte de lectura
 		$read
-		->url('postbdmenu')
+		->url('postbdgaleria')
 		->contentType('application/json')
 		->type('POST');
 		
@@ -37,30 +37,36 @@
 		//Inicializamos las columnas del Modelo
 	
 
-		$nombreMenu = new \Kendo\Data\DataSourceSchemaModelField('nombreMenu');
-		$nombreMenu->type('string');
+		$nombreGaleria = new \Kendo\Data\DataSourceSchemaModelField('nombreGaleria');
+		$nombreGaleria->type('string');
 
-		$descripcionMenu = new \Kendo\Data\DataSourceSchemaModelField('descripcionMenu');
-		$descripcionMenu->type('string');
+		$descripcion = new \Kendo\Data\DataSourceSchemaModelField('descripcion');
+		$descripcion->type('string');
 
-		$establecimientoMenu = new \Kendo\Data\DataSourceSchemaModelField('establecimientoMenu');
-		$establecimientoMenu->type('string');
+		$nombreEstablecimiento = new \Kendo\Data\DataSourceSchemaModelField('nombreEstablecimiento');
+		$nombreEstablecimiento->type('string');
 
+		$imagen = new \Kendo\Data\DataSourceSchemaModelField('imagen');
+		$imagen->type('string');
 
-		$estadoMenu = new \Kendo\Data\DataSourceSchemaModelField('estadoMenu');
-		$estadoMenu->type('string');
+		$nombreGaleria = new \Kendo\Data\DataSourceSchemaModelField('nombreGaleria');
+		$nombreGaleria->type('string');
+
+		$estadoGaleria = new \Kendo\Data\DataSourceSchemaModelField('estadoGaleria');
+		$estadoGaleria->type('string');
 
 		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
 		$accion-> type('string');
 
-
 		//Agregamos las columnas al modelo de l grid
 		$model
-		->addField($nombreMenu)
-		->addField($descripcionMenu)
-		->addField($establecimientoMenu)
+		->addField($nombreGaleria)
+		->addField($descripcion)
+		->addField($nombreEstablecimiento)
+		->addField($imagen)
+		->addField($nombreGaleria)
 		->addField($accion)
-		->addField($estadoMenu);
+		->addField($estadoGaleria);
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -87,28 +93,42 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
-		$nombreMenu = new \Kendo\UI\GridColumn();
-		$nombreMenu->field('nombreMenu')->title('Nombre');
+		$nombreGaleria = new \Kendo\UI\GridColumn();
+		$nombreGaleria->field('nombreGaleria')->title('Nombre');
 
-		$descripcionMenu = new \Kendo\UI\GridColumn();
-		$descripcionMenu->field('descripcionMenu')->title('Descripcion');
+		$descripcion = new \Kendo\UI\GridColumn();
+		$descripcion->field('descripcion')->title('descripcion');
 
-		$establecimientoMenu = new \Kendo\UI\GridColumn();
-		$establecimientoMenu->field('establecimientoMenu')->title('Establecimiento');
+		$nombreEstablecimiento = new \Kendo\UI\GridColumn();
+		$nombreEstablecimiento->field('nombreEstablecimiento')->title('Establecimiento');
 
-		$estadoMenu = new \Kendo\UI\GridColumn();
-		$estadoMenu->field('estadoMenu')->title('Estado');
+		$imagen = new \Kendo\UI\GridColumn();
+		$imagen->field('imagen')->title('imagen')->hidden(true);
+
+		$nombreGaleria = new \Kendo\UI\GridColumn();
+		$nombreGaleria->field('nombreGaleria')->title('Tipo');
+
+		$estadoGaleria = new \Kendo\UI\GridColumn();
+		$estadoGaleria->field('estadoGaleria')->title('estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');;	
+		$accion->field('accion')->title('Accion')->templateId('accion');
+
+
+		$Column = new \Kendo\UI\GridColumn();
+		$Column->field('ColumnName')
+		->title('imagen')
+		//->attributes(' bgcolor = '.getColorForValue(#: Column #) )
+		->templateId('ColumnTemplate');	
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreMenu, $descripcionMenu, $establecimientoMenu, $estadoMenu,$accion)
-		->dataSource($dataSource)
+		->addColumn( $nombreGaleria, $descripcion, $nombreEstablecimiento,$imagen,$nombreGaleria,$estadoGaleria,$Column,$accion)
+		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
 		->pageable(true);
@@ -125,6 +145,13 @@
 </div>
 
 @endsection
+
+
+
+<script id="ColumnTemplate" type="text/x-kendo-tmpl">
+   <img src="data:image/png;base64,#= imagen #" width="100" height="100" />
+</script>
+
 <script id="accion" type="text/x-kendo-tmpl">
 <div>
 
@@ -133,3 +160,4 @@
 </div>
   
 </script>
+

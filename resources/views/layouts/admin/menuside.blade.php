@@ -13,7 +13,7 @@
     <a href="inicio"><i class="fa fa-pencil-square-o"></i> Inicio</a>
 </li>
 <li>
-    <a href="establecimiento"><i class="fa fa-files-o fa-fw"></i>Gestion Establecimiento<span class=""></span></a>
+    <a href="establecimiento"><i class="fa fa-files-o fa-fw"></i>Gestión  Establecimiento<span class=""></span></a>
 
 
 </li>
@@ -21,67 +21,54 @@
 
 
 <li>
-    <a href="cliente"><i class="fa fa-files-o fa-fw"></i>Gestion Clientes<span class=""></span></a>
+    <a href="cliente"><i class="fa fa-files-o fa-fw"></i>Gestión  Clientes<span class=""></span></a>
   
     <!-- /.nav-second-level -->
 </li>
 
 <li>
-    <a href="menu"><i class="fa fa-files-o fa-fw"></i>Gestion Menus<span class=""></span></a>
+    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion De Menús <span class="fa arrow"></span></a>
+    
 
-</li>
-
-<li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Platos<span class=""></span></a>
-
-    <!-- /.nav-second-level -->
-</li>
-
-<li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Imagenes<span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level">
+       <ul class="nav nav-second-level">
         <li>
-            <a href="/main/modal">modales</a>
+            <a href="menu">Gestion de cartas del Menu</a>
         </li>
         <li>
-            <a href="/main/tesProcedimiento">Grid</a>
+            <a href="menuplato">Gestion de Platos</a>
         </li>
+        
+        <li>
+            <a href="menucategoria">Gestion de Categorias</a>
+        </li>
+
+        <li>
+            <a href="menusucursal">Gestion de Sucursales</a>
+        </li>
+
     </ul>
-    <!-- /.nav-second-level -->
 </li>
 
 <li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Establecimiento<span class=" "></span></a>
-
-    <!-- /.nav-second-level -->
-</li><li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Comentarios y Puntuacion<span class=""></span></a>
+    <a href="platos"><i class="fa fa-files-o fa-fw"></i>Gestión  Platos<span class=""></span></a>
 
     <!-- /.nav-second-level -->
 </li>
 
 <li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Sucursales<span class=""></span></a>
+    <a href="galeria"><i class="fa fa-files-o fa-fw"></i>Gestión Imagenes<span class=""></span></a>
+    
+</li>
+
+<li>
+    <a href="puntuacion"><i class="fa fa-files-o fa-fw"></i>Gestión de Comentarios y Puntuación<span class=""></span></a>
 
     <!-- /.nav-second-level -->
 </li>
 
 <li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Informacion Basica<span class=""></span></a>
- 
+    <a href="sucursal"><i class="fa fa-files-o fa-fw"></i>Gestión Sucursales<span class=""></span></a>
+
     <!-- /.nav-second-level -->
 </li>
 
-
-<li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion Informacion Basica<span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level">
-        <li>
-            <a href="/main/modal">modales</a>
-        </li>
-        <li>
-            <a href="/main/tesProcedimiento">Grid</a>
-        </li>
-    </ul>
-    <!-- /.nav-second-level -->
-</li>
