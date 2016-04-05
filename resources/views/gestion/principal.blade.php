@@ -2,6 +2,6 @@
 
 @section('content')
 
-<p>estas en el panel de control</p>
+<p>Inicio Gestion</p>
 
 @endsection

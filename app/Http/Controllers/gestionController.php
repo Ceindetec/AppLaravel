@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
 
-class gestionController extends Controller
+use GestionBL;
+use Utils;
+
+class GestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,72 +19,286 @@ class gestionController extends Controller
      */
     public function index()
     {
-        return view('gestion.panelControlGestion');
+        return view('gestion.principal');
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+     public function establecimiento()
     {
-        //
+        return view('gestion.establecimiento');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+      public function cliente()
     {
-        //
+        return view('gestion.cliente');
+    }
+    
+        public function menu()
+    {
+        return view('gestion.menu');
+    }
+    
+         public function menuplato()
+    {
+        return view('gestion.menuplato');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+         public function menucategoria()
     {
-        //
+        return view('gestion.menucategoria');
+    }
+    
+
+         public function menusucursal()
+    {
+        return view('gestion.menusucursal');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+           public function platos()
     {
-        //
+        return view('gestion.platos');
+    }
+           public function galeria()
+    {
+        return view('gestion.galeria');
+    }
+    
+          public function puntuacion()
+    {
+        return view('gestion.puntuacion');
+    }
+    
+         public function sucursal()
+    {
+        return view('gestion.sucursal');
+    }
+    
+       public function informacion()
+    {
+        return view('gestion.informacion');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    //Vistas Modal
+
+     public function modalestablecimiento()
     {
-        //
+        return view('gestion.modalestablecimiento');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+       public function modalcliente()
     {
-        //
+        return view('gestion.modalcliente');
+    }
+    
+
+public function postbdestablecimiento(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridestablecimiento();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+public function postbusuario(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridusuario();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+
+public function postbdmenu(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridmenu();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+public function postbdmenuplato(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridmenuPlato();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+
+
+    public function postbdmenucategoria(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridmenuCategoria();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+     public function postbdmenusucursal(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridmenuSucursal();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+         public function postbdplatos(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridPlatos();
+
+        $total = count($datos);
+
+        for($i=0 ; $i<$total; $i++)
+        {
+           $datos[$i]->galeria = base64_encode($datos[$i]->galeria);     
+        }
+
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+         public function postbdgaleria(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridGaleria();
+
+        $total = count($datos);
+
+        for($i=0 ; $i<$total; $i++)
+        {
+
+           $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
+        }
+
+       
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+
+
+         public function postbdpuntuacion(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridPuntuacion();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+
+         public function postbdsucursal(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridSucursal();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
+    }
+
+
+         public function postbdinformacion(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridInformacion();
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos,$input);
+        
     }
 }
