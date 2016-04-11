@@ -31,36 +31,7 @@
 			return kendo.stringify(data);
 		}');
 
-		//Inicializamos el Modelo para la grid
-		$model = new \Kendo\Data\DataSourceSchemaModel();
-
-		//Inicializamos las columnas del Modelo
-	
-
-		$nombreMenu = new \Kendo\Data\DataSourceSchemaModelField('nombreMenu');
-		$nombreMenu->type('string');
-
-		$descripcionMenu = new \Kendo\Data\DataSourceSchemaModelField('descripcionMenu');
-		$descripcionMenu->type('string');
-
-		$establecimientoMenu = new \Kendo\Data\DataSourceSchemaModelField('establecimientoMenu');
-		$establecimientoMenu->type('string');
-
-
-		$estadoMenu = new \Kendo\Data\DataSourceSchemaModelField('estadoMenu');
-		$estadoMenu->type('string');
-
-		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
-		$accion-> type('string');
-
-
-		//Agregamos las columnas al modelo de l grid
-		$model
-		->addField($nombreMenu)
-		->addField($descripcionMenu)
-		->addField($establecimientoMenu)
-		->addField($accion)
-		->addField($estadoMenu);
+		
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -68,7 +39,6 @@
 		//Agregamos los aributos del esquema de l grid
 		$schema
 		->data('data')
-		->model($model)
 		->total('total');
 
 		//Inicializamos el Data Source
@@ -91,7 +61,7 @@
 		$nombreMenu->field('nombreMenu')->title('Nombre');
 
 		$descripcionMenu = new \Kendo\UI\GridColumn();
-		$descripcionMenu->field('descripcionMenu')->title('Descripcion');
+		$descripcionMenu->field('descripcionMenu')->title('Descripción');
 
 		$establecimientoMenu = new \Kendo\UI\GridColumn();
 		$establecimientoMenu->field('establecimientoMenu')->title('Establecimiento');
@@ -100,7 +70,7 @@
 		$estadoMenu->field('estadoMenu')->title('Estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');;	
+		$accion->field('accion')->title('Acción ')->templateId('accion');;	
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
@@ -126,10 +96,21 @@
 
 @endsection
 <script id="accion" type="text/x-kendo-tmpl">
-<div>
 
-      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-</div>
+
+		
+	
+	<?php $estado = "#= estadoMenu#" ?>
+	<?php if($estado = "Estado activo"){
+		?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		<?php
+	}else{
+		?>
+		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		<?php
+	}
+	?>
   
+
 </script>

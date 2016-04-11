@@ -31,32 +31,6 @@
 			return kendo.stringify(data);
 		}');
 
-		//Inicializamos el Modelo para la grid
-		$model = new \Kendo\Data\DataSourceSchemaModel();
-
-		//Inicializamos las columnas del Modelo
-	
-
-		$nombreMenu = new \Kendo\Data\DataSourceSchemaModelField('nombreMenu');
-		$nombreMenu->type('string');
-
-		$nombreSucursal = new \Kendo\Data\DataSourceSchemaModelField('nombreSucursal');
-		$nombreSucursal->type('string');
-
-		$estadoSucursal = new \Kendo\Data\DataSourceSchemaModelField('estadoSucursal');
-		$estadoSucursal->type('string');
-
-
-		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
-		$accion-> type('string');
-
-
-		//Agregamos las columnas al modelo de l grid
-		$model
-		->addField($nombreMenu)
-		->addField($nombreSucursal)
-		->addField($accion)
-		->addField($estadoSucursal);
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -64,7 +38,6 @@
 		//Agregamos los aributos del esquema de l grid
 		$schema
 		->data('data')
-		->model($model)
 		->total('total');
 
 		//Inicializamos el Data Source
@@ -84,16 +57,16 @@
 
 		//Inicializamos las columnas de la grid
 		$nombreMenu = new \Kendo\UI\GridColumn();
-		$nombreMenu->field('nombreMenu')->title('Menu');
+		$nombreMenu->field('nombreMenu')->title('Menú');
 
 		$nombreSucursal = new \Kendo\UI\GridColumn();
 		$nombreSucursal->field('nombreSucursal')->title('Sucursal');
 
 		$estadoSucursal = new \Kendo\UI\GridColumn();
-		$estadoSucursal->field('estadoSucursal')->title('estado');
+		$estadoSucursal->field('estadoSucursal')->title('Estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');
+		$accion->field('accion')->title('Acción')->templateId('accion');
 
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
@@ -121,10 +94,16 @@
 @endsection
 
 <script id="accion" type="text/x-kendo-tmpl">
-<div>
-
-      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-</div>
+<?php $estado = "#= estadoSucursal#" ?>
+	<?php if($estado = "Estado activo"){
+		?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		<?php
+	}else{
+		?>
+		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		<?php
+	}
+	?>
   
 </script>

@@ -32,18 +32,18 @@
 
        <ul class="nav nav-second-level">
         <li>
-            <a href="menu">Gestion de cartas del Menu</a>
+            <a href="menu">Gestión de Cartas del Menús</a>
         </li>
         <li>
-            <a href="menuplato">Gestion de Platos</a>
+            <a href="menuplato">Gestión de Platos</a>
         </li>
         
         <li>
-            <a href="menucategoria">Gestion de Categorias</a>
+            <a href="menucategoria">Gestión de Categorías </a>
         </li>
 
         <li>
-            <a href="menusucursal">Gestion de Sucursales</a>
+            <a href="menusucursal">Gestión de Sucursales</a>
         </li>
 
     </ul>
@@ -56,7 +56,7 @@
 </li>
 
 <li>
-    <a href="galeria"><i class="fa fa-files-o fa-fw"></i>Gestión Imagenes<span class=""></span></a>
+    <a href="galeria"><i class="fa fa-files-o fa-fw"></i>Gestión Imágenes  <span class=""></span></a>
     
 </li>
 

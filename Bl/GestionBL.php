@@ -12,7 +12,7 @@ class GestionBL{
 
 
 public function getDatosGridusuario(){
-		$usuario = \DB::table('usuario')->get();
+		$usuario =  \DB::select('CALL getDatosUsuario');
 		return $usuario;
 	}
 
@@ -70,17 +70,32 @@ public function getDatosGridusuario(){
 		public function getDatosGridSucursal(){
 		
 		$puntuacion = \DB::select('CALL getDatosSucursal');
+		return $puntuacion;
+	}
+
 	
-		return $puntuacion;
-	}
+	public function getDatosModalusuario($id){
 
-		public function getDatosGridInformacion(){
 		
-		$puntuacion = \DB::select('CALL getDatosSucursal');
-		return $puntuacion;
+		$bb = \DB::select('CALL getDatosIdusuario(?)', array($id));
+		return $bb;
+
 	}
 
 
+	public function getDatosModalestablecimiento($id){
+
+		
+		$bb = \DB::select('CALL getDatosIdestablecimiento(?)', array($id));
+		return $bb;
+
+	}
+
+	
+	public function getDatosModalsucursal($id){
+		$bb = \DB::select('CALL getDatosIdsucursal(?)', array($id));
+		return $bb;
+	}
 
 	
 	public function insTesData($request){

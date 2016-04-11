@@ -17,81 +17,22 @@ class GestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*VISTA PRINCIPAL ######################################### */
     public function index()
     {
         return view('gestion.principal');
         
     }
+   
+    /*VISTA DEL ESTABLECIMIENTO ######################################### */
 
      public function establecimiento()
     {
         return view('gestion.establecimiento');
     }
 
-      public function cliente()
-    {
-        return view('gestion.cliente');
-    }
-    
-        public function menu()
-    {
-        return view('gestion.menu');
-    }
-    
-         public function menuplato()
-    {
-        return view('gestion.menuplato');
-    }
-
-         public function menucategoria()
-    {
-        return view('gestion.menucategoria');
-    }
-    
-
-         public function menusucursal()
-    {
-        return view('gestion.menusucursal');
-    }
-
-           public function platos()
-    {
-        return view('gestion.platos');
-    }
-           public function galeria()
-    {
-        return view('gestion.galeria');
-    }
-    
-          public function puntuacion()
-    {
-        return view('gestion.puntuacion');
-    }
-    
-         public function sucursal()
-    {
-        return view('gestion.sucursal');
-    }
-    
-       public function informacion()
-    {
-        return view('gestion.informacion');
-    }
-
-    //Vistas Modal
-
-     public function modalestablecimiento()
-    {
-        return view('gestion.modalestablecimiento');
-    }
-
-       public function modalcliente()
-    {
-        return view('gestion.modalcliente');
-    }
-    
-
-public function postbdestablecimiento(Request $rq)
+     public function postbdestablecimiento(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -108,7 +49,17 @@ public function postbdestablecimiento(Request $rq)
         
     }
 
-public function postbusuario(Request $rq)
+
+
+     /*VISTA DEL CLIENTE ######################################### */
+
+      public function cliente()
+    {
+        return view('gestion.cliente');
+    }
+
+
+    public function postbusuario(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -126,7 +77,17 @@ public function postbusuario(Request $rq)
     }
 
 
-public function postbdmenu(Request $rq)
+    
+     /*VISTA DEL MENU ######################################### */
+
+        public function menu()
+    {
+        return view('gestion.menu');
+
+    }
+
+
+    public function postbdmenu(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -143,7 +104,14 @@ public function postbdmenu(Request $rq)
         
     }
 
-public function postbdmenuplato(Request $rq)
+    /*VISTA DEL PLATO DEL MENU ######################################### */
+         public function menuplato()
+    {
+        return view('gestion.menuplato');
+    }
+
+
+    public function postbdmenuplato(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -161,8 +129,13 @@ public function postbdmenuplato(Request $rq)
     }
 
 
+    /*VISTA DEL CATEGORIA DEL MENU ######################################### */
 
-    public function postbdmenucategoria(Request $rq)
+         public function menucategoria()
+    {
+        return view('gestion.menucategoria');
+    }
+       public function postbdmenucategoria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -178,8 +151,13 @@ public function postbdmenuplato(Request $rq)
         return $util->getDataRequest($datos,$input);
         
     }
-
-     public function postbdmenusucursal(Request $rq)
+    
+    /*VISTA DEL SUCURSAL DEL MENU ######################################### */
+         public function menusucursal()
+    {
+        return view('gestion.menusucursal');
+    }
+       public function postbdmenusucursal(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -196,6 +174,12 @@ public function postbdmenuplato(Request $rq)
         
     }
 
+    /*VISTA DE LOS PLATOS ######################################### */
+
+           public function platos()
+    {
+        return view('gestion.platos');
+    }
          public function postbdplatos(Request $rq)
     {
 
@@ -220,8 +204,13 @@ public function postbdmenuplato(Request $rq)
         return $util->getDataRequest($datos,$input);
         
     }
+    /*VISTA DE LA GALERIA ######################################### */
+           public function galeria()
+    {
+        return view('gestion.galeria');
+    }
 
-         public function postbdgaleria(Request $rq)
+     public function postbdgaleria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -247,7 +236,13 @@ public function postbdmenuplato(Request $rq)
         
     }
 
-
+    /*VISTA DE LA PUNTUACION ######################################### */
+    
+          public function puntuacion()
+    {
+        return view('gestion.puntuacion');
+    }
+    
 
          public function postbdpuntuacion(Request $rq)
     {
@@ -267,6 +262,13 @@ public function postbdmenuplato(Request $rq)
     }
 
 
+
+    /*VISTA DE LA SUCURSAL ######################################### */
+         public function sucursal()
+    {
+        return view('gestion.sucursal');
+    }
+    
          public function postbdsucursal(Request $rq)
     {
 
@@ -283,9 +285,13 @@ public function postbdmenuplato(Request $rq)
         return $util->getDataRequest($datos,$input);
         
     }
-
-
-         public function postbdinformacion(Request $rq)
+    
+    /*VISTA DE LA INFORMACION BASICA ######################################### */
+       public function informacion()
+    {
+        return view('gestion.informacion');
+    }
+           public function postbdinformacion(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -301,4 +307,59 @@ public function postbdmenuplato(Request $rq)
         return $util->getDataRequest($datos,$input);
         
     }
+
+    /*VISTA DEL MODAL DEL ESTABLECIMIENTO ######################################### */
+
+     public function getmodalestablecimiento($id)
+    {   
+
+       $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalestablecimiento($id);
+        return view('gestion.modalestablecimiento',compact('datos'));
+    }
+
+    /*VISTA DEL MODAL DEL CLIENTE ######################################### */
+
+       public function getmodalcliente($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalusuario($id);
+       
+        return view('gestion.modalcliente',compact('datos'));
+    }
+
+  /*VISTA DEL MODAL DEL SUCURSAL ######################################### */
+        public function getmodalsucursal($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalsucursal($id);
+        return view('gestion.modalsucursal',compact('datos'));
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+
+    
+
+        
+
+
+
+
+
+
+  
 }

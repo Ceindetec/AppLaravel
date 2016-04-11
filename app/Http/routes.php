@@ -41,36 +41,67 @@ Route::get('facebook/callback', 'mainController@handleProviderCallback');
 
 /* METODOS DE GESTION POR LA APP ################################################ */
 
+/* MODULO GESTION INICIO ######################################################## */
+
 Route::get('inicio','gestionController@index');
+
+/* MODULO GESTION ESTABLECIMIENTO   ############################################# */
 Route::get('establecimiento','gestionController@establecimiento');
-Route::get('cliente','gestionController@cliente');
-Route::get('menu','gestionController@menu');
-Route::get('menuplato','gestionController@menuplato');
-Route::get('menucategoria','gestionController@menucategoria');
-Route::get('menusucursal','gestionController@menusucursal');
-Route::get('platos','gestionController@platos');
-Route::get('galeria','gestionController@galeria');
-Route::get('puntuacion','gestionController@puntuacion');
-Route::get('sucursal','gestionController@sucursal');
-Route::get('informacion','gestionController@informacion');
-//post de gestion
-
-//Ruta de transporte de grid datos establecimiento en la vista establecimientos
 Route::post('postbdestablecimiento','gestionController@postbdestablecimiento');
-Route::post('postbusuario','gestionController@postbusuario');
-Route::post('postbdmenu','gestionController@postbdmenu');
-Route::post('postbdmenuplato','gestionController@postbdmenuplato');
-Route::post('postbdmenucategoria','gestionController@postbdmenucategoria');
-Route::post('postbdmenusucursal','gestionController@postbdmenusucursal');
-Route::post('postbdplatos','gestionController@postbdplatos');
-Route::post('postbdgaleria','gestionController@postbdgaleria');
-Route::post('postbdpuntuacion','gestionController@postbdpuntuacion');
-Route::post('postbdsucursal','gestionController@postbdsucursal');
-Route::post('postbdinformacion','gestionController@postbdinformacion');
+Route::get('modalestablecimiento/{id}', 'gestionController@getmodalestablecimiento');
 
-//MODALES DE GESTION
-Route::get('modalestablecimiento', 'gestionController@modalestablecimiento');
-Route::get('modalcliente', 'gestionController@modalcliente');
+
+/* MODULO GESTION CLIENTE  #####################################################  */
+Route::get('cliente','gestionController@cliente');
+Route::post('postbusuario','gestionController@postbusuario');
+Route::get('modalcliente/{id}', 'gestionController@getmodalcliente');
+
+
+
+/* MODULO GESTION MENU  ########################################################  */
+Route::get('menu','gestionController@menu');
+Route::post('postbdmenu','gestionController@postbdmenu');
+
+
+
+/* MODULO GESTION PLATOS DEL MENU  #############################################  */
+Route::get('menuplato','gestionController@menuplato');
+Route::post('postbdmenuplato','gestionController@postbdmenuplato');
+
+
+/* MODULO GESTION CATEGORIAS DEL MENU  #########################################  */
+Route::get('menucategoria','gestionController@menucategoria');
+Route::post('postbdmenucategoria','gestionController@postbdmenucategoria');
+
+/* MODULO GESTION SUCURSALES DEL MENU  ##########################################  */
+Route::get('menusucursal','gestionController@menusucursal');
+Route::post('postbdmenusucursal','gestionController@postbdmenusucursal');
+Route::get('modalsucursal/{id}', 'gestionController@getmodalsucursal');
+
+
+
+/* MODULO GESTION PLATOS  #######################################################  */
+Route::get('platos','gestionController@platos');
+Route::post('postbdplatos','gestionController@postbdplatos');
+
+
+/* MODULO GESTION GALERIA  ######################################################  */
+Route::get('galeria','gestionController@galeria');
+Route::post('postbdgaleria','gestionController@postbdgaleria');
+
+/* MODULO GESTION PUNTUACION  ###################################################  */
+Route::get('puntuacion','gestionController@puntuacion');
+Route::post('postbdpuntuacion','gestionController@postbdpuntuacion');
+
+
+/* MODULO GESTION SUCURSALES  ###################################################  */
+Route::get('sucursal','gestionController@sucursal');
+Route::post('postbdsucursal','gestionController@postbdsucursal');
+
+/* MODULO GESTION INFORMACION BASICA ############################################  */
+
+Route::get('informacion','gestionController@informacion');
+Route::post('postbdinformacion','gestionController@postbdinformacion');
 
 
 /* METODOS DE PRUEBA ############################################################ */
