@@ -31,44 +31,13 @@
 			return kendo.stringify(data);
 		}');
 
-		//Inicializamos el Modelo para la grid
-		$model = new \Kendo\Data\DataSourceSchemaModel();
-
-		//Inicializamos las columnas del Modelo
-	
-
-		$nombreMenuPlato = new \Kendo\Data\DataSourceSchemaModelField('nombreMenuPlato');
-		$nombreMenuPlato->type('string');
-
-		$nombrePlato = new \Kendo\Data\DataSourceSchemaModelField('nombrePlato');
-		$nombrePlato->type('string');
-
-		$valor = new \Kendo\Data\DataSourceSchemaModelField('valor');
-		$valor->type('string');
-
-
-		$estadoMenuPlato = new \Kendo\Data\DataSourceSchemaModelField('estadoMenuPlato');
-		$estadoMenuPlato->type('string');
-
-		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
-		$accion-> type('string');
-
-
-		//Agregamos las columnas al modelo de l grid
-		$model
-		->addField($nombreMenuPlato)
-		->addField($nombrePlato)
-		->addField($valor)
-		->addField($accion)
-		->addField($estadoMenuPlato);
-
+		
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
 
 		//Agregamos los aributos del esquema de l grid
 		$schema
 		->data('data')
-		->model($model)
 		->total('total');
 
 		//Inicializamos el Data Source
@@ -88,19 +57,19 @@
 
 		//Inicializamos las columnas de la grid
 		$nombreMenuPlato = new \Kendo\UI\GridColumn();
-		$nombreMenuPlato->field('nombreMenuPlato')->title('Menu');
+		$nombreMenuPlato->field('nombreMenuPlato')->title('Menú');
 
 		$nombrePlato = new \Kendo\UI\GridColumn();
-		$nombrePlato->field('nombrePlato')->title('nombre del Plato');
+		$nombrePlato->field('nombrePlato')->title('Nombre');
 
 		$valor = new \Kendo\UI\GridColumn();
-		$valor->field('valor')->title('valor');
+		$valor->field('valor')->title('Valor');
 
 		$estadoMenuPlato = new \Kendo\UI\GridColumn();
-		$estadoMenuPlato->field('estadoMenuPlato')->title('estado');
+		$estadoMenuPlato->field('estadoMenuPlato')->title('Estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');
+		$accion->field('accion')->title('Acción ')->templateId('accion');
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
@@ -127,11 +96,16 @@
 @endsection
 
 <script id="accion" type="text/x-kendo-tmpl">
-<div>
-	    
-      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-</div>
-  
+	<?php $estado = "#= estadoMenuPlato#" ?>
+	<?php if($estado = "Estado activo"){
+		?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		<?php
+	}else{
+		?>
+		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		<?php
+	}
+	?>
 </script>
 

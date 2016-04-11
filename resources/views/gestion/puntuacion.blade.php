@@ -31,47 +31,7 @@
 			return kendo.stringify(data);
 		}');
 
-		//Inicializamos el Modelo para la grid
-		$model = new \Kendo\Data\DataSourceSchemaModel();
-
-		//Inicializamos las columnas del Modelo
-	
-
-		$nombreSucursal = new \Kendo\Data\DataSourceSchemaModelField('nombreSucursal');
-		$nombreSucursal->type('string');
-
-		$nombreUsuario = new \Kendo\Data\DataSourceSchemaModelField('nombreUsuario');
-		$nombreUsuario->type('string');
-
-		$comentario = new \Kendo\Data\DataSourceSchemaModelField('comentario');
-		$comentario->type('string');
-
-		$puntuacion = new \Kendo\Data\DataSourceSchemaModelField('puntuacion');
-		$puntuacion->type('string');
-
-		$fecha = new \Kendo\Data\DataSourceSchemaModelField('fecha');
-		$fecha->type('string');
-
-		$hora = new \Kendo\Data\DataSourceSchemaModelField('hora');
-		$hora->type('string');
-
-		$estadoPuntuacion = new \Kendo\Data\DataSourceSchemaModelField('estadoPuntuacion');
-		$estadoPuntuacion->type('string');
-
-		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
-		$accion-> type('string');
-
-
-		//Agregamos las columnas al modelo de l grid
-		$model
-		->addField($nombreSucursal)
-		->addField($nombreUsuario)
-		->addField($comentario)
-		->addField($puntuacion)
-		->addField($fecha)
-		->addField($hora)
-		->addField($accion)
-		->addField($estadoPuntuacion);
+		
 
 		//Inicializamos el esquema de la grid
 		$schema = new \Kendo\Data\DataSourceSchema();
@@ -79,7 +39,6 @@
 		//Agregamos los aributos del esquema de l grid
 		$schema
 		->data('data')
-		->model($model)
 		->total('total');
 
 		//Inicializamos el Data Source
@@ -108,7 +67,7 @@
 		$comentario->field('comentario')->title('Comentario');
 
 		$puntuacion = new \Kendo\UI\GridColumn();
-		$puntuacion->field('puntuacion')->title('Puntuacion');
+		$puntuacion->field('puntuacion')->title('Puntuación');
 
 		$fecha = new \Kendo\UI\GridColumn();
 		$fecha->field('fecha')->title('Fecha');
@@ -117,10 +76,10 @@
 		$hora->field('hora')->title('Hora');
 
 		$estadoPuntuacion = new \Kendo\UI\GridColumn();
-		$estadoPuntuacion->field('estadoPuntuacion')->title('estado');
+		$estadoPuntuacion->field('estadoPuntuacion')->title('Estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');
+		$accion->field('accion')->title('Acción')->templateId('accion');
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
@@ -147,11 +106,16 @@
 @endsection
 
 <script id="accion" type="text/x-kendo-tmpl">
-<div>
-	   
-      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-</div>
-  
+<?php $estado = "#= estadoPuntuacion" ?>
+	<?php if($estado = "Estado activo"){
+		?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		<?php
+	}else{
+		?>
+		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		<?php
+	}
+	?>
 </script>
 

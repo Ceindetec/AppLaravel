@@ -31,46 +31,6 @@
 			return kendo.stringify(data);
 		}');
 
-		//Inicializamos el Modelo para la grid
-		$model = new \Kendo\Data\DataSourceSchemaModel();
-
-		//Inicializamos las columnas del Modelo
-	
-
-		$nombreEstablecimiento = new \Kendo\Data\DataSourceSchemaModelField('nombreEstablecimiento');
-		$nombreEstablecimiento->type('string');
-
-		$nombreCategoria = new \Kendo\Data\DataSourceSchemaModelField('nombreCategoria');
-		$nombreCategoria->type('string');
-
-		$galeria = new \Kendo\Data\DataSourceSchemaModelField('galeria');
-		$galeria->type('string');
-		
-		$accion = new \Kendo\Data\DataSourceSchemaModelField('accion');
-		$accion-> type('string');
-
-
-
-
-		$nombre = new \Kendo\Data\DataSourceSchemaModelField('nombre');
-		$nombre->type('string');
-
-		$descripcion = new \Kendo\Data\DataSourceSchemaModelField('descripcion');
-		$descripcion->type('string');
-
-		$estadoPlato = new \Kendo\Data\DataSourceSchemaModelField('estadoPlato');
-		$estadoPlato->type('string');
-
-
-		//Agregamos las columnas al modelo de l grid
-		$model
-		->addField($nombreEstablecimiento)
-		->addField($nombreCategoria)
-		->addField($galeria)
-		->addField($nombre)
-		->addField($descripcion)
-		->addField($accion)
-		->addField($estadoPlato);
 
 
 
@@ -80,7 +40,6 @@
 		//Agregamos los aributos del esquema de l grid
 		$schema
 		->data('data')
-		->model($model)
 		->total('total');
 
 		//Inicializamos el Data Source
@@ -103,23 +62,23 @@
 		$nombreEstablecimiento->field('nombreEstablecimiento')->title('Establecimiento');
 
 		$nombreCategoria = new \Kendo\UI\GridColumn();
-		$nombreCategoria->field('nombreCategoria')->title('Categoria');
+		$nombreCategoria->field('nombreCategoria')->title('Categoría');
 
 		$galeria = new \Kendo\UI\GridColumn();
-		$galeria->field('galeria')->title('Galeria')->hidden(true);
+		$galeria->field('galeria')->title('Galería')->hidden(true);
 
 
 		$nombre = new \Kendo\UI\GridColumn();
 		$nombre->field('nombre')->title('Nombre');
 
 		$descripcion = new \Kendo\UI\GridColumn();
-		$descripcion->field('descripcion')->title('Descripcion');
+		$descripcion->field('descripcion')->title('Descripción');
 
 		$estadoPlato = new \Kendo\UI\GridColumn();
 		$estadoPlato->field('estadoPlato')->title('Estado');
 
 		$accion = new \Kendo\UI\GridColumn();
-		$accion->field('accion')->title('Accion')->templateId('accion');
+		$accion->field('accion')->title('Acción')->templateId('accion');
 
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
@@ -129,7 +88,7 @@
 
 		$Column = new \Kendo\UI\GridColumn();
 		$Column->field('ColumnName')
-		->title('galeria')
+		->title('Galería')
 		//->attributes(' bgcolor = '.getColorForValue(#: Column #) )
 		->templateId('ColumnTemplate');	
 
@@ -160,10 +119,18 @@
 </script>
 
 <script id="accion" type="text/x-kendo-tmpl">
-<div>
-	  
-      <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-</div>
+
+
+	<?php $estado = "#= estadoPlato#" ?>
+	<?php if($estado = "Estado activo"){
+		?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		<?php
+	}else{
+		?>
+		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		<?php
+	}
+	?>
   
 </script>
