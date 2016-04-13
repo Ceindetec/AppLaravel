@@ -18,8 +18,8 @@ $(function(){
 
     /*elimina boton de seleccion de filtros de la grid*/
 
-    $('.k-dropdown-wrap.k-state-default').css('display','none');
-
+    $('span[unselectable].k-dropdown-wrap.k-state-default').removeAttr('style');
+    $('table .k-dropdown-wrap.k-state-default').css('display','none');
     handleAjaxModal();
 })
 
