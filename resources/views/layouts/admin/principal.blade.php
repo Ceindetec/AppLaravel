@@ -14,6 +14,9 @@
 
     <title>Nombre Aplicacion</title>
     <!-- Bootstrap Core CSS -->
+    {!!Html::style('css/kendo/kendo.common.min.css')!!}
+    {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
+    
     {!!Html::style('css/bootstrap.min.css')!!}  
     <!-- MetisMenu CSS -->
     {!!Html::style('css/metisMenu.min.css')!!}
@@ -24,8 +27,7 @@
     <!-- Custom Fonts -->
     {!!Html::style('css/font-awesome.min.css')!!}
     <!-- Kendo css-->
-    {!!Html::style('css/kendo/kendo.common.min.css')!!}
-    {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
+    
     <!-- msgbox css-->
     {!!Html::style('css/msgbox/jquery.msgbox.css')!!}
     <!-- jQuery -->

@@ -100,21 +100,15 @@
 
 		
 	<a href="modalestablecimiento/#= idestablecimiento#" class="btn btn-primary" data-modal="">Detalles</a>
-	<?php $estadoEstablecimiento = "#= estadoEstablecimiento#";?>
-
-		<?php if($estado = "activo"){
-		?>
-		<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
-		<?php
-	}else{
-		?>
-		<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
-		<?php
-	}
-	?>
-
-
-
+		
+		#if(estadoEstablecimiento == 'activo'){#
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
+		#}
+		else{#
+			<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
+		 #}#
+		
+		
 </script>
 
 
