@@ -31,6 +31,18 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('registro', 'Auth\AuthController@getRegister');
 Route::post('registro', 'Auth\AuthController@postRegister');
 
+Route::get('registrocliente','registroController@registrocliente');
+
+Route::get('registroestablecimiento','registroController@registroestablecimiento');
+
+Route::get('registrosucursal','registroController@registrosucursal');
+
+Route::get('registromenu','registroController@registromenu');
+
+Route::get('registroplato','registroController@registroplato');
+
+
+
 /* METODOS DE LOGIN CON FACEBOOK ################################################ */
 
 Route::get('facebook', 'mainController@redirectToProvider');
