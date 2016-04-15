@@ -112,5 +112,43 @@ class mainController extends Controller
     {
         return $rq['id'];
     }
+
+    public function geolocalizacion()
+    {
+    /* CONFIGURACION */
+       
+        $config = array();
+        $config['center'] = 'auto';
+        $config['map_width'] = 500;
+        $config['map_height'] = 300;
+        $config['zoom'] = 15;
+        $config['onboundschanged'] = 'if (!centreGot) {
+            var mapCentre = map.getCenter();
+            marker_0.setOptions({
+                position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+ 
+            });
+        }
+        centreGot = true;';
+        
+        \Gmaps::initialize($config);
+ 
+        // Colocar el marcador 
+        // Una vez se conozca la posición del usuario
+        $marker = array();
+        $marker['infowindow_content'] = 'Usted esta aqui';
+        \Gmaps::add_marker($marker);
+        
+        //Agregar marcador manualmente
+        $marker = array();
+        $marker['position'] = '4.131005, -73.626307';
+        $marker['infowindow_content'] = 'AGREGADO EN CONTROLLER MANUALMENTE';
+        \Gmaps::add_marker($marker);
+
+        $map = \Gmaps::create_map();
+
+        //Devolver vista con datos del mapa
+        return view('main.geolocalizacion', compact('map'));
+    }
 }
 

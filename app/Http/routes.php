@@ -103,6 +103,8 @@ Route::post('postbdsucursal','gestionController@postbdsucursal');
 Route::get('informacion','gestionController@informacion');
 Route::post('postbdinformacion','gestionController@postbdinformacion');
 
+/* MODULO DE GEOLOCALIZACION ####################################################  */
+Route::get('geolocalizacion','mainController@geolocalizacion');
 
 /* METODOS DE PRUEBA ############################################################ */
 

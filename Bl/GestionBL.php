@@ -3,7 +3,7 @@
 class GestionBL{
 	
 
-	public function GestionBL(){}
+	public function __construct(){}
 
 	public function getDatosGridestablecimiento(){
 		$establecimiento = \DB::select('CALL getDatosEstablecimiento');
