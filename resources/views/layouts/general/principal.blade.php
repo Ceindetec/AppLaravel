@@ -99,20 +99,20 @@
           </div>
         </div>
 
-        <div class="row galeri">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 galeri">
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
-          <div class="row col-xs-12 col-sm-12 col-md-8 col-lg-8 ejemplo">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ejemplo">
 
           </div>
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
         </div>
 
-        <div class="row contenido">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
-          <div class="row col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
              @yield('content') 
           </div>
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
