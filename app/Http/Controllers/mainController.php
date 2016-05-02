@@ -8,7 +8,9 @@ use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
 use Utils;
 use TestBl;
+use MainBl;
 use Socialite;
+use RegistroBl;
 
 class mainController extends Controller
 {
@@ -112,8 +114,31 @@ class mainController extends Controller
     {
         return $rq['id'];
     }
+    
+    /*VISTA DEL FILTRO ######################################### */
+    public function filtros(){
 
-    public function geolocalizacion()
+        return view('main.filtro');
+    }
+    /*VISTA FILTRADA ######################################### */
+    public function SucuFiltrada(Request $request){
+
+        $Bl = new MainBl();
+
+        $dataInfoSucursales = $Bl->getDatosInfoSucursales($request);
+
+        $total = count($dataInfoSucursales);
+
+        for($i=0 ; $i<$total; $i++)
+        {
+            $dataInfoSucursales[$i]->logo = base64_encode($dataInfoSucursales[$i]->logo); 
+        }
+      
+        return view('main.SucuFiltrada',compact('dataInfoSucursales'));
+    }
+
+    /*VISTA DEL MAPA ######################################### */
+    public function mapa()
     {
     /* CONFIGURACION */
        
@@ -132,23 +157,14 @@ class mainController extends Controller
         centreGot = true;';
         
         \Gmaps::initialize($config);
- 
-        // Colocar el marcador 
-        // Una vez se conozca la posición del usuario
-        $marker = array();
-        $marker['infowindow_content'] = 'Usted esta aqui';
-        \Gmaps::add_marker($marker);
-        
-        //Agregar marcador manualmente
-        $marker = array();
-        $marker['position'] = '4.131005, -73.626307';
-        $marker['infowindow_content'] = 'AGREGADO EN CONTROLLER MANUALMENTE';
-        \Gmaps::add_marker($marker);
 
         $map = \Gmaps::create_map();
 
         //Devolver vista con datos del mapa
-        return view('main.geolocalizacion', compact('map'));
+        return view('main.mapa', compact('map'));
+    }
+
+    public function julian(){
+        return view('main.julian');
     }
 }
-

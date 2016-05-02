@@ -104,7 +104,12 @@ Route::get('informacion','gestionController@informacion');
 Route::post('postbdinformacion','gestionController@postbdinformacion');
 
 /* MODULO DE GEOLOCALIZACION ####################################################  */
-Route::get('geolocalizacion','mainController@geolocalizacion');
+Route::get('mapa','mainController@mapa');
+
+/* FILTRADO ####################################################  */
+Route::get('filtros', 'mainController@filtros');
+Route::post('filtros', 'mainController@SucuFiltrada');
+
 
 /* METODOS DE PRUEBA ############################################################ */
 
