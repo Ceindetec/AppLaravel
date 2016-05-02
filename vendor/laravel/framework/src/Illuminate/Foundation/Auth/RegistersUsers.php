@@ -27,12 +27,14 @@ trait RegistersUsers
      */
     public function postRegister(Request $request)
     {
+
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
             );
+
         }
 
         Auth::login($this->create($request->all()));
