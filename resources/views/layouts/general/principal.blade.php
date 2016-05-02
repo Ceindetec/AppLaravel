@@ -28,6 +28,10 @@
   {!!Html::style('css/kendo/kendo.bootstrap.min.css')!!}
   <!-- msgbox css-->
   {!!Html::style('css/msgbox/jquery.msgbox.css')!!}
+  <!-- Bootstrap Core CSS -->
+  {!!Html::style('css/generalcss.css')!!}  
+
+
   <!-- jQuery -->
   {!!Html::script('js/jquery.min.js')!!}
   <!-- Bootstrap Core JavaScript -->
@@ -64,25 +68,74 @@
 
       <body>
 
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 busqueda" style="padding-top: 1%">
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
-
-         @yield('content') 
-
-
-       <!-- Modal Bootstrap-->
-       <div id='modalBs' class='modal fade bs-example-modal-lg'>
-        <div class="modal-dialog">
-          <div class="modal-content">
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <form action="" class="search-form">
+              <div class="form-group has-feedback">
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" class="form-control" name="search" id="search" placeholder="Buscar">
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+            </form>
           </div>
         </div>
-      </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="MenuTop">
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+          <nav  class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <ul class="menu text-center" >
+              <li><a href="#">Elemento 1</a></li>
+              <li><a href="#">Elemento 2</a></li>
+              <li><a href="#">Elemento 3</a></li>
+              <li><a href="#">Elemento 4</a></li>
+              <li><a href="#">Elemento 5</a></li>
+            </ul>
+          </nav>
+           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 galeri">
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ejemplo">
+
+          </div>
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
+             @yield('content') 
+          </div>
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+        </div>
+
+       
 
 
-      {!!Html::script('js/inicio.js')!!}  
+        <!-- Modal Bootstrap-->
+        <div id='modalBs' class='modal fade bs-example-modal-lg'>
+          <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+          </div>
+        </div>
 
 
-      @yield('scripts')
+        {!!Html::script('js/inicio.js')!!}  
 
-    </body>
 
-    </html>
+        @yield('scripts')
+
+      </body>
+
+      </html>
