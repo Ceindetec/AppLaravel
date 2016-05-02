@@ -150,6 +150,9 @@ return [
         aplicacion\Providers\EventServiceProvider::class,
         aplicacion\Providers\RouteServiceProvider::class,
 
+        //Proveedore de PhpGMaps
+        GeneaLabs\Phpgmaps\PhpgmapsServiceProvider::class,
+
     ],
 
     /*
@@ -207,7 +210,10 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         //alias de facebook
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        //Alias de PhpGMaps
+        'Gmaps' => GeneaLabs\Phpgmaps\Facades\PhpgmapsFacade::class,
 
     ],
 
