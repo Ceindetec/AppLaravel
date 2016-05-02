@@ -6,33 +6,38 @@ use Illuminate\Http\Request;
 
 use aplicacion\Http\Requests;
 use aplicacion\Http\Controllers\Controller;
-
+use Illuminate\Contracts\Auth\Guard;
+use RegistroBl;
 use GestionBL;
 use Utils;
 
 class GestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    /*CONSTRUCTOR DEL AUTH ######################################### */
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
 
     /*VISTA PRINCIPAL ######################################### */
     public function index()
     {
         return view('gestion.principal');
-        
+
     }
-   
+
     /*VISTA DEL ESTABLECIMIENTO ######################################### */
 
-     public function establecimiento()
+
+    public function getEstablecimiento()
     {
-        return view('gestion.establecimiento');
+        return view('gestion.establecimiento', compact('datos'));
     }
 
-     public function postbdestablecimiento(Request $rq)
+    public function postbdestablecimiento(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -45,15 +50,25 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
 
+    /*VISTA DEL ESTABLECIMIENTOS DEL CLIENTE ######################################### */
 
-     /*VISTA DEL CLIENTE ######################################### */
 
-      public function cliente()
+    public function getEstablecimientoCliente(Request $request)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getEstablecimientoCliente($request, $this->auth->user()->id);
+        return view('gestion.establecimientocliente', compact('datos'));
+    }
+
+
+    /*VISTA DEL CLIENTE ######################################### */
+
+    public function getCliente()
     {
         return view('gestion.cliente');
     }
@@ -72,15 +87,14 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
 
-    
-     /*VISTA DEL MENU ######################################### */
+    /*VISTA DEL MENU ######################################### */
 
-        public function menu()
+    public function getMenu()
     {
         return view('gestion.menu');
 
@@ -100,12 +114,12 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
     /*VISTA DEL PLATO DEL MENU ######################################### */
-         public function menuplato()
+    public function getMenuPlato()
     {
         return view('gestion.menuplato');
     }
@@ -124,18 +138,19 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
 
     /*VISTA DEL CATEGORIA DEL MENU ######################################### */
 
-         public function menucategoria()
+    public function getMenuCategoria()
     {
         return view('gestion.menucategoria');
     }
-       public function postbdmenucategoria(Request $rq)
+
+    public function postbdmenucategoria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -148,16 +163,17 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
-    
+
     /*VISTA DEL SUCURSAL DEL MENU ######################################### */
-         public function menusucursal()
+    public function getMenuSucursal()
     {
         return view('gestion.menusucursal');
     }
-       public function postbdmenusucursal(Request $rq)
+
+    public function postbdmenusucursal(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -170,17 +186,18 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
     /*VISTA DE LOS PLATOS ######################################### */
 
-           public function platos()
+    public function getPlatos()
     {
         return view('gestion.platos');
     }
-         public function postbdplatos(Request $rq)
+
+    public function postbdplatos(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -189,9 +206,8 @@ class GestionController extends Controller
 
         $total = count($datos);
 
-        for($i=0 ; $i<$total; $i++)
-        {
-           $datos[$i]->galeria = base64_encode($datos[$i]->galeria);     
+        for ($i = 0; $i < $total; $i++) {
+            $datos[$i]->galeria = base64_encode($datos[$i]->galeria);
         }
 
 
@@ -201,16 +217,17 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
+
     /*VISTA DE LA GALERIA ######################################### */
-           public function galeria()
+    public function getGaleria()
     {
         return view('gestion.galeria');
     }
 
-     public function postbdgaleria(Request $rq)
+    public function postbdgaleria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -219,32 +236,30 @@ class GestionController extends Controller
 
         $total = count($datos);
 
-        for($i=0 ; $i<$total; $i++)
-        {
+        for ($i = 0; $i < $total; $i++) {
 
-           $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
+            $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
         }
 
-       
 
         $request = file_get_contents('php://input');
 
         $input = json_decode($request);
 
         $util = new Utils();
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
     /*VISTA DE LA PUNTUACION ######################################### */
-    
-          public function puntuacion()
+
+    public function getPuntuacion()
     {
         return view('gestion.puntuacion');
     }
-    
 
-         public function postbdpuntuacion(Request $rq)
+
+    public function postbdpuntuacion(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -257,41 +272,50 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
-    }
+        return $util->getDataRequest($datos, $input);
 
+    }
 
 
     /*VISTA DE LA SUCURSAL ######################################### */
-         public function sucursal()
-    {
-        return view('gestion.sucursal');
-    }
-    
-         public function postbdsucursal(Request $rq)
+    public function getSucursal($idEstablecimiento)
     {
 
+        return view('gestion.sucursal', compact('idEstablecimiento'));
+
+    }
+
+    public function getDatosSucursalById(Request $request)
+    {
+        $id = $request->input('id');
         $Bl = new GestionBL();
 
-        $datos = $Bl->getDatosGridSucursal();
+        $datos = $Bl->getDatosGridSucursalById($id);
 
         $request = file_get_contents('php://input');
 
         $input = json_decode($request);
-
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
-    
+
+    public function getSucursalCliente(Request $request)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getSucursalCliente($request, $this->auth->user()->id);
+        return view('gestion.sucursalcliente', compact('datos'));
+    }
+
+
     /*VISTA DE LA INFORMACION BASICA ######################################### */
-       public function informacion()
+    public function getInformacion()
     {
         return view('gestion.informacion');
     }
-           public function postbdinformacion(Request $rq)
+
+    public function postbdinformacion(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -304,62 +328,37 @@ class GestionController extends Controller
 
         $util = new Utils();
 
-        return $util->getDataRequest($datos,$input);
-        
+        return $util->getDataRequest($datos, $input);
+
     }
 
     /*VISTA DEL MODAL DEL ESTABLECIMIENTO ######################################### */
 
-     public function getmodalestablecimiento($id)
-    {   
+    public function getmodalestablecimiento($id)
+    {
 
-       $Bl = new GestionBL();
+        $Bl = new GestionBL();
         $datos = $Bl->getDatosModalestablecimiento($id);
-        return view('gestion.modalestablecimiento',compact('datos'));
+        return view('gestion.modalestablecimiento', compact('datos'));
     }
 
     /*VISTA DEL MODAL DEL CLIENTE ######################################### */
 
-       public function getmodalcliente($id)
+    public function getmodalcliente($id)
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosModalusuario($id);
-       
-        return view('gestion.modalcliente',compact('datos'));
+
+        return view('gestion.modalcliente', compact('datos'));
     }
 
-  /*VISTA DEL MODAL DEL SUCURSAL ######################################### */
-        public function getmodalsucursal($id)
+    /*VISTA DEL MODAL DEL SUCURSAL ######################################### */
+    public function getModalSucursal($id)
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosModalsucursal($id);
-        return view('gestion.modalsucursal',compact('datos'));
+        return view('gestion.modalsucursal', compact('datos'));
     }
 
 
-    
-
-
-
-
-
-
-
-
-
-
- 
-
-  
-
-    
-
-        
-
-
-
-
-
-
-  
 }
