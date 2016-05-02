@@ -1,0 +1,148 @@
+body {
+  padding: 0;
+  margin: 0;
+  /* Ubicación de la imagen */
+  background-image: url(../image/Fondo.jpg);
+
+  /* Nos aseguramos que la imagen de fondo este centrada vertical y
+    horizontalmente en todo momento */
+  background-position: center center;
+
+  /* La imagen de fondo no se repite */
+  background-repeat: no-repeat;
+
+  /* La imagen de fondo está fija en el viewport, de modo que no se mueva cuando
+     la altura del contenido supere la altura de la imagen. */
+  background-attachment: fixed;
+
+  /* La imagen de fondo se reescala cuando se cambia el ancho de ventana
+     del navegador */
+  background-size: cover;
+
+  /* Fijamos un color de fondo para que se muestre mientras se está
+    cargando la imagen de fondo o si hay problemas para cargarla  */
+  background-color: #464646;
+}
+
+.busqueda{
+	background-color: #000;
+}
+
+
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
+
+
+.ejemplo {
+  
+  /* Ubicación de la imagen */
+  background-image: url(../image/gale.jpg);
+
+  /* Nos aseguramos que la imagen de fondo este centrada vertical y
+    horizontalmente en todo momento */
+  background-position: center center;
+
+  /* La imagen de fondo no se repite */
+  background-repeat: no-repeat;
+
+  /* La imagen de fondo está fija en el viewport, de modo que no se mueva cuando
+     la altura del contenido supere la altura de la imagen. */
+  background-attachment: fixed;
+
+  /* La imagen de fondo se reescala cuando se cambia el ancho de ventana
+     del navegador */
+  background-size: cover;
+
+  /* Fijamos un color de fondo para que se muestre mientras se está
+    cargando la imagen de fondo o si hay problemas para cargarla  */
+  background-color: #464646;
+  height: 350px;
+}
+
+#MenuTop{
+  background: #aa071f;
+}
+
+ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.menu li {
+  position: relative;
+  z-index: 500;
+  display: inline-block;
+  background: #be0411;
+  margin-right: 0.5em;
+  box-shadow: 2px 2px 10px #000; 
+}
+ul.menu li a {
+  display: block;
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+ul.menu li:hover {
+  display: inline-block;
+  position: relative;
+  top: 1%;
+  background: #DC4D4D;
+  box-shadow: 2px 2px 30px #000; 
+}
+
+.primaria{
+ 
+ background-color: #000;
+
+}
+

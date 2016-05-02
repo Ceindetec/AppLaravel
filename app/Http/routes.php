@@ -13,7 +13,10 @@
 
 /* METODOS PERTENECIENTES AL MAIN DE LA APP ##################################### */
 
-Route::get('/', 'mainController@index');
+//Route::get('/', 'mainController@index');
+Route::get('/', function(){
+	return view('indexp');
+});
 Route::get('index', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
