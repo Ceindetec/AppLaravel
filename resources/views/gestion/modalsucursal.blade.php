@@ -1,5 +1,5 @@
 
-<div id="NombreDelModal">
+<div id="sucursal">
 
   <div class="modal-header">
 

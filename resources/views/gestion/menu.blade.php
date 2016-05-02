@@ -93,8 +93,10 @@
 	
 	</div>
 </div>
+<a href="registromenu" class="btn btn-primary" data="">Agregar Menu</a>
 
 @endsection
+
 <script id="accion" type="text/x-kendo-tmpl">
 
 
@@ -111,6 +113,6 @@
 		<?php
 	}
 	?>
-  
+  	
 
 </script>

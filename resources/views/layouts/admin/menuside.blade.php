@@ -1,4 +1,4 @@
- <li class="sidebar-search">
+<li class="sidebar-search">
     <div class="input-group custom-search-form">
         <input type="text" class="form-control" placeholder="Search...">
         <span class="input-group-btn">
@@ -11,33 +11,51 @@
 </li>
 <li>
     <a href="inicio"><i class="fa fa-pencil-square-o"></i> Inicio</a>
-</li>
-<li>
-    <a href="establecimiento"><i class="fa fa-files-o fa-fw"></i>Gestión  Establecimiento<span class=""></span></a>
 
 
 </li>
+<li>
+    <a href="establecimientocliente"><i class="fa fa-files-o fa-fw"></i>Gestión Establecimiento del Cliente<span
+                class=""></span></a>
+</li>
 
+<li>
+    <a href="sucursalcliente"><i class="fa fa-files-o fa-fw"></i>Gestión Sucursal del cliente<span
+                class=""></span></a>
+</li>
+
+</li>
+<li>
+    <a href="establecimiento"><i class="fa fa-files-o fa-fw"></i>Gestión Establecimiento<span class=""></span></a>
+
+
+</li>
 
 
 <li>
-    <a href="cliente"><i class="fa fa-files-o fa-fw"></i>Gestión  Clientes<span class=""></span></a>
-  
+    <a href="cliente"><i class="fa fa-files-o fa-fw"></i>Gestión Clientes<span class=""></span></a>
+
+    <!-- /.nav-second-level -->
+</li>
+
+<li>
+    <a href="platos"><i class="fa fa-files-o fa-fw"></i>Gestión Platos<span class=""></span></a>
+
     <!-- /.nav-second-level -->
 </li>
 
 <li>
     <a href="#"><i class="fa fa-files-o fa-fw"></i>Gestion De Menús <span class="fa arrow"></span></a>
-    
 
-       <ul class="nav nav-second-level">
+
+    <ul class="nav nav-second-level">
         <li>
-            <a href="menu">Gestión de Cartas del Menús</a>
+            <a href="menu">Gestión de Cartas de los Menús</a>
         </li>
         <li>
             <a href="menuplato">Gestión de Platos</a>
         </li>
-        
+
         <li>
             <a href="menucategoria">Gestión de Categorías </a>
         </li>
@@ -49,26 +67,18 @@
     </ul>
 </li>
 
+
 <li>
-    <a href="platos"><i class="fa fa-files-o fa-fw"></i>Gestión  Platos<span class=""></span></a>
+    <a href="galeria"><i class="fa fa-files-o fa-fw"></i>Gestión Imágenes <span class=""></span></a>
+
+</li>
+
+<li>
+    <a href="puntuacion"><i class="fa fa-files-o fa-fw"></i>Gestión de Comentarios y Puntuación<span
+                class=""></span></a>
 
     <!-- /.nav-second-level -->
 </li>
 
-<li>
-    <a href="galeria"><i class="fa fa-files-o fa-fw"></i>Gestión Imágenes  <span class=""></span></a>
-    
-</li>
 
-<li>
-    <a href="puntuacion"><i class="fa fa-files-o fa-fw"></i>Gestión de Comentarios y Puntuación<span class=""></span></a>
-
-    <!-- /.nav-second-level -->
-</li>
-
-<li>
-    <a href="sucursal"><i class="fa fa-files-o fa-fw"></i>Gestión Sucursales<span class=""></span></a>
-
-    <!-- /.nav-second-level -->
-</li>
 
