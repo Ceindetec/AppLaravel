@@ -136,7 +136,7 @@ Route::post('postbdinformacion', 'gestionController@postbdinformacion');/* RUTA 
 /* MODULO DE GEOLOCALIZACION ####################################################  */
 Route::get('mapa','mainController@mapa');
 
-/* FILTRADO ####################################################  */
+/* MODULO FILTRADO ####################################################  */
 Route::get('filtros', 'mainController@filtros');
 Route::post('filtros', 'mainController@SucuFiltrada');
 

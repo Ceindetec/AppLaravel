@@ -13,10 +13,10 @@ class MainBl{
 	
 	$result = \DB::select('CALL getDatosSucursalByQuery(?,?,?)', array($txtBuscar,$latitud,$longitud));
 
-		return $result;
+	return $result;
 	}
 
-	public function insTesData($request){
+	/*public function insTesData($request){
 
 		$usuario =  $request->input('usuario');
 		$direccion =  $request->input('email');
@@ -25,7 +25,7 @@ class MainBl{
 		$result['estado'] = true;
 		$result['mensaje'] = 'Registrado correctamente';
 		return json_encode($result);
-	}
+	}*/
 }
 
 ?>
