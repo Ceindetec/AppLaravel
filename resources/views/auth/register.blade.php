@@ -1,9 +1,10 @@
 @extends('layouts.general.principal')
 
 @section('content')
+    <body style="background-color: silver">
     <div class="container">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Formulario de Registro</h3>
                 </div>
@@ -121,8 +122,10 @@
             </div>
         </div>
     </div>
+    </body>
+@endsection
 
-
+@section('scripts')
     <script type="text/javascript">
 
         $(function () {
@@ -144,7 +147,7 @@
                 rules: {
                     confirmaPasswords: function (input) {
                         if (input.is("[name=password_confirmation]") || input.is("[name=password]")) {
-                            if (input.is("[name=password_confirmation]" )) {
+                            if (input.is("[name=password_confirmation]")) {
                                 return input.val() === $("#password").val();
                             }
                             if (input.is("[name=password]")) {

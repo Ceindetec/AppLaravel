@@ -1,5 +1,5 @@
 
-<div id="NombreDelModal">
+<div id="Cliente">
 
   <div class="modal-header">
 
