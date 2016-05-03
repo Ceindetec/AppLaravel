@@ -85,19 +85,58 @@
                                 </div>
                             </div>
 
-                                <div class="form-group">
-                                    <div col-md-3>
+                            <div class="form-group">
+                                <div col-md-3>
+                                    <div class="form-group">
                                         {!!Form::label('galeria_id', 'Logotipo:')!!}
-                                        {!!Form::file('path')!!}
+                                        <form action="#" method="post" id="subearchivos">
+                                            <input type="file" id="archivos" name="archivos"/>
 
                                     </div>
+
+                                        <div class="form-group">
+                                            <div id="vista_previa"></div>
+                                        </div>
+
+
+                                    </form>
+                                    <script>
+                                        if (window.FileReader) {
+                                            function seleccionArchivo(evt) {
+                                                var files = evt.target.files;
+                                                var f = files[0];
+                                                var leerArchivo = new FileReader();
+                                                document.getElementById('vista_previa');
+                                                leerArchivo.onload = (function (elArchivo) {
+                                                    return function (e) {
+                                                        document.getElementById('vista_previa').innerHTML = '<img src="' + e.target.result + '" alt="" width="150" />';
+                                                    };
+                                                })(f);
+
+                                                leerArchivo.readAsDataURL(f);
+                                            }
+                                        } else {
+                                            document.getElementById('vista_previa').innerHTML = "El navegador no soporta vista previa";
+                                        }
+
+                                        document.getElementById('archivos').addEventListener('change', seleccionArchivo, false);
+
+                                        function cancela(elForm) {
+                                            document.getElementById(elForm).reset();
+                                            if (window.FileReader) {
+                                                document.getElementById('vista_previa').innerHTML = "Vista Previa";
+                                            } else {
+                                                document.getElementById('vista_previa').innerHTML = "El navegador no soporta vista previa";
+                                            }
+                                            document.getElementById('').style.display = 'none';
+                                        }
+                                    </script>
 
 
                                 </div>
 
 
-
-
+                            </div>
 
 
                             <div class="form-group">

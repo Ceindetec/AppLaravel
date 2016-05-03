@@ -24,10 +24,10 @@
                                         srcset="http://vignette3.wikia.nocookie.net/outcast/images/f/f8/Imagen-no-disponible.png/revision/latest?cb=20160322191504&path-prefix=es">
                                 <source
                                         media="(min-width: 465px)"
-                                        srcset="images/kitten-sitting.png">
+                                        srcset="images/kitten-sitting.png"/>
                                 <img
                                         src="http://vignette3.wikia.nocookie.net/outcast/images/f/f8/Imagen-no-disponible.png/revision/latest?cb=20160322191504&path-prefix=es"
-                                        alt="a cute kitten">
+                                        alt="Imagen no disponible"/>
                             </picture>
                         </div>
                         <div class="col-md-4">
@@ -37,6 +37,7 @@
                             <br><b>Twitter:&nbsp;</b>{{$datos[$i]->twitter}} </br>
                             <br><b>Instagram:&nbsp;</b>{{$datos[$i]->instagram}} </br>
                         </div>
+                        <!-- espacio vacio del column -->
                         <div class="col-md-4">
 
                         </div>
@@ -59,13 +60,6 @@
 
             <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
             <?php } ?>
-
-
-
-
-
-
-
 
 
 

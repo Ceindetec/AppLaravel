@@ -6,6 +6,7 @@ class GestionBL
 
 private function __construct(){}
     {
+
     }
 
     /* MODULO GESTION ESTABLECIMIENTO   ####################################################### */
@@ -47,8 +48,8 @@ private function __construct(){}
 
     public function getDatosModalestablecimiento($id)
     {
-        $bb = \DB::select('CALL getDatosIdestablecimiento(?)', array($id));
-        return $bb;
+        $modalEstablecimiento = \DB::select('CALL getDatosIdestablecimiento(?)', array($id));
+        return $modalEstablecimiento;
     }
 
     /*
@@ -60,6 +61,8 @@ private function __construct(){}
 
     public function postRegistroEstablecimiento($request, $id)
     {
+        $result = [];
+
 
         $nombre = $request->input('nombre');
         $web = $request->input('web');
@@ -67,10 +70,14 @@ private function __construct(){}
         $facebook = $request->input('facebook');
         $twitter = $request->input('twitter');
         $instagram = $request->input('instagram');
-
-        $registrEstablecimiento = \DB::select('CALL insDatosEstablecimiento(?,?,?,?,?,?,?)', array($nombre, $web, $correo, $facebook, $twitter, $instagram, $id));
-        $result['estado'] = true;
-        $result['mensaje'] = 'Registrado correctamente';
+        try {
+            $registrEstablecimiento = \DB::select('CALL insDatosEstablecimiento(?,?,?,?,?,?,?)', array($nombre, $web, $correo, $facebook, $twitter, $instagram, $id));
+            $result['estado'] = true;
+            $result['mensaje'] = 'Registrado correctamente';
+        } catch (Exception $e) {
+            $result['estado'] = false;
+            $result['mensaje'] = 'No se registro correctamente';
+        }
         return json_encode($result);
     }
 
@@ -97,7 +104,7 @@ private function __construct(){}
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
     }
-
+// usar try y catch para todo lo que tiene que ver con post
     /*
     function getDatosModalusuario
     params in: $reques ,$id
@@ -288,11 +295,10 @@ private function __construct(){}
         $categoria = $request->input('categorias');
         $galeria = $request->path('galeria_id');
 
-        $registerSucursal = \DB::select('CALL insDatosSucursal(?,?,?,?,?,?,?)', array($nombre, $direccion, $telefono, $establecimientoId, $categoria, $id,$galeria));
+        $registerSucursal = \DB::select('CALL insDatosSucursal(?,?,?,?,?,?,?)', array($nombre, $direccion, $telefono, $establecimientoId, $categoria, $id, $galeria));
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
-
 
 
     }

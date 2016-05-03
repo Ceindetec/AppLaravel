@@ -17,7 +17,7 @@ class GestionController extends Controller
     /*CONSTRUCTOR DEL AUTH ######################################### */
     protected $auth;
 
-    public function __construct(Guard $auth)
+    private function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }
@@ -34,9 +34,13 @@ class GestionController extends Controller
 
     public function getEstablecimiento()
     {
-        return view('gestion.establecimiento', compact('datos'));
+        return view('gestion.establecimiento');
     }
 
+    /**
+     * @param Request $rq
+     * @return array
+     */
     public function postbdestablecimiento(Request $rq)
     {
 
