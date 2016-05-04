@@ -5,6 +5,7 @@ class MainBl{
 
 	public function __construct(){}
 
+	/* Funcion para enviar longitud, latitud y filtro de sucursales */
 	public function getDatosInfoSucursales($request){
 
 	$txtBuscar = $request->input('txtBuscar');

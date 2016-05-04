@@ -115,12 +115,7 @@ class mainController extends Controller
         return $rq['id'];
     }
     
-    /*VISTA DEL FILTRO ######################################### */
-    public function filtros(){
-
-        return view('main.filtro');
-    }
-    /*VISTA FILTRADA ######################################### */
+    /*VISTA FILTRADO ######################################### */
     public function SucuFiltrada(Request $request){
 
         $Bl = new MainBl();
@@ -162,9 +157,5 @@ class mainController extends Controller
 
         //Devolver vista con datos del mapa
         return view('main.mapa', compact('map'));
-    }
-
-    public function julian(){
-        return view('main.julian');
     }
 }
