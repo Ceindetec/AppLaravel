@@ -137,8 +137,8 @@ Route::post('postbdinformacion', 'gestionController@postbdinformacion');/* RUTA 
 Route::get('mapa','mainController@mapa');
 
 /* MODULO FILTRADO ####################################################  */
-Route::get('filtros', 'mainController@filtros');
-Route::post('filtros', 'mainController@SucuFiltrada');
+/* Genera la vista de las sucursales que ya estan filtradas por nombre o categoria*/
+Route::post('sucursales', 'mainController@SucuFiltrada');
 
 
 /* METODOS DE PRUEBA ############################################################ */
