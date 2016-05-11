@@ -72,6 +72,8 @@
           <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
           </div>
+
+          <!-- Insertado del boton para buscar, optencion latitud y longitud -->
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 
             {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}
