@@ -1,3 +1,4 @@
+@extends('layouts.general.principal')
 @section('content')
 	<div class="panel panel-primary">
 		<div class="panel-body">
@@ -16,13 +17,3 @@
 	</script>
 	{!!$map['js']!!}
 @endsection
-
-
-<!--<html>
-<head>
-    <script type="text/javascript">var centreGot = false;</script>{!!$map['js']!!}
-</head>
-<body>
-    {!!$map['html']!!}
-</body>
-</html>-->

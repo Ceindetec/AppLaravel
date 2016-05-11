@@ -136,9 +136,13 @@ Route::post('postbdinformacion', 'gestionController@postbdinformacion');/* RUTA 
 /* MODULO DE GEOLOCALIZACION ####################################################  */
 Route::get('mapa','mainController@mapa');
 
-/* FILTRADO ####################################################  */
-Route::get('filtros', 'mainController@filtros');
-Route::post('filtros', 'mainController@SucuFiltrada');
+/* MODULO FILTRADO ####################################################  */
+/* Genera la vista de las sucursales que ya estan filtradas por nombre o categoria*/
+Route::post('sucursales', 'mainController@SucuFiltrada');
+/* Top Puntuados del Inicio*/
+Route::get('/', 'mainController@topInicio');
+/**/
+Route::get('puntuadolist','mainController@topPuntadosList');
 
 
 /* METODOS DE PRUEBA ############################################################ */
