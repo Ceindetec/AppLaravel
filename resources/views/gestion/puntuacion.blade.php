@@ -57,11 +57,18 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
+
+		$idpuntuacion = new \Kendo\UI\GridColumn();
+		$idpuntuacion->field('idPuntuacion')->title('id')->hidden(true);
+
 		$nombreSucursal = new \Kendo\UI\GridColumn();
 		$nombreSucursal->field('nombreSucursal')->title('Sucursal');
 
 		$nombreUsuario = new \Kendo\UI\GridColumn();
 		$nombreUsuario->field('nombreUsuario')->title('Usuario');
+
+		$titulo = new \Kendo\UI\GridColumn();
+		$titulo->field('titulo')->title('Titulo');
 
 		$comentario = new \Kendo\UI\GridColumn();
 		$comentario->field('comentario')->title('Comentario');
@@ -81,12 +88,15 @@
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción')->templateId('accion');
 
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Editar')->templateId('edicion');
+
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreSucursal, $nombreUsuario, $comentario,$puntuacion,$fecha,$hora,$estadoPuntuacion,$accion)
+		->addColumn( $nombreSucursal, $nombreUsuario,$titulo, $comentario,$puntuacion,$fecha,$hora,$estadoPuntuacion,$accion,$edicion)
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
@@ -118,4 +128,10 @@
 	}
 	?>
 </script>
+
+<script id="edicion" type="text/x-kendo-tmpl">
+
+	<a href="#= idPuntuacion#" class="btn btn-success" data-modal="">Editar</a>
+    </script>
+
 

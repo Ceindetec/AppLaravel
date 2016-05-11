@@ -1,4 +1,4 @@
-@extends('layouts.general.principal')
+@extends('layouts.admin.principal')
 
 
 @section('content')
@@ -9,9 +9,9 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Registro de Plato </h3>
                 </div>
-                {!!Form::open()!!}
+                {!!Form::open(array('url' => 'postregistroplato'))!!}
                 <div class="panel-body">
-                    <form role="form">
+
 
                         <div class="form-group">
                             <div col-md-4>
@@ -28,7 +28,7 @@
 
                             $read = new \Kendo\Data\DataSourceTransportRead();
 
-                            $read->url('getcategoria')
+                            $read->url('getDropDownCategoria')
                                     ->contentType('application/json')
                                     ->type('POST');
 
@@ -36,8 +36,6 @@
                                     ->parameterMap('function(data) {
               return kendo.stringify(data);
            }');
-
-
 
                             $dataSource = new \Kendo\Data\DataSource();
 
@@ -64,13 +62,26 @@
 
                                 </div>
 
-                                <div class="col-sm-5 col-md-offset-0"><b>Agregar Imagen</b></div>
-                                <div class="col-sm-3  col-md-offset-0"> {!!Form::file('path')!!}</div>
+                                <div class="form-group">
+                                    <div col-md-3>
+                                        <div class="form-group">
+                                            {!!Form::label('galeria_id', 'Imagen:')!!}
+
+                                            <?php
+                                            $upload = new \Kendo\UI\Upload('imagen');
+
+                                            echo $upload->render();
+                                            ?>
 
 
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="vista_previa"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-
                         </div>
 
 
@@ -78,9 +89,6 @@
                             <input type="submit" class="btn btn-lg btn-success btn-block"
                                    value="Registrar"/>
                         </div>
-
-
-                    </form>
                 </div>
                 {!!Form::close()!!}
             </div>
@@ -122,5 +130,34 @@
             });
         }
 
+        if (window.FileReader) {
+            function seleccionArchivo(evt) {
+                var files = evt.target.files;
+                var f = files[0];
+                var leerArchivo = new FileReader();
+                document.getElementById('vista_previa');
+                leerArchivo.onload = (function (elArchivo) {
+                    return function (e) {
+                        document.getElementById('vista_previa').innerHTML = '<img src="' + e.target.result + '" alt="" width="150" />';
+                    };
+                })(f);
+
+                leerArchivo.readAsDataURL(f);
+            }
+        } else {
+            document.getElementById('vista_previa').innerHTML = "El navegador no soporta vista previa";
+        }
+
+        document.getElementById('archivos').addEventListener('change', seleccionArchivo, false);
+
+        function cancela(elForm) {
+            document.getElementById(elForm).reset();
+            if (window.FileReader) {
+                document.getElementById('vista_previa').innerHTML = "Vista Previa";
+            } else {
+                document.getElementById('vista_previa').innerHTML = "El navegador no soporta vista previa";
+            }
+            document.getElementById('').style.display = 'none';
+        }
     </script>
 @endsection

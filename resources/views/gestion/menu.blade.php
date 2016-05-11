@@ -6,9 +6,12 @@
 		Gestion Menus
 	</div>
 	<div class="panel-body">
-		<p></p>
 
-		
+		<div class="form-group">
+			<a href="registromenu" class="btn btn-primary" data="">Agregar Menu</a>
+
+		</div>
+
 		
 		<?php
 
@@ -93,7 +96,7 @@
 	
 	</div>
 </div>
-<a href="registromenu" class="btn btn-primary" data="">Agregar Menu</a>
+
 
 @endsection
 

@@ -15,12 +15,12 @@
 
 </li>
 <li>
-    <a href="{{route('estCliente')}}"><i class="fa fa-files-o fa-fw"></i>Gestión Establecimiento del Cliente<span
+    <a href="{{route('establecimientocliente')}}"><i class="fa fa-files-o fa-fw"></i>Gestión Establecimiento del Cliente<span
                 class=""></span></a>
 </li>
 
 <li>
-    <a href="{{route('sucCliente')}}"><i class="fa fa-files-o fa-fw"></i>Gestión Sucursal del cliente<span
+    <a href="{{route('sucursalCliente')}}"><i class="fa fa-files-o fa-fw"></i>Gestión Sucursal del cliente<span
                 class=""></span></a>
 </li>
 
@@ -53,15 +53,15 @@
             <a href="{{route('menu')}}">Gestión de Cartas de los Menús</a>
         </li>
         <li>
-            <a href="{{route('mplatos')}}">Gestión de Platos</a>
+            <a href="{{route('menuplatos')}}">Gestión de Platos</a>
         </li>
 
         <li>
-            <a href="{{route('mcategorias')}}">Gestión de Categorías </a>
+            <a href="{{route('menucategorias')}}">Gestión de Categorías </a>
         </li>
 
         <li>
-            <a href="{{route('msucursal')}}">Gestión de Sucursales</a>
+            <a href="{{route('menusucursal')}}">Gestión de Sucursales</a>
         </li>
 
     </ul>

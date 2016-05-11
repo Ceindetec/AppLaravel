@@ -80,6 +80,7 @@
 		->dataSource($dataSource)
 		->sortable(true)
 		->filterable($gridFilterable)
+		->groupable (true)
 		->pageable(true);
 
 		//renderizamos la grid
