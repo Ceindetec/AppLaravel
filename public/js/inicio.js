@@ -23,6 +23,22 @@ $(function(){
     handleAjaxModal();
 })
 
+/*Obtener la posicion actual*/
+var latitud = document.getElementById("latitud");
+var longitud = document.getElementById("longitud");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPosition);
+    } else { 
+        alert("La geolocalización no es compatible con este navegador.");
+    }
+}
+function showPosition(position) {
+    $(latitud).val(position.coords.latitude);
+    $(longitud).val(position.coords.longitude);
+}
+window.onload = getLocation();
+
 
 
 

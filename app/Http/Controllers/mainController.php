@@ -115,12 +115,7 @@ class mainController extends Controller
         return $rq['id'];
     }
     
-    /*VISTA DEL FILTRO ######################################### */
-    public function filtros(){
-
-        return view('main.filtro');
-    }
-    /*VISTA FILTRADA ######################################### */
+    /*VISTA FILTRADO ######################################### */
     public function SucuFiltrada(Request $request){
 
         $Bl = new MainBl();
@@ -131,10 +126,52 @@ class mainController extends Controller
 
         for($i=0 ; $i<$total; $i++)
         {
-            $dataInfoSucursales[$i]->logo = base64_encode($dataInfoSucursales[$i]->logo); 
+            $dataInfoSucursales[$i]->logoSucursal = base64_encode($dataInfoSucursales[$i]->logoSucursal); 
         }
       
         return view('main.SucuFiltrada',compact('dataInfoSucursales'));
+    }
+
+    /*VISTA TOP INICIAL ##################################### */
+    public function topInicio(){
+
+        $Bl = new MainBl();
+
+        $dataTopPuntuados = $Bl->getDatosSucursalPuntuada();
+        $dataTopVisitados = $Bl->getDatosSucursalVisitados();
+        $dataTopEditor = $Bl->getDatosSucursalEditor();
+
+        $dataTops = compact("dataTopPuntuados","dataTopVisitados","dataTopEditor");
+
+        //dd($dataTops);
+
+        $dataTops['dataTopPuntuados'][0]->logoSucursal = base64_encode($dataTops['dataTopPuntuados'][0]->logoSucursal); 
+        $dataTops['dataTopVisitados'][0]->logoSucursal = base64_encode($dataTops['dataTopVisitados'][0]->logoSucursal);
+        $dataTops['dataTopEditor'][0]->logoSucursal = base64_encode($dataTops['dataTopEditor'][0]->logoSucursal);
+        
+
+        //dd($dataTops);
+      
+        return view('main.TopInicio',compact('dataTops'));
+    }
+
+    /*VISTA DE LA LISTA DE TOP PUNTUADO  ##################### */
+    public function topPuntadosList(){
+
+        $Bl = new MainBl();
+
+        $dataTopPuntadosList = $Bl->getDatosSucursalPuntuadaList();
+
+        $total = count($dataTopPuntadosList);
+
+        for($i=0 ; $i<$total; $i++)
+        {
+            $dataTopPuntadosList[$i]->logoSucursal = base64_encode($dataTopPuntadosList[$i]->logoSucursal); 
+        }
+
+       //dd($dataTopPuntadosList);
+      
+        return view('main.TopPuntuadosList',compact('dataTopPuntadosList'));
     }
 
     /*VISTA DEL MAPA ######################################### */
@@ -162,9 +199,5 @@ class mainController extends Controller
 
         //Devolver vista con datos del mapa
         return view('main.mapa', compact('map'));
-    }
-
-    public function julian(){
-        return view('main.julian');
     }
 }

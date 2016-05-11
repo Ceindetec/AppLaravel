@@ -72,15 +72,21 @@
           <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
           </div>
+
+          <!-- Insertado del boton para buscar, optencion latitud y longitud -->
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <form action="" class="search-form">
-              <div class="form-group has-feedback">
-                <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" name="search" id="search" placeholder="Buscar">
-                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-              </div>
-            </form>
-          </div>
+
+            {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}
+                <div class="form-group has-feedback">
+                  <label for="txtBuscar" class="sr-only">Search</label>
+                  {!!Form::text('txtBuscar',null, ['id'=>'txtBuscar','class'=>'form-control', 'placeholder' => 'Buscar'])!!}
+                  {!!Form::hidden('latitud',null, ['id'=>'latitud'])!!}
+                  {!!Form::hidden('longitud',null, ['id'=>'longitud'])!!}
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+            {!!Form::close()!!}
+
+          </div
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="MenuTop">
