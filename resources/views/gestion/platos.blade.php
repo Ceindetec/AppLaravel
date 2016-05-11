@@ -8,7 +8,10 @@
 	<div class="panel-body">
 		<p></p>
 
-		
+		<div class="form-group">
+			<a href="registroplato" class="btn btn-success"  >Registrar Plato</a>
+
+		</div>
 		
 		<?php
 
@@ -58,6 +61,9 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
+		$idplato = new \Kendo\UI\GridColumn();
+		$idplato->field('idPlatos')->title('id')->hidden(true);
+
 		$nombreEstablecimiento = new \Kendo\UI\GridColumn();
 		$nombreEstablecimiento->field('nombreEstablecimiento')->title('Establecimiento');
 
@@ -80,6 +86,9 @@
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción')->templateId('accion');
 
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
@@ -95,7 +104,7 @@
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreEstablecimiento, $nombreCategoria, $galeria, $nombre, $descripcion, $estadoPlato, $Column,$accion)
+		->addColumn( $nombreEstablecimiento, $nombreCategoria, $galeria, $nombre, $descripcion, $estadoPlato, $Column,$accion,$edicion)
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
@@ -104,7 +113,7 @@
 		//renderizamos la grid
 		echo $grid->render();
 		?>
-		<div id="grid2"></div>
+
 
 	</div>
 	<div class="panel-footer">
@@ -133,4 +142,8 @@
 	}
 	?>
   
+</script>
+
+<script id="edicion" type="text/x-kendo-tmpl">
+		<a href="#= idPlatos#" class="btn btn-success" data-modal="">Editar</a>
 </script>

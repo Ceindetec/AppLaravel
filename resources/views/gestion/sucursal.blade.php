@@ -10,7 +10,7 @@
             <p></p>
 
             <div class="form-group">
-                <a href="../registrosucursal/<?php echo($idEstablecimiento); ?>" class="btn btn-success" " >Registrar Sucursal</a>
+                <a href="../registrosucursal/<?php echo($idEstablecimiento); ?>" class="btn btn-success"  >Registrar Sucursal</a>
 
             </div>
 
@@ -87,12 +87,17 @@
             $accion = new \Kendo\UI\GridColumn();
             $accion->field('accion')->title('Acción')->templateId('accion');
 
+            $edicion = new \Kendo\UI\GridColumn();
+            $edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
+
+
             $gridFilterable = new \Kendo\UI\GridFilterable();
             $gridFilterable->mode("row");
 
             //agregamo columnas y atributos al grid
             $grid
-                    ->addColumn($idSucursal, $nombreUsuario, $nombresucursal, $nombreEstablecimiento, $nombreCategoria, $estado,  $informacion, $accion)
+                    ->addColumn($idSucursal, $nombreUsuario, $nombresucursal, $nombreEstablecimiento, $nombreCategoria, $estado,  $informacion, $accion,$edicion)
                     ->dataSource($dataSource)
                     ->sortable(true)
                     ->filterable($gridFilterable)
@@ -124,6 +129,13 @@
 
 
 </script>
+
+<script id="edicion" type="text/x-kendo-tmpl">
+    <a href="modalsucursal/#= idSucursal#" class="btn btn-success" data-modal="">Editar</a>
+
+</script>
+
+
 <script id="informacion" type="text/x-kendo-tmpl">
     <a href="modalsucursal/#= idSucursal#" class="btn btn-primary" data-modal="">Detalles</a>
 

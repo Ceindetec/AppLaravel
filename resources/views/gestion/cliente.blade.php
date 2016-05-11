@@ -55,17 +55,26 @@
 		$telefono->field('telefono')->title('Teléfono');
 
 		$estadoUsuario = new \Kendo\UI\GridColumn();
-		$estadoUsuario->field('estadoUsuario')->title('estadoUsuario')->hidden(true);;
+		$estadoUsuario->field('estadoUsuario')->title('estadoUsuario')->hidden(true);
+
+		$informacion = new \Kendo\UI\GridColumn();
+		$informacion->field('informacion')->title('informacion ')->templateId('informacion');
+
 
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción ')->templateId('accion');
-		
+
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
+
+
 
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
-		$grid->addColumn($idusuario,  $nombreusuario, $email, $telefono,$accion,$estadoUsuario)
+		$grid->addColumn($idusuario,  $nombreusuario, $email, $telefono,$informacion,$accion,$estadoUsuario,$edicion)
 		->dataSource($dataSource)
 		->sortable(true)
 		->filterable($gridFilterable)
@@ -86,7 +95,6 @@
 
 <script id="accion" type="text/x-kendo-tmpl">
 
-	<a href="modalcliente/#= idusuario#" class="btn btn-primary" data-modal="">Detalles</a>
 
 		#if(estadoUsuario == 'activo'){#
 			<button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
@@ -95,3 +103,16 @@
 			<button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
 		 #}#
 </script>
+
+<script id="informacion">
+	<a href="modalcliente/#= idusuario#" class="btn btn-primary" data-modal="">Detalles</a>
+
+</script>
+
+<script id="edicion" type="text/x-kendo-tmpl">
+
+	<a href="modalcliente/#= idusuario#" class="btn btn-success" data-modal="">Editar</a>
+
+
+</script>
+

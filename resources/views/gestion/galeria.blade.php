@@ -56,6 +56,10 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
+
+		$idgaleria = new \Kendo\UI\GridColumn();
+		$idgaleria->field('idGaleria')->title('id')->hidden(true);
+
 		$nombreGaleria = new \Kendo\UI\GridColumn();
 		$nombreGaleria->field('nombreGaleria')->title('Nombre');
 
@@ -77,6 +81,11 @@
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción')->templateId('accion');
 
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
+
+
 
 		$Column = new \Kendo\UI\GridColumn();
 		$Column->field('ColumnName')
@@ -90,7 +99,7 @@
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreGaleria, $descripcion, $nombreEstablecimiento,$imagen,$nombreGaleria,$estadoGaleria,$Column,$accion)
+		->addColumn( $idgaleria,$nombreGaleria, $descripcion, $nombreEstablecimiento,$imagen,$nombreGaleria,$estadoGaleria,$Column,$accion,$edicion)
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
@@ -127,5 +136,10 @@
 		<?php
 	}
 	?>
+</script>
+
+
+<script id="edicion" type="text/x-kendo-tmpl">
+		<a href="#= idGaleria#" class="btn btn-success" data-modal="">Editar</a>
 </script>
 

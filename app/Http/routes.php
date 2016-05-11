@@ -13,10 +13,10 @@
 
 /* METODOS PERTENECIENTES AL MAIN DE LA APP ##################################### */
 
-//Route::get('/', 'mainController@index');
-Route::get('/', function(){
+Route::get('/', 'mainController@index');
+/*Route::get('/', function(){
 	return view('indexp');
-});
+});*
 Route::get('index', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
@@ -85,18 +85,18 @@ Route::post('postbdmenu', 'gestionController@postbdmenu'); /* RUTA DEL POST/ DE 
 Route::get('registromenu', 'registroController@getRegistroMenu');/* RUTA DE LA VISTA/ DEL REGISTRO DE LOS MENUS####################### */
 
 /* MODULO GESTION PLATOS DEL MENU  #############################################  */
-Route::get('menuplato', 'gestionController@getMenuplato')->name('mplatos');/* RUTA DE LA VISTA/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
+Route::get('menuplato', 'gestionController@getMenuplato')->name('menuplatos');/* RUTA DE LA VISTA/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
 Route::post('postbdmenuplato', 'gestionController@postbdmenuplato');/* RUTA DE POST/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
 
 
 /* MODULO GESTION CATEGORIAS DEL MENU  #########################################  */
-Route::get('menucategoria', 'gestionController@getMenuCategoria')->name('mcategorias'); /* RUTA DE LA VISTA/ DE LA GRID DE LAS CATEGORIAS DEL MENU############################ */
+Route::get('menucategoria', 'gestionController@getMenuCategoria')->name('menucategorias'); /* RUTA DE LA VISTA/ DE LA GRID DE LAS CATEGORIAS DEL MENU############################ */
 Route::post('postbdmenucategoria', 'gestionController@postbdmenucategoria');/* RUTA DE POST/ DE LA GRID DE LAS CATEGORIAS DEL MENU############################ */
 Route::post('getDropDownCategoria', 'registroController@getDropDownCategoria');/* RUTA DEL POST/ DE LA LISTA DESPLEGABLE DE LAS CATEGORIAS############################ */
 
 
 /* MODULO GESTION SUCURSALES DEL MENU  ##########################################  */
-Route::get('menusucursal', 'gestionController@getMenuSucursal')->name('msucursal');/* RUTA DE  LA VISTA/ DE LA GRID DE LAS  SUCURSALES DE LOS MENUS############################ */
+Route::get('menusucursal', 'gestionController@getMenuSucursal')->name('menusucursal');/* RUTA DE  LA VISTA/ DE LA GRID DE LAS  SUCURSALES DE LOS MENUS############################ */
 Route::post('postbdmenusucursal', 'gestionController@postbdmenusucursal');/* RUTA DEL POST/ DE LA GRID DE LOS DE LAS SUCURSALES DE LOS MENUS############################ */
 
 
@@ -125,7 +125,7 @@ Route::get('sucursal/modalsucursal/{id}', 'gestionController@getModalSucursal');
 /* RUTA DEL MODAL/VER DETALLES DE SUCURSALES############################ */
 Route::get('registrosucursal/{id}', 'registroController@getRegistroSucursal');/* RUTA DE LA VISTA/ DEL REGISTRO DE LAS SUCURSALES############################ */
 Route::post('procesarRegistroSucursal', 'registroController@postRegistroSucursal');/* RUTA DEL POST/ DEL REGISTRO DE LAS SUCURSALES############################ */
-Route::get('sucursalcliente/{id}', 'gestionController@getSucursalCliente')->name('sucCliente');/* RUTA DE LA VISTA/ DE LAS SUCURSALES DE LOS CLIENTES############################ */
+Route::get('sucursalcliente/{id}', 'gestionController@getSucursalCliente')->name('sucursalCliente');/* RUTA DE LA VISTA/ DE LAS SUCURSALES DE LOS CLIENTES############################ */
 
 
 /* MODULO GESTION INFORMACION BASICA ############################################  */

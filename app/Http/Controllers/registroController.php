@@ -121,27 +121,11 @@ class registroController extends Controller
     registrados en Registro del plato a la Base de datos
   */
 
-    public function postRegistroPlato()
+    public function postRegistroPlato(Request $request)
     {
         $Bl = new GestionBL();
-
-        $datos = $Bl->getDatosGridPlatos();
-
-        $total = count($datos);
-
-        for ($i = 0; $i < $total; $i++) {
-            $datos[$i]->galeria = base64_encode($datos[$i]->galeria);
-        }
-
-
-        $request = file_get_contents('php://input');
-
-        $input = json_decode($request);
-
-        $util = new Utils();
-
-        return $util->getDataRequest($datos, $input);
-
+        $result = $Bl->postRegistroPlato($request);
+        return $result;
     }
 
     /*
@@ -193,6 +177,8 @@ class registroController extends Controller
 
 
         return view('registro.modalplatos', compact('datos'));
+
+
     }
 
     /*

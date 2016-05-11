@@ -1,4 +1,4 @@
-@extends('layouts.general.principal')
+@extends('layouts.admin.principal')
 
 
 @section('content')
@@ -32,7 +32,7 @@
 
                                 $read = new \Kendo\Data\DataSourceTransportRead();
 
-                                $read->url('getcategoria')
+                                $read->url('getDropDownCategoria')
                                         ->contentType('application/json')
                                         ->type('POST');
 
@@ -40,8 +40,6 @@
                                         ->parameterMap('function(data) {
               return kendo.stringify(data);
            }');
-
-
 
                                 $dataSource = new \Kendo\Data\DataSource();
 
@@ -72,8 +70,9 @@
                     <div class="panel-body">
                         <div col-md-4>
 
-                            <a href="modalplato" class="btn btn-primary" data-modal="">Agregar Platos</a>
+                            <a href="modalplato" class="btn btn-primary" data-modal="modal-lg">Agregar Platos</a>
 
+                                <p></p>
 
                         </div>
                         <div col-md-3>
@@ -93,39 +92,5 @@
     </div>
 
     </body>
-    <script type="text/javascript">
 
-        $(function () {
-            validarFormulario();// validar forularios con kendo
-        });
-
-        function validarFormulario() {
-            var container = $('form');
-
-            kendo.init(container);
-
-            container.kendoValidator({
-                //organiza los mensajes personalizados
-                messages: {
-                    confirmaPasswords: "Contraseñas no coinciden",
-                    required: "Este campo es obligatorio"
-                },
-                //define reglas si necesita tener mas  de solo el campo requerido
-                rules: {
-                    confirmaPasswords: function (input) {
-                        if (input.is("[name=password_confirmation]") || input.is("[name=password]")) {
-                            if (input.is("[name=password_confirmation]")) {
-                                return input.val() === $("#password").val();
-                            }
-                            if (input.is("[name=password]")) {
-                                return input.val() === $("#password_confirmation").val();
-                            }
-                        }
-                        return true;
-                    }
-                }
-            });
-        }
-
-    </script>
 @endsection

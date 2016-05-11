@@ -17,7 +17,7 @@ class GestionController extends Controller
     /*CONSTRUCTOR DEL AUTH ######################################### */
     protected $auth;
 
-    private function __construct(Guard $auth)
+    public function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }

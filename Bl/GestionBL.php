@@ -4,10 +4,8 @@ class GestionBL
 {
 
 
-private function __construct(){}
-    {
+public function __construct(){}
 
-    }
 
     /* MODULO GESTION ESTABLECIMIENTO   ####################################################### */
 
@@ -203,6 +201,59 @@ private function __construct(){}
 
         return $platos;
     }
+
+
+
+    public function postRegistroPlato($request)
+    {
+        $result = [];
+
+
+
+        $categoria = $request->input('categorias');
+
+        $nombre = $request->input('nombre');
+        $descripcion = $request->input('descripcion');
+
+        $mintype = $request->file('imagen')->getClientMimeType();
+        $imgname = $request->file('imagen')->getClientOriginalName();
+        $imagenBlob = file_get_contents($request->file('imagen')->getRealPath());
+        $variable= 1;
+
+        var_dump($categoria);
+
+        var_dump($nombre);
+        var_dump($descripcion);
+
+        var_dump($variable);
+        var_dump($mintype);
+        var_dump($imgname);
+
+        try {
+            $registrEstablecimiento = \DB::select('CALL insDatosPlato(?,?,?,?,?,?,?)', array($nombre,$categoria,$descripcion,$variable,$mintype,$imgname,$imagenBlob));
+            $result['estado'] = true;
+            $result['mensaje'] = 'Registrado correctamente';
+        } catch (Exception $e) {
+            $result['estado'] = false;
+            $result['mensaje'] = 'No se registro correctamente';
+        }
+        return json_encode($result);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /* MODULO GESTION GALERIA   ####################################################### */
     /*
     function getDatosGridGaleria

@@ -1,4 +1,4 @@
-@extends('layouts.general.principal')
+@extends('layouts.admin.principal')
 
 @section('content')
     <body style="background-color: silver">
