@@ -25,6 +25,20 @@ class AuthController extends Controller
         ThrottlesLogins;
 
     /**
+     * Definición de la variable de la ruta redireccion en el momento en el que es autenticado
+     */
+    protected $redirectPath = '/';
+    /**
+     * Definición de la variable de la ruta redireccion en el momento en el que intenta ingresar en una ventana no
+     * permita para usuarios no logeados
+     */
+    protected $loginPath = 'login';
+    /**
+     * Definicion del campo que se utilizara en la autenticacion
+     */
+    protected $username = "username";
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
