@@ -14,28 +14,13 @@
 /* METODOS PERTENECIENTES AL MAIN DE LA APP ##################################### */
 
 Route::get('/', 'mainController@index');
-/*Route::get('/', function(){
-	return view('indexp');
-});*
 Route::get('index', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
 
 Route::get('gestion', 'gestionController@index');
 
-/* METODOS DE LOGIN ############################################################# */
-
-// Rutas de autenticacion
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('login', 'Auth\AuthController@postLogin');
-Route::get('logout', 'Auth\AuthController@getLogout');
-
-// Rutas de registro
-Route::get('register', 'Auth\AuthController@getRegister');
-Route::post('register', 'Auth\AuthController@postRegister');
-
 Route::get('horariosucursal', 'registroController@getHorarioSucursal');
-
 
 /* METODOS DE LOGIN CON FACEBOOK ################################################ */
 
@@ -44,6 +29,15 @@ Route::get('facebook', 'mainController@redirectToProvider');
 Route::get('facebook/callback', 'mainController@handleProviderCallback');
 
 /* METODOS DE LOGIN POR LA APP ################################################## */
+
+// Authentication routes...
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('registro', 'Auth\AuthController@getRegister');
+Route::post('registro', 'Auth\AuthController@postRegister');
 
 /* METODOS DE GESTION POR LA APP ################################################ */
 
