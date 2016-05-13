@@ -108,6 +108,8 @@
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
+		//muestra el modal
+		->dataBound('handleAjaxModal')
 		->pageable(true);
 
 		//renderizamos la grid
@@ -145,5 +147,6 @@
 </script>
 
 <script id="edicion" type="text/x-kendo-tmpl">
-		<a href="#= idPlatos#" class="btn btn-success" data-modal="">Editar</a>
-</script>
+
+	<a href="modaleditplato/#= idPlatos#" class="btn btn-success" data-modal="modal">Editar</a>
+    </script>

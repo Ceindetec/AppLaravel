@@ -65,6 +65,10 @@
                 $galeria = new \Kendo\UI\GridColumn();
                 $galeria->field('galeria')->title('Galería')->hidden(true);
 
+                $descripcion = new \Kendo\UI\GridColumn();
+                $descripcion->field('descripcion')->title('Descripcion');
+
+
 
                 $nombre = new \Kendo\UI\GridColumn();
                 $nombre->field('nombre')->title('Nombre');
@@ -84,7 +88,7 @@
 
                 //agregamo columnas y atributos al grid
                 $grid
-                        ->addColumn($idplato, $accion, $galeria, $nombre, $Column)
+                        ->addColumn($idplato, $accion, $galeria, $nombre, $Column,$descripcion)
                         ->dataSource($dataSource)
                         ->sortable(true)
                         ->filterable(false)
@@ -114,36 +118,3 @@
 
 
         </script>
-
-        <script>
-            var datos = [];
-            var conte = {};
-
-            $(document).on("#boton","click",function() {
-
-                $('input[type="checkbox"]').each(function( index ) {
-                   // console.log( index + ": " + $( this ).text() );
-
-                    if ($(this).is(':checked')) {
-                        conte = {};
-                        tr = $(this)[0].parentNode.parentNode;
-
-                        tds = $(tr).children('td');
-
-                        conte.id = $(tds[0]).text();
-                        conte.nombre = $(tds[3]).text()
-                        conte.imagen = $(tds[4]).html();
-                        datos.push(conte);
-
-                    }
-
-                });
-
-                console.log(datos);
-
-
-            })
-
-
-        </script>
-

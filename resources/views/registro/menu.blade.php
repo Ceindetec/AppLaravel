@@ -2,9 +2,8 @@
 
 
 @section('content')
-    <body style="background-color: silver">
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Registro del Menu </h3>
@@ -12,7 +11,6 @@
                 {!!Form::open()!!}
                 <div class="panel-body">
                     <form role="form">
-
                         <div class="form-group">
                             <div col-md-4>
                                 {!!Form::label('nombre', 'Nombre Del Menu: (*)')!!}
@@ -38,7 +36,7 @@
 
                                 $transport->read($read)
                                         ->parameterMap('function(data) {
-              return kendo.stringify(data);
+                                return kendo.stringify(data);
            }');
 
                                 $dataSource = new \Kendo\Data\DataSource();
@@ -59,6 +57,13 @@
                             </div>
                         </div>
 
+                        <div class="col-sm-10 col-md-offset-0">
+                            {!!Form::label('descripcion', 'Contenido: (*)')!!}</div>
+                        <div class="col-sm-7 ">
+                            {!!Form::textarea ('descripcion',null,['class'=>'form-control', 'required', 'placeholder'=>'Contenido','size' => '53x5'])!!}
+
+                        </div>
+
                 </div>
             </div>
 
@@ -67,22 +72,17 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Platos del Menu</h3>
                     </div>
-                    <div class="panel-body">
-                        <div col-md-4>
 
-                            <a href="modalplato" class="btn btn-primary" data-modal="modal-lg">Agregar Platos</a>
 
-                                <p></p>
-
-                        </div>
-                        <div col-md-3>
-                            <br>
+                    <div class="panel-body" id="menu">
+                        <div class="col-md-12 text-left">
+                            <p>
+                                <a href="modalplato" class="btn btn-primary" data-modal="modal-lg">Agregar Platos</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <input type="submit" class="btn btn-lg btn-success btn-block" value="Registrar"/>
             </form>
         </div>
@@ -91,6 +91,106 @@
     </div>
     </div>
 
-    </body>
+@endsection
+
+@section('scripts')
+
+    <script>
+        var datos = [];
+        var conte = {};
+
+        $(document).on("click", "#boton", function () {
+
+            $('input[type="checkbox"]').each(function (index) {
+                // console.log( index + ": " + $( this ).text() );
+
+                if ($(this).is(':checked')) {
+                    conte = {};
+                    tr = $(this)[0].parentNode.parentNode;
+
+                    tds = $(tr).children('td');
+
+                    conte.id = $(tds[0]).text();
+                    conte.nombre = $(tds[3]).text()
+                    conte.imagen = $(tds[4]).html();
+                    conte.descripcion = $(tds[5]).text();
+                    datos.push(conte);
+
+                }
+
+            });
+
+            for (i = 0; i < datos.length; i++) {
+
+                var divPanel = document.createElement('div');
+                $(divPanel).addClass('panel panel-success');
+
+                var divTitulo = document.createElement('div');
+                $(divTitulo).addClass('panel-heading');
+
+                var divCuerpo = document.createElement('div');
+                $(divCuerpo).addClass('panel-body');
+
+                var htresTitulo = document.createElement('h3');
+                $(htresTitulo).addClass('panel-title');
+                htresTitulo.innerHTML = datos[i].nombre;
+
+                var divcontenido = document.createElement('div');
+                $(divcontenido).addClass('col-md-12');
+
+                var divimagen = document.createElement('div');
+                $(divimagen).addClass('col-md-2');
+                divimagen.innerHTML = datos[i].imagen;
+
+                var divinformacion = document.createElement('div')
+                $(divinformacion).addClass('col-md-10');
+                divinformacion.innerHTML = datos[i].descripcion;
+
+                $(divcontenido).append(divimagen);
+                $(divcontenido).append(divinformacion);
+
+                $(divTitulo).append(htresTitulo);
+                $(divCuerpo).append(divcontenido);
+                $(divPanel).append(divTitulo);
+                $(divPanel).append(divCuerpo);
+
+                $("#menu").append(divPanel);
+
+                /*
+                 var div = document.createElement('b');
+                 var div2 = document.createElement('div');
+                 var div3 = document.createElement('div');
+                 var br = document.createElement('br');
+                 var br2 = document.createElement('br');
+
+                 div2.innerHTML=datos[i].imagen;
+                 div.innerHTML=datos[i].nombre;
+                 div3.innerHTML=datos[i].descripcion;
+
+                 $(div).append(div3);
+                 $(div2).append(div);
+
+                 $(div2).append(br);
+                 $(div2).append(br2);
+
+
+                 $(div2).addClass('panel panel-primary')
+
+
+                 $("#menu").append(div2);
+                 $("#menu").append(div);
+                 */
+
+
+            }
+
+
+            console.log(datos);
+
+
+        })
+
+
+    </script>
 
 @endsection

@@ -58,6 +58,21 @@ class GestionController extends Controller
 
     }
 
+    public function getEditEstablecimiento($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalestablecimiento($id);
+        return view('gestion.modaleditestablecimiento', compact('datos'));
+    }
+
+    public function postEditEstablecimiento(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditEstablecimiento($request);
+        return $result;
+    }
+
+
 
     /*VISTA DEL ESTABLECIMIENTOS DEL CLIENTE ######################################### */
 
@@ -145,6 +160,18 @@ class GestionController extends Controller
         return $util->getDataRequest($datos, $input);
 
     }
+
+    public function getUpdateplato($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosGridPlatos($id);
+
+
+
+
+        return view('gestion.modaleditplato', compact('datos'));
+    }
+
 
 
     /*VISTA DEL CATEGORIA DEL MENU ######################################### */
