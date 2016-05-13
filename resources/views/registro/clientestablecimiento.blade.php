@@ -49,7 +49,7 @@
 
                         </div>
 
-                <input type="submit" class="btn btn-lg btn-success btn-block" value="Registrar"/>
+                    <input type="submit" class="btn btn-lg btn-success btn-block" value="Registrar"/>
                 </form>
             </div>
             {!!Form::close()!!}

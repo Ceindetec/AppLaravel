@@ -126,7 +126,7 @@
 
     <script id="edicion" type="text/x-kendo-tmpl">
 
-	<a href="modalestablecimiento/#= idestablecimiento#" class="btn btn-success" data-modal="">Editar</a>
+	<a href="modaleditestablecimiento/#= idestablecimiento#" class="btn btn-success" data-modal="">Editar</a>
     </script>
 
 

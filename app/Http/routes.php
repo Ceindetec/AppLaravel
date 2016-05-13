@@ -48,6 +48,10 @@ Route::get('inicio', 'gestionController@index')->name('inicio');
 /* MODULO GESTION ESTABLECIMIENTO   ############################################# */
 /*ruta de la vista del establecimiento */
 Route::get('establecimiento', 'gestionController@getEstablecimiento')->name('establecimiento');
+
+Route::get('modaleditestablecimiento/{id}', 'gestionController@getEditEstablecimiento')->name('edit.establecimiento');
+Route::post('modaleditestablecimiento', 'gestionController@postEditEstablecimiento');
+
 /*ruta de la vista del establecimiento del cliente */
 Route::get('establecimientocliente', 'gestionController@getEstablecimientoCliente')->name('establecimientocliente');
 //el alias tiene que ser diciente
@@ -69,7 +73,7 @@ Route::post('registroestablecimiento', 'registroController@postRegistroEstableci
 /* MODULO GESTION CLIENTE  #####################################################  */
 Route::get('cliente', 'gestionController@getCliente')->name('cliente'); /* RUTA DE LA VISTA/ DE LA GRID DE CLINTES######################################### */
 Route::post('postbusuario', 'gestionController@postbusuario'); /* RUTA DEL POST/ DE LA GRID DE LOS USUARIOS############################ */
-Route::get('modalcliente/{id}', 'gestionController@getmodalcliente');/* RUTA DE MODAL / VER DETALLES/ DE LA INFO RESTANTE DE CLIENTES##### */
+    Route::get('modalcliente/{id}', 'gestionController@getmodalcliente');/* RUTA DE MODAL / VER DETALLES/ DE LA INFO RESTANTE DE CLIENTES##### */
 Route::get('clienteestablecimiento', 'registroController@getClienteEstablecimiento');/* RUTA DE LA VISTA/ DEL REGISTRO DE  LA INFO FALTANTE EN CLIENTES########### */
 Route::post('clienteestablecimiento', 'registroController@postClienteEstablecimiento');/* RUTA DEL POST/ DEL REGISTRO DE LA INFO FALTANTE EN CLIENTES########################## */
 
@@ -80,7 +84,7 @@ Route::get('registromenu', 'registroController@getRegistroMenu');/* RUTA DE LA V
 
 /* MODULO GESTION PLATOS DEL MENU  #############################################  */
 Route::get('menuplato', 'gestionController@getMenuplato')->name('menuplatos');/* RUTA DE LA VISTA/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
-Route::post('postbdmenuplato', 'gestionController@postbdmenuplato');/* RUTA DE POST/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
+Route::post('postbdmenuplato',  'gestionController@postbdmenuplato');/* RUTA DE POST/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
 
 
 /* MODULO GESTION CATEGORIAS DEL MENU  #########################################  */
@@ -100,6 +104,9 @@ Route::post('postbdplatos', 'gestionController@postbdplatos');/* RUTA DEL POST/ 
 Route::get('modalplato', 'registroController@modalPlato');/* RUTA DEL MODAL/ DE LOS PLATOS EN EL MENU############################ */
 Route::get('registroplato', 'registroController@getRegistroPlato');/* RUTA DE LA VISTA/ DEL REGISTRO DE PLATOS############################ */
 Route::post('postregistroplato', 'registroController@postRegistroPlato');/* RUTA DEL POST/ DEL REGISTRO DE PLATOS############################ */
+
+Route::get('modaleditplato/{id}', 'gestionController@getUpdateplato');
+Route::post('modaleditplato', 'gestionController@postUpdateplato');
 
 
 /* MODULO GESTION GALERIA  ######################################################  */

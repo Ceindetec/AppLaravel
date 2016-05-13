@@ -79,6 +79,28 @@ public function __construct(){}
         return json_encode($result);
     }
 
+
+    public function postEditEstablecimiento($request)
+    {
+
+        //Parametros desde el formulario
+        $encargado = $request->input('encargado');
+        $establecimiento= $request->input('establecimiento');
+        $web = $request->input('web');
+        $correo = $request->input('correo ');
+        $facebook = $request->input('telefono');
+        $twitter = $request->input('facebook');
+        $instagram = $request->input('instagram');
+
+
+        $editEstablecimiento = \DB::select('CALL updDatosEstablecimiento(?,?,?,?,?,?,?)', array($encargado,$establecimiento,$web,$correo,$facebook,$twitter,$instagram));
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
+
+
     /* MODULO GESTION CLIENTE   ####################################################### */
 
     /*
@@ -323,8 +345,8 @@ public function __construct(){}
 
     public function getDatosModalsucursal($id)
     {
-        $bb = \DB::select('CALL getDatosIdsucursal(?)', array($id));
-        return $bb;
+        $sucursal = \DB::select('CALL getDatosIdsucursal(?)', array($id));
+
     }
 
     /*
