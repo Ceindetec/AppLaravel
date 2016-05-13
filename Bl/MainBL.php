@@ -49,6 +49,20 @@ class MainBl{
 		return $result;
 	}
 
+	public function getDatosSucursalVisitadoList(){
+	
+		$result = \DB::select('CALL getListTopVisitadoOrderConteoPuntuacion');
+
+		return $result;
+	}
+
+	public function getDatosSucursalEditorList(){
+	
+		$result = \DB::select('CALL getListTopVisitadoOrderConteoPuntuacion');
+
+		return $result;
+	}
+
 	/*public function insTesData($request){
 
 		$usuario =  $request->input('usuario');

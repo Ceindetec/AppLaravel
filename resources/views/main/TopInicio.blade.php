@@ -1,13 +1,16 @@
 @extends('layouts.general.principal')
 	@section('content')
-    <br></br>
         <div class="col-md-12">
             <div class="row">
                 @foreach ($dataTops as $auxI) 
                     <div class="col-md-4">
                         <div class="panel panel-danger">
                             <div  align="center" class="panel-heading">
-                                <div><b>{{$auxI[0] ->nombreSucursal}} </b> &nbsp; <b>{{ $auxI[0] ->puntuacionSucursal }} </b></div>
+                                <div> <a href="{{$auxI[0] ->ruta }}"> <b>{{$auxI[0] ->tituloTop }}</b></a></div>
+                            </div>
+                            <div  align="center">
+                                $id = {{ $auxI[0] ->idSucursal}};
+                                <div><a href="{{$auxI[0] ->nombreSucursal}}/{{ $auxI[0] ->idSucursal}}"<b>{{$auxI[0] ->nombreSucursal}} </b></a> &nbsp; <b>{{ $auxI[0] ->puntuacionSucursal }} </b></div>
                             </div>
                             <div class="panel-body">                                
                                 <picture>
@@ -27,9 +30,3 @@
             </div>
         </div>
     @endsection
-    
-
-
-
-
-    

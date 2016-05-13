@@ -135,8 +135,12 @@ Route::get('mapa','mainController@mapa');
 Route::post('sucursales', 'mainController@SucuFiltrada');
 /* Top Puntuados del Inicio*/
 Route::get('/', 'mainController@topInicio');
-/**/
+/* Tops Puntuado Lista */
 Route::get('puntuadolist','mainController@topPuntadosList');
+/* Tops Puntuado Lista */
+Route::get('visitadolist','mainController@topVisitadoList');
+/* Tops Visitado Lista */
+Route::get('edirtorlist','mainController@topEditorList');
 
 
 /* METODOS DE PRUEBA ############################################################ */
