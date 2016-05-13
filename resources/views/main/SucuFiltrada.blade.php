@@ -1,6 +1,5 @@
 @extends('layouts.general.principal')
 	@section('content')
-	<br></br>		
 		<?php for ($i=0; $i<count($dataInfoSucursales); $i++)
 		{?>
 			<div class="panel panel-danger">

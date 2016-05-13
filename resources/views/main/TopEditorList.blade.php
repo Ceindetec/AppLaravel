@@ -1,10 +1,10 @@
 @extends('layouts.general.principal')
-	@section('content')		
-		<?php for ($i=0; $i<count($dataTopPuntadosList); $i++)
+	@section('content')	
+		<?php for ($i=0; $i<count($dataTopEditorList); $i++)
 		{?>
 			<div class="panel panel-danger">
 				<div  align="center" class="panel-heading">
-            		<div><b>{{$dataTopPuntadosList[$i] ->nombreSucursal}} </b> &nbsp; <b>{{ $dataTopPuntadosList[$i] ->puntuacionSucursal }} </b></div>
+            		<div><b>{{$dataTopEditorList[$i] ->nombreSucursal}} </b> &nbsp; <b>{{ $dataTopEditorList[$i] ->puntuacionSucursal }} </b></div>
         		</div>
 		        <div class="panel-body">
 		            <div class="row">
@@ -12,15 +12,15 @@
 		                    <div class="row">
 		                        <div class="col-md-4">
 		                            <picture>
-		                                <img src="data:image/png;base64,{!! $dataTopPuntadosList[$i] ->logoSucursal !!}" width="180" height="180" 
+		                                <img src="data:image/png;base64,{!! $dataTopEditorList[$i] ->logoSucursal !!}" width="180" height="180" 
 		                                alt="Imagen no disponible"/>
                             		</picture>
 		                        </div>
 		                        <div class="col-md-4">
-		                       		<div><b>Direccion:&nbsp;</b>{{ $dataTopPuntadosList[$i] ->direccionSucursal }} </div>
-		                       		<div><b>Teléfono:&nbsp;</b>{{ $dataTopPuntadosList[$i] ->telefonoSucursal }} </div>
-		                       		<div><b>Comida:&nbsp;</b>{{ $dataTopPuntadosList[$i]->categoriaSucursal }} </div>
-		                       		<div><b>Votos:&nbsp;</b>{{ $dataTopPuntadosList[$i] ->cantidadVotos }} </div>
+		                       		<div><b>Direccion:&nbsp;</b>{{ $dataTopEditorList[$i] ->direccionSucursal }} </div>
+		                       		<div><b>Teléfono:&nbsp;</b>{{ $dataTopEditorList[$i] ->telefonoSucursal }} </div>
+		                       		<div><b>Comida:&nbsp;</b>{{ $dataTopEditorList[$i]->categoriaSucursal }} </div>
+		                       		<div><b>Votos:&nbsp;</b>{{ $dataTopEditorList[$i] ->cantidadVotos }} </div>
 		                        </div>
 		                        <!-- Sentencia en blanco para acomodar informacion -->
 		                        <div class="col-md-4">
