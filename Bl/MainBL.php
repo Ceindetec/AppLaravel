@@ -8,6 +8,12 @@ class MainBl{
 	/* Funcion para enviar longitud, latitud y filtro de sucursales */
 	public function getDatosInfoSucursales($request){
 
+		/*
+		 * Variables enviadas al procedimiento almacenado
+		 * $txtBuscar = Envia palabra clave para buscar por nombre de sucursal o categoria
+		 * $latitud Y $longitud = Envia la longitud y latidus para hallar la distancia entre mi ubicacion y 
+		 *						  la de la sucursal
+		 */ 
 		$txtBuscar = $request->input('txtBuscar');
 		$latitud = $request->input('latitud');
 		$longitud = $request->input('longitud');
@@ -49,6 +55,7 @@ class MainBl{
 		return $result;
 	}
 
+	/* Funcion para recibir los datos de todas las sucursales visitadas ####################### */
 	public function getDatosSucursalVisitadoList(){
 	
 		$result = \DB::select('CALL getListTopVisitadoOrderConteoPuntuacion');
@@ -56,9 +63,10 @@ class MainBl{
 		return $result;
 	}
 
+	/* Funcion para recibir los datos de todas las sucursales puntadas por el editor ########## */
 	public function getDatosSucursalEditorList(){
 	
-		$result = \DB::select('CALL getListTopVisitadoOrderConteoPuntuacion');
+		$result = \DB::select('CALL getListTopEditorOrderConteoPuntuacion');
 
 		return $result;
 	}

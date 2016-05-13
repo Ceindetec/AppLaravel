@@ -121,12 +121,14 @@ class mainController extends Controller
         $Bl = new MainBl();
         $dataInfoSucursales = $Bl->getDatosInfoSucursales($request);
 
+        //Conversion de images a Base64
         $total = count($dataInfoSucursales);
         for($i=0 ; $i<$total; $i++)
         {
             $dataInfoSucursales[$i]->logoSucursal = base64_encode($dataInfoSucursales[$i]->logoSucursal); 
         }
       
+        //Retorno de la vista con los datos de las sucursales filtradas
         return view('main.SucuFiltrada',compact('dataInfoSucursales'));
     }
 
@@ -142,19 +144,21 @@ class mainController extends Controller
         $dataTopPuntuados[0]->tituloTop = "Top Puntuado";
         $dataTopVisitados[0]->tituloTop = "Top Visitados";
         $dataTopEditor[0]->tituloTop = "Top Editor";
+
         //Rutas para entrar a las listas de los Top's
         $dataTopPuntuados[0]->ruta = "puntuadolist";
         $dataTopVisitados[0]->ruta = "visitadolist";
         $dataTopEditor[0]->ruta = "edirtorlist";
 
+        //Variable que compacta los datos de la sucursales
         $dataTops = compact("dataTopPuntuados","dataTopVisitados","dataTopEditor");
 
-        //dd($dataTops);
-
+        //Conversion de images a Base64
         $dataTops['dataTopPuntuados'][0]->logoSucursal = base64_encode($dataTops['dataTopPuntuados'][0]->logoSucursal); 
         $dataTops['dataTopVisitados'][0]->logoSucursal = base64_encode($dataTops['dataTopVisitados'][0]->logoSucursal);
         $dataTops['dataTopEditor'][0]->logoSucursal = base64_encode($dataTops['dataTopEditor'][0]->logoSucursal);
       
+        //Retorno de la vista con los datos de las sucursales de los Top de Inicio
         return view('main.TopInicio',compact('dataTops'));
     }
 
@@ -164,12 +168,14 @@ class mainController extends Controller
         $Bl = new MainBl();
         $dataTopPuntadosList = $Bl->getDatosSucursalPuntuadaList();
 
+        //Conversion de images a Base64
         $total = count($dataTopPuntadosList);
         for($i=0 ; $i<$total; $i++)
         {
             $dataTopPuntadosList[$i]->logoSucursal = base64_encode($dataTopPuntadosList[$i]->logoSucursal); 
         }
-      
+        
+        //Retorno de la vista con los datos de las lista de puntuado de sucursales
         return view('main.TopPuntuadosList',compact('dataTopPuntadosList'));
     }
 
@@ -179,28 +185,32 @@ class mainController extends Controller
         $Bl = new MainBl();
         $dataTopVisitadosList = $Bl->getDatosSucursalVisitadoList();
 
+        //Conversion de images a Base64
         $total = count($dataTopVisitadosList);
         for($i=0 ; $i<$total; $i++)
         {
             $dataTopVisitadosList[$i]->logoSucursal = base64_encode($dataTopVisitadosList[$i]->logoSucursal); 
         }
 
+        //Retorno de la vista con los datos de las lista de visitado de sucursales
         return view('main.TopVisitadoList',compact('dataTopVisitadosList'));
     }
 
     /*VISTA DE LA LISTA DE TOP EDITOR  ##################### */
     public function topEditorList(){
-        /*
+    
         $Bl = new MainBl();
         $dataTopEditorList = $Bl->getDatosSucursalEditorList();
 
+        //Conversion de images a Base64
         $total = count($dataTopEditorList);
         for($i=0 ; $i<$total; $i++)
         {
             $dataTopEditorList[$i]->logoSucursal = base64_encode($dataTopEditorList[$i]->logoSucursal); 
         }
-        */
-        return view('main.TopEditorList');
+
+        //Retorno de la vista con los datos de las lista de editor de sucursales
+        return view('main.TopEditorList',compact('dataTopEditorList'));
     }    
 
     /*VISTA DEL MAPA ######################################### */
