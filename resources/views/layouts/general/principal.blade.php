@@ -55,6 +55,27 @@
   kendo.culture("es-ES");
   </script>
 
+  <script type="text/javascript">
+
+  $(function(){
+    var alto = $(window).height();
+    var ancho = $(window).width();
+    $('#Capa_1').width(ancho*0.09);
+
+    var left = $('#conteemenu').offset().left;
+
+    $('#logo').css('left', left-($('#logo').width()/2));
+
+    $(window).resize(function(){
+      alto = $(window).height();
+      ancho = $(window).width();
+      left = $('#conteemenu').offset().left;
+      $('#logo').css('left', left-($('#logo').width()/2));
+      $('#Capa_1').width(ancho*0.09);
+    });
+  });
+
+  </script>
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,16 +88,26 @@
       </head>
 
       <body>
+        <div id="logo">
+         @include('layouts.general.logoingles')
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 busqueda" style="padding-top: 1%">
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-
+       </div>
+       <header>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 busqueda text-right" style="padding-top: 1%">
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
 
           <!-- Insertado del boton para buscar, optencion latitud y longitud -->
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-
-            {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+              <div id="login">
+                <i class="fa fa-user" aria-hidden="true"></i> Login
+              </div>
+              <div id="registrar" style="float: right;">
+                <i class="fa fa-user-plus"></i> Registro
+              </div>
+              <div style='width:40%; float: right'>
+                {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}
                 <div class="form-group has-feedback">
                   <label for="txtBuscar" class="sr-only">Search</label>
                   {!!Form::text('txtBuscar',null, ['id'=>'txtBuscar','class'=>'form-control', 'placeholder' => 'Buscar'])!!}
@@ -84,15 +115,20 @@
                   {!!Form::hidden('longitud',null, ['id'=>'longitud'])!!}
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
-            {!!Form::close()!!}
+                {!!Form::close()!!}
+              </div>
+            </div>
+          </div>
 
-          </div
+          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+          </div>
+
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="MenuTop">
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
-          <nav  class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <nav  class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="conteemenu">
             <ul class="menu text-center" >
               <li><a href="#">Elemento 1</a></li>
               <li><a href="#">Elemento 2</a></li>
@@ -101,47 +137,57 @@
               <li><a href="#">Elemento 5</a></li>
             </ul>
           </nav>
-           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 galeri">
-          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ejemplo">
-
-          </div>
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
         </div>
+      </header>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
-          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
-             @yield('content') 
-          </div>
-          <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-          </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 galeri">
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sliderGaleria">
 
-       
-
-
-        <!-- Modal Bootstrap-->
-        <div id='modalBs' class='modal fade bs-example-modal-lg'>
-          <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-          </div>
         </div>
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
+         @yield('content') 
+       </div>
+       <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+       </div>
+     </div>
+     <footer>
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2"> </div>
+        <div  class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="footer">
+          contenido del footer que aun no tengo idea que diablos va aca;
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2"></div>
+      </div>
+    </footer>
 
 
-        {!!Html::script('js/inicio.js')!!}  
 
 
-        @yield('scripts')
+    <!-- Modal Bootstrap-->
+    <div id='modalBs' class='modal fade bs-example-modal-lg'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
 
-      </body>
 
-      </html>
+    {!!Html::script('js/inicio.js')!!}  
+
+
+    @yield('scripts')
+
+  </body>
+
+  </html>
