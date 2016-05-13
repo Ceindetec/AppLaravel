@@ -49,8 +49,8 @@ Route::get('inicio', 'gestionController@index')->name('inicio');
 /*ruta de la vista del establecimiento */
 Route::get('establecimiento', 'gestionController@getEstablecimiento')->name('establecimiento');
 
-Route::get('modaleditestablecimiento/{id}', 'gestionController@getEditEstablecimiento')->name('edit.establecimiento');
-Route::post('modaleditestablecimiento', 'gestionController@postEditEstablecimiento');
+Route::get('modaleditestablecimiento/{id}', 'gestionController@getEditEstablecimiento');
+Route::post('modaleditestablecimiento', 'gestionController@postEditEstablecimiento')->name('edit.establecimiento');
 
 /*ruta de la vista del establecimiento del cliente */
 Route::get('establecimientocliente', 'gestionController@getEstablecimientoCliente')->name('establecimientocliente');

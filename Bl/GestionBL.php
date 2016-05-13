@@ -84,7 +84,7 @@ public function __construct(){}
     {
 
         //Parametros desde el formulario
-        $encargado = $request->input('encargado');
+        $encargado = $request->input('Encargado');
         $establecimiento= $request->input('establecimiento');
         $web = $request->input('web');
         $correo = $request->input('correo ');
