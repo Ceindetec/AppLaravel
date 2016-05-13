@@ -9,7 +9,6 @@
                                 <div> <a href="{{$auxI[0] ->ruta }}"> <b>{{$auxI[0] ->tituloTop }}</b></a></div>
                             </div>
                             <div  align="center">
-                                $id = {{ $auxI[0] ->idSucursal}};
                                 <div><a href="{{$auxI[0] ->nombreSucursal}}/{{ $auxI[0] ->idSucursal}}"<b>{{$auxI[0] ->nombreSucursal}} </b></a> &nbsp; <b>{{ $auxI[0] ->puntuacionSucursal }} </b></div>
                             </div>
                             <div class="panel-body">                                
