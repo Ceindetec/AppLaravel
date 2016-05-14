@@ -104,8 +104,9 @@
               <div id="login">
                 <a href="{{route('login')}}"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
               </div>
+              
               <div id="registrar" style="float: right;">
-                <a href="{{route('registro')}}"><i class="fa fa-user-plus"></i> Registro</a>
+                <a href="{!!route('register')!!}"><i class="fa fa-user-plus"></i> Registro</a>
               </div>
               <div style='width:40%; float: right'>
                 {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}

@@ -13,7 +13,7 @@
 
 /* METODOS PERTENECIENTES AL MAIN DE LA APP ##################################### */
 
-Route::get('/', 'mainController@index')->name('paginaprincipal');
+Route::get('/', 'mainController@index');
 Route::get('index', 'mainController@index');
 
 /* METODOS PERTENECIENTES A LA GESTION DE LA APP ################################ */
@@ -31,14 +31,13 @@ Route::get('facebook/callback', 'mainController@handleProviderCallback');
 /* METODOS DE LOGIN POR LA APP ################################################## */
 
 // Authentication routes...
+
+
 Route::get('login', 'Auth\AuthController@getLogin')->name('login');
-Route::get('registro', 'Auth\AuthController@getRegister')->name('registro');
+Route::get('registro', ['as' => 'register', 'uses' =>'Auth\AuthController@getRegister']);
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
-// Registration routes...
-Route::get('registro', 'Auth\AuthController@getRegister');
-Route::post('registro', 'Auth\AuthController@postRegister');
 
 /* METODOS DE GESTION POR LA APP ################################################ */
 
