@@ -97,6 +97,11 @@ body {
     cursor: pointer;
     font-weight: bold;
   }
+
+  #login a, #registrar a{
+    text-decoration: none;
+    color: #212121;
+  }
   
   #login{
     background-color: #A78E06;

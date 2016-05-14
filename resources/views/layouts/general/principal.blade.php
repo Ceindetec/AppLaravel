@@ -89,8 +89,9 @@
 
       <body>
         <div id="logo">
-         @include('layouts.general.logoingles')
-
+          <a href="/">
+           @include('layouts.general.logoingles')
+         </a>
        </div>
        <header>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 busqueda text-right" style="padding-top: 1%">
@@ -101,10 +102,10 @@
           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
               <div id="login">
-                <i class="fa fa-user" aria-hidden="true"></i> Login
+                <a href="{{route('login')}}"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
               </div>
               <div id="registrar" style="float: right;">
-                <i class="fa fa-user-plus"></i> Registro
+                <a href="{{route('registro')}}"><i class="fa fa-user-plus"></i> Registro</a>
               </div>
               <div style='width:40%; float: right'>
                 {!!Form::open(['action' => 'mainController@SucuFiltrada','class'=>'search-form'])!!}
@@ -156,7 +157,7 @@
         <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
         </div>
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
-         @yield('content') 
+         @yield('content')
        </div>
        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
        </div>
