@@ -73,18 +73,4 @@ $(function(){
 });
 
 
-
-
-
-function onSuccess(result) {
-	console.log(result);
-    /*result = JSON.parse(result)
-    console.log(result);
-    if(result.estado=true){
-      $.msgbox(result.mensaje, { type: 'success' }, function(){
-         modalBs.modal('hide');
-      });
-}*/
-}
-
 </script>
