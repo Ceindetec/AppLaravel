@@ -21,8 +21,8 @@ class AuthController extends Controller
       |
      */
 
-    use AuthenticatesAndRegistersUsers,
-        ThrottlesLogins;
+      use AuthenticatesAndRegistersUsers,
+      ThrottlesLogins;
 
     /**
      * Definición de la variable de la ruta redireccion en el momento en el que es autenticado
@@ -67,7 +67,7 @@ class AuthController extends Controller
             'email' => 'email|max:255',
             'numeroTelefonico' => 'max:15',
             'numeroCelular' => 'required|min:6|max:15'
-        ]);
+            ]);
     }
 
     /**
@@ -89,7 +89,10 @@ class AuthController extends Controller
             'telefono' => $data['numeroTelefonico'],
             'celular' => $data['numeroCelular'],
             'tusuario_id' => 4
-        ]);
+            ]);
     }
+
+
+
 
 }
