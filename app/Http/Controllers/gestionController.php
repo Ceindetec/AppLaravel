@@ -11,6 +11,14 @@ use RegistroBl;
 use GestionBL;
 use Utils;
 
+use Auth;
+use aplicacion\User;
+use Hash;
+use JWTAuth;
+
+
+
+
 class GestionController extends Controller
 {
 
@@ -29,13 +37,45 @@ class GestionController extends Controller
 
     }
 
+    /**
+     * Funcion encargada de llamar la vista del modal del login
+     * @return [type]
+     */
+    public function modalLogin()
+    {
+        return view('auth.modalLogin');
+    }
+
+    /**
+     * Funcion encargada de procesar la peticion post del formulario de login por el  modal.
+     * @param  Request => trae los datos que son enviados del formulario.    
+     * @return [result] => json de respuesta para saber si el login fue exitoso o no. 
+     */
+    public function modalpostLogin(Request $request)
+    {
+
+        $username = $request->input('username');
+        $password = $request->input('password');
+        if (Auth::attempt(array('username' => $username, 'password' => $password))){
+            $result['estado']=true;
+            $result['usuario']= ['username'=> Auth::User()->username, 'avatar'=> base64_encode(Auth::User()->avatar)];
+            $result['mensaje'] = 'Bienvenido '.Auth::User()->username;
+        }else{
+            $result['estado']=false;
+        }
+        return json_encode($result);
+            
+        
+    }
+
+    
     /*VISTA DEL ESTABLECIMIENTO ######################################### */
 
 
     public function getEstablecimiento()
     {
-        return view('gestion.establecimiento');
-    }
+      return view('gestion.establecimiento');
+  }
 
     /**
      * @param Request $rq

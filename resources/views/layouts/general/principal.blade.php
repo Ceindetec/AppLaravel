@@ -102,7 +102,11 @@
           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
               <div id="login">
-                <a href="{{route('login')}}"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+                @if(Auth::check())
+                <div><img src="data:image/jpeg;base64, {!!base64_encode(Auth::User()->avatar)!!}" width="40px"> {!! Auth::User()->username !!}</div>
+                @else
+                <a href="{{route('login.modal')}}" data-modal=""><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+                @endif
               </div>
               
               <div id="registrar" style="float: right;">

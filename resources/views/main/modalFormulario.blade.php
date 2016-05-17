@@ -2,9 +2,11 @@
 $Utils = new Utils();
 ?>
 
+
+{!!Form::open()!!}
+
 <div id="NombreDelModal">
- {!!Form::open()!!}
-  <div class="modal-header">
+   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h4> Titulo del modal</h4>
   </div>

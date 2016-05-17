@@ -35,3 +35,5 @@
       });
     }
   }
+
+  var algo = elemento.style.display;

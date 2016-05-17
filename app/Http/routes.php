@@ -34,8 +34,11 @@ Route::get('facebook/callback', 'mainController@handleProviderCallback');
 
 
 Route::get('login', 'Auth\AuthController@getLogin')->name('login');
+/*Ruta que llama a un modal para login de usuario*/
+Route::get('login/modal', 'gestionController@modalLogin')->name('login.modal');
 Route::get('registro', ['as' => 'register', 'uses' =>'Auth\AuthController@getRegister']);
 Route::post('login', 'Auth\AuthController@postLogin');
+Route::post('login/modal', 'gestionController@modalpostLogin')->name('loginpost');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
 
