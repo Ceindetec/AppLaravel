@@ -137,15 +137,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="MenuTop">
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
-          <nav  class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="conteemenu">
-            <ul class="menu text-center" >
-              <li><a href="#">Elemento 1</a></li>
-              <li><a href="#">Elemento 2</a></li>
-              <li><a href="#">Elemento 3</a></li>
-              <li><a href="#">Elemento 4</a></li>
-              <li><a href="#">Elemento 5</a></li>
-            </ul>
-          </nav>
+          @include('layouts.general.menutop')
           <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           </div>
         </div>
