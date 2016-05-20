@@ -1,9 +1,8 @@
-@extends('layouts.general.principal')
+@extends('layouts.general.principalregistro')
 
 @section('content')
-    <body style="background-color: silver">
-    <div class="container">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="container" style="margin-top: 5%;">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Formulario de Registro</h3>
@@ -122,7 +121,6 @@
             </div>
         </div>
     </div>
-    </body>
 @endsection
 
 @section('scripts')

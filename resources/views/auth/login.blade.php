@@ -1,13 +1,18 @@
 
-@extends('layouts.general.principal')
+@extends('layouts.general.principallogin')
 
 @section('content')
 
-<div class="container">
+<div class="container loginge">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
+
+        <div class="col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-12 col-md-6 col-lg-6 loginge" style="margin-top: 12%">
+            <div class="text-center">
+                @include('layouts.general.logoingles')
+            </div>
+            <div class="panel panel-default">
+                
+                <div class="panel-heading text-center">
                     <h3 class="panel-title">Formulario de ingreso</h3>
                 </div>
                 {!!Form::open()!!}
