@@ -9,7 +9,7 @@
 		{?>
 			<div class="panel panel-danger">
 				<div  align="center" class="panel-heading">
-            		<div><b>{{$dataInfoSucursales[$i] ->nombreSucursal}} </b> &nbsp; <b>{{ $dataInfoSucursales[$i] ->puntuacionSucursal }} </b></div>
+            		<div> <a href="sucursalunica/{{ $dataInfoSucursales[$i] ->idSucursal}}"><b>{{$dataInfoSucursales[$i] ->nombreSucursal}}</b></a> &nbsp; <b>{{ $dataInfoSucursales[$i] ->puntuacionSucursal }} </b></div>
         		</div>
 		        <div class="panel-body">
 		            <div class="row">

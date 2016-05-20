@@ -209,13 +209,18 @@ Route::post('sucursales', 'mainController@SucuFiltrada');
 Route::get('/', 'mainController@topInicio');
 /* Tops Puntuado Lista */
 Route::get('puntuadolist','mainController@topPuntadosList');
-/* Tops Puntuado Lista */
+/* Tops Visitados Lista */
 Route::get('visitadolist','mainController@topVisitadoList');
-/* Tops Visitado Lista */
+/* Tops Editor Lista */
 Route::get('edirtorlist','mainController@topEditorList');
+
+/* Muestra las datos de una Sucursal Seleccionada */
+Route::get('sucursalunica/{id}','mainController@unicaSucursal');
 
 
 /* METODOS DE PRUEBA ############################################################ */
+
+Route::get('prueba','mainController@pruebamapa');
 
 Route::get('main/modal', 'mainController@getViewModal');
 
