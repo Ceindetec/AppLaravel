@@ -81,7 +81,7 @@ class GestionController extends Controller
      * @param Request $rq
      * @return array
      */
-    public function postbdestablecimiento(Request $rq)
+    public function postEstablecimiento(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -98,14 +98,15 @@ class GestionController extends Controller
 
     }
 
-    public function getEditEstablecimiento($id)
+    public function getEditModalEstablecimiento($id)
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosModalestablecimiento($id);
         return view('gestion.modaleditestablecimiento', compact('datos'));
+
     }
 
-    public function postEditEstablecimiento(Request $request)
+    public function postEditModalEstablecimiento(Request $request)
     {
         $Bl = new GestionBL();
         $result = $Bl->postEditEstablecimiento($request);
@@ -133,7 +134,7 @@ class GestionController extends Controller
     }
 
 
-    public function postbusuario(Request $rq)
+    public function postCliente(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -151,6 +152,35 @@ class GestionController extends Controller
     }
 
 
+
+    public function getModalEditCliente($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalusuario($id);
+        return view('gestion.modaleditcliente',compact('datos'));
+    }
+
+
+    public function postModalEditCliente(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditCliente($request);
+        return $result;
+    }
+
+    public function getDropDownTusuario()
+    {
+
+        $Bl = new RegistroBl();
+
+        $datos = $Bl->getDatosDropdDownTusuario();
+
+        return $datos;
+    }
+
+
+
+
     /*VISTA DEL MENU ######################################### */
 
     public function getMenu()
@@ -160,7 +190,7 @@ class GestionController extends Controller
     }
 
 
-    public function postbdmenu(Request $rq)
+    public function postMenu(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -176,6 +206,35 @@ class GestionController extends Controller
         return $util->getDataRequest($datos, $input);
 
     }
+
+    public function getModalEditMenu($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosMenuById($id);
+        return view('gestion.modaleditmenu',compact('datos'));
+    }
+
+
+    public function postModalEditMenu(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditMenu($request);
+        return $result;
+    }
+
+
+    public function getDropDownMenu()
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosDropdDownMenu();
+        return $datos;
+    }
+
+
+
+
+
+
 
     /*VISTA DEL PLATO DEL MENU ######################################### */
     public function getMenuPlato()
@@ -201,15 +260,20 @@ class GestionController extends Controller
 
     }
 
-    public function getUpdateplato($id)
+    public function getModalEditMenuPlato($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosGridPlatos($id);
+        $datos = $Bl->getDatosModalMenuPLatos($id);
+
+        return view('gestion.modaleditmenuplato', compact('datos'));
+    }
 
 
-
-
-        return view('gestion.modaleditplato', compact('datos'));
+    public function postModalEditMenuPlato(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditMenuPlato($request);
+        return $result;
     }
 
 
@@ -221,7 +285,7 @@ class GestionController extends Controller
         return view('gestion.menucategoria');
     }
 
-    public function postbdmenucategoria(Request $rq)
+    public function postMenuCategoria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -244,7 +308,7 @@ class GestionController extends Controller
         return view('gestion.menusucursal');
     }
 
-    public function postbdmenusucursal(Request $rq)
+    public function postMenuSucursal(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -261,6 +325,27 @@ class GestionController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * funciones para editar las sucursales del menu
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getEditMenuSucursal($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalMenuSucursal($id);
+        return view('gestion.modaleditmenusucursal', compact('datos'));
+
+    }
+
+    public function postEditMenuSucursal(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditMenuSucusal($request);
+        return $result;
+    }
+
+
     /*VISTA DE LOS PLATOS ######################################### */
 
     public function getPlatos()
@@ -268,7 +353,7 @@ class GestionController extends Controller
         return view('gestion.platos');
     }
 
-    public function postbdplatos(Request $rq)
+    public function postPlatos(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -298,7 +383,7 @@ class GestionController extends Controller
         return view('gestion.galeria');
     }
 
-    public function postbdgaleria(Request $rq)
+    public function postGaleria(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -330,7 +415,7 @@ class GestionController extends Controller
     }
 
 
-    public function postbdpuntuacion(Request $rq)
+    public function postPuntuacion(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -377,8 +462,37 @@ class GestionController extends Controller
         $Bl = new GestionBL();
         $datos = $Bl->getSucursalCliente($request, $this->auth->user()->id);
         return view('gestion.sucursalcliente', compact('datos'));
+
+
     }
 
+    public function getEditSucursal($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalsucursal($id);
+        return view('gestion.modaleditsucursal',compact('datos'));
+    }
+
+    public function posttEditSucursal(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditMenuSucusal($request);
+        return $result;
+    }
+
+
+
+
+    /**
+     * @return mixed
+     *
+     */
+    public function getDropDownSucursal()
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosDropdDownSucursal();
+        return $datos;
+    }
 
     /*VISTA DE LA INFORMACION BASICA ######################################### */
     public function getInformacion()
@@ -386,7 +500,7 @@ class GestionController extends Controller
         return view('gestion.informacion');
     }
 
-    public function postbdinformacion(Request $rq)
+    public function postInformacion(Request $rq)
     {
 
         $Bl = new GestionBL();
@@ -405,7 +519,7 @@ class GestionController extends Controller
 
     /*VISTA DEL MODAL DEL ESTABLECIMIENTO ######################################### */
 
-    public function getmodalestablecimiento($id)
+    public function getModalEstablecimiento($id)
     {
 
         $Bl = new GestionBL();
