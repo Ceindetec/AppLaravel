@@ -153,8 +153,6 @@ return [
         //Proveedore de PhpGMaps
         GeneaLabs\Phpgmaps\PhpgmapsServiceProvider::class,
 
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-
     ],
 
     /*
@@ -216,8 +214,6 @@ return [
 
         //Alias de PhpGMaps
         'Gmaps' => GeneaLabs\Phpgmaps\Facades\PhpgmapsFacade::class,
-
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
     ],
 
