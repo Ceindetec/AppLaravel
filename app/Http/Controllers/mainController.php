@@ -115,7 +115,7 @@ class mainController extends Controller
         return $rq['id'];
     }
     
-    /*VISTA FILTRADO ######################################### */
+    /* VISTA FILTRADO ######################################### */
     public function SucuFiltrada(Request $request){
 
         $Bl = new MainBl();
@@ -132,7 +132,7 @@ class mainController extends Controller
         return view('main.SucuFiltrada',compact('dataInfoSucursales'));
     }
 
-    /*VISTA TOP INICIAL ##################################### */
+    /* VISTA TOP INICIAL ###################################### */
     public function topInicio(){
 
         $Bl = new MainBl();
@@ -162,7 +162,7 @@ class mainController extends Controller
         return view('main.TopInicio',compact('dataTops'));
     }
 
-    /*VISTA DE LA LISTA DE TOP PUNTUADO  ##################### */
+    /* VISTA DE LA LISTA DE TOP PUNTUADO  ##################### */
     public function topPuntadosList(){
 
         $Bl = new MainBl();
@@ -179,7 +179,7 @@ class mainController extends Controller
         return view('main.TopPuntuadosList',compact('dataTopPuntadosList'));
     }
 
-     /*VISTA DE LA LISTA DE TOP VISITADO  ##################### */
+    /* VISTA DE LA LISTA DE TOP VISITADO  ##################### */
     public function topVisitadoList(){
 
         $Bl = new MainBl();
@@ -196,7 +196,7 @@ class mainController extends Controller
         return view('main.TopVisitadoList',compact('dataTopVisitadosList'));
     }
 
-    /*VISTA DE LA LISTA DE TOP EDITOR  ##################### */
+    /* VISTA DE LA LISTA DE TOP EDITOR  ####################### */
     public function topEditorList(){
     
         $Bl = new MainBl();
@@ -213,7 +213,31 @@ class mainController extends Controller
         return view('main.TopEditorList',compact('dataTopEditorList'));
     }    
 
-    /*VISTA DEL MAPA ######################################### */
+    /* VISTA DE UNA UNICA SUCURSAL ############################ */
+    public function unicaSucursal($id){
+    
+        $Bl = new MainBl();
+        $dataSucursal = $Bl->getDatosPorSucursal($id);
+        $dataComentariosPuntuacion = $Bl->getDataPuntuacionComentariosBySucursal($id);
+
+       
+
+        $data = compact("dataSucursal","dataComentariosPuntuacion");
+
+        //Conversion de images a Base64
+        for($i=0 ; $i<count($data['dataComentariosPuntuacion']); $i++)
+        {
+            $data['dataComentariosPuntuacion'][$i]->avatarComentario = base64_encode($data['dataComentariosPuntuacion'][$i]->avatarComentario); 
+        }
+        $data['dataSucursal'][0]->logoSucursal = base64_encode($data['dataSucursal'][0]->logoSucursal);
+
+        //dd($data);
+
+        //Retorno de la vista con los datos de las lista de editor de sucursales
+        return view('main.Sucursal',compact('data'));
+    }
+
+    /* VISTA DEL MAPA ######################################### */
     public function mapa()
     {
     /* CONFIGURACION */
@@ -238,5 +262,12 @@ class mainController extends Controller
 
         //Devolver vista con datos del mapa
         return view('main.mapa', compact('map'));
+    }
+
+    
+    public function pruebamapa()
+    {
+        //Devolver vista con datos del mapa
+        return view('main.prueba');
     }
 }

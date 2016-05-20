@@ -70,6 +70,22 @@ class MainBl{
 
 		return $result;
 	}
+	/* Funcion para traer los datos de una unica Sucursal Buscando por su ID*/
+	public function getDatosPorSucursal($id){
+		
+		$result = \DB::select('CALL getDataSucursalById(?)', array($id));
+
+		return $result;
+	}
+
+	/* Funcion que me trae los Comentarios y las Puntuacion de una Sucursal buscada por su ID*/
+	public function getDataPuntuacionComentariosBySucursal($id){
+		
+		$result = \DB::select('CALL getDataPuntuacionBySucursal(?)', array($id));
+		
+		return $result;
+	}
+	
 
 	/*public function insTesData($request){
 

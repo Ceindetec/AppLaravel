@@ -9,7 +9,7 @@
                                 <div> <a href="{{$auxI[0] ->ruta }}"> <b>{{$auxI[0] ->tituloTop }}</b></a></div>
                             </div>
                             <div  align="center">
-                                <div><a href="{{$auxI[0] ->nombreSucursal}}/{{ $auxI[0] ->idSucursal}}"<b>{{$auxI[0] ->nombreSucursal}} </b></a> &nbsp; <b>{{ $auxI[0] ->puntuacionSucursal }} </b></div>
+                                <div><a href="sucursalunica/{{ $auxI[0] ->idSucursal}}"><b>{{$auxI[0] ->nombreSucursal}} </b></a> &nbsp; <b>{{ $auxI[0] ->puntuacionSucursal }} </b></div>
                             </div>
                             <div class="panel-body">                                
                                 <picture>

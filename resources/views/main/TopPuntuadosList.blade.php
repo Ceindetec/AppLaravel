@@ -4,7 +4,7 @@
 		{?>
 			<div class="panel panel-danger">
 				<div  align="center" class="panel-heading">
-            		<div><b>{{$dataTopPuntadosList[$i] ->nombreSucursal}} </b> &nbsp; <b>{{ $dataTopPuntadosList[$i] ->puntuacionSucursal }} </b></div>
+            		<div><a href="sucursalunica/{{ $dataTopPuntadosList[$i] ->idSucursal}}"><b>{{$dataTopPuntadosList[$i] ->nombreSucursal}}</b></a>&nbsp; <b>{{ $dataTopPuntadosList[$i] ->puntuacionSucursal }} </b></div>
         		</div>
 		        <div class="panel-body">
 		            <div class="row">
