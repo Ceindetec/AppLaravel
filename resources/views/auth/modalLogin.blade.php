@@ -60,7 +60,7 @@ $(function(){
     				$.msgbox(result.mensaje, { type: 'success' }, function(){
     					var user = result.usuario;
     					console.log(user);
-    					html='<div><img src="data:image/jpeg;base64, '+user.avatar+' " width="40px"> '+user.username+'</div>';
+    					html='<div><img src="data:image/jpeg;base64, '+user.avatar+' " width="40px" style="border-radius:20%;"> '+user.username+'</div>';
     					$('#login').html(html);
     					modalBs.modal('hide');
     				});

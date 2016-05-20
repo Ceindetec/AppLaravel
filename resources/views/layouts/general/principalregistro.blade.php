@@ -150,35 +150,16 @@
           </div>
         </div>
       </header>
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 galeri">
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 sliderGaleria">
-
-        </div>
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
-        </div>
-      </div>
-
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenido">
         <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 primaria">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
          @yield('content')
        </div>
        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
        </div>
      </div>
-     <footer>
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2"> </div>
-        <div  class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="footer">
-          contenido del footer que aun no tengo idea que diablos va aca;
-        </div>
-        <div class="hidden-xs hidden-sm col-md-2 col-lg-2"></div>
-      </div>
-    </footer>
+     
 
 
 
