@@ -14,6 +14,12 @@ class RegistroBl
         return $categoria;
     }
 
+    public function getDatosDropdDownTusuario()
+    {
+        $tusuario = \DB::select('CALL getDatosDropdDowntusuario');
+        return $tusuario;
+    }
+
 }
 
 ?>

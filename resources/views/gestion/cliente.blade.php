@@ -111,7 +111,7 @@
 
 <script id="edicion" type="text/x-kendo-tmpl">
 
-	<a href="modalcliente/#= idusuario#" class="btn btn-success" data-modal="">Editar</a>
+	<a href="modaleditcliente/#= idusuario#" class="btn btn-success" data-modal="">Editar</a>
 
 
 </script>

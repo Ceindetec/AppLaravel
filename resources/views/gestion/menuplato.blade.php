@@ -56,6 +56,10 @@
 		$grid = new \Kendo\UI\Grid('grid');
 
 		//Inicializamos las columnas de la grid
+
+		$idMenuPlato = new \Kendo\UI\GridColumn();
+		$idMenuPlato->field('idMenuPlato')->title('idMenuPlato')->hidden(true);
+
 		$nombreMenuPlato = new \Kendo\UI\GridColumn();
 		$nombreMenuPlato->field('nombreMenuPlato')->title('Menú');
 
@@ -68,25 +72,32 @@
 		$estadoMenuPlato = new \Kendo\UI\GridColumn();
 		$estadoMenuPlato->field('estadoMenuPlato')->title('Estado');
 
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
+
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción ')->templateId('accion');
+
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreMenuPlato, $nombrePlato, $valor, $estadoMenuPlato,$accion)
+		->addColumn( $idMenuPlato,$nombreMenuPlato, $nombrePlato, $valor, $estadoMenuPlato,$accion,$edicion)
 		->dataSource($dataSource)
 		->sortable(true)
 		->filterable($gridFilterable)
-		->groupable (true)
+				->groupable (true)
+				->dataBound('handleAjaxModal')
 		->pageable(true);
 
 		//renderizamos la grid
 		echo $grid->render();
 		?>
-		<div id="grid2"></div>
+
 
 	</div>
 	<div class="panel-footer">
@@ -110,3 +121,7 @@
 	?>
 </script>
 
+<script id="edicion" type="text/x-kendo-tmpl">
+
+	<a href="modaleditmenuplato/#= idMenuPlato#" class="btn btn-success" data-modal="">Editar</a>
+    </script>

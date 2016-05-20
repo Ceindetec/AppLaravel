@@ -1,6 +1,7 @@
 
 <?php
 $Utils = new Utils();
+
 ?>
 
 {!! Form::model($datos[0], array('route' => array('edit.establecimiento')))!!}
@@ -12,13 +13,11 @@ $Utils = new Utils();
     <div class="modal-body">
 
         <div class="form-group">
-            {!!Form::label('Encargado')!!}
-            {!!Form::text('Encargado',null,['class'=>'form-control', 'required', 'id'=>'Encargado'])!!}
-        </div>
-
+            {!!Form::hidden('idestablecimiento',null,['class'=>'form-control', 'required', 'id'=>'idestablecimiento'])!!}
         <div class="form-group">
             {!!Form::label('Establecimiento')!!}
             {!!Form::text('establecimiento',null,['class'=>'form-control', 'required', 'id'=>'establecimiento'])!!}
+
         </div>
 
         <div class="form-group">
@@ -43,7 +42,7 @@ $Utils = new Utils();
 
         <div class="form-group">
             {!!Form::label('Instagram')!!}
-            {!!Form::text('instagram',null,['class'=>'form-control', 'required', 'id'=>'instagram'])!!}
+            {!!Form::text('instagram',null,['class'=>'form-control', 'id'=>'instagram'])!!}
         </div>
 
         <div class="form-group">
@@ -61,18 +60,3 @@ $Utils = new Utils();
     </div>
 </div>
 {!!Form::close()!!}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-d

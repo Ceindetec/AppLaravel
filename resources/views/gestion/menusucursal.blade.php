@@ -55,7 +55,13 @@
 		//Inicializamos la grid
 		$grid = new \Kendo\UI\Grid('grid');
 
+
 		//Inicializamos las columnas de la grid
+
+
+		$idMenuSucursal = new \Kendo\UI\GridColumn();
+		$idMenuSucursal->field('$idMenuSucursal')->title('ID')->hidden(true);
+
 		$nombreMenu = new \Kendo\UI\GridColumn();
 		$nombreMenu->field('nombreMenu')->title('Menú');
 
@@ -68,16 +74,21 @@
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción')->templateId('accion');
 
+		$edicion = new \Kendo\UI\GridColumn();
+		$edicion->field('edicion')->title('Edición ')->templateId('edicion');
+
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreMenu, $nombreSucursal, $estadoSucursal,$accion)
+		->addColumn( $idMenuSucursal,$nombreMenu, $nombreSucursal, $estadoSucursal,$accion,$edicion)
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
+				->dataBound('handleAjaxModal')
 		->pageable(true);
 
 		//renderizamos la grid
@@ -107,3 +118,9 @@
 	?>
   
 </script>
+
+
+<script id="edicion" type="text/x-kendo-tmpl">
+
+	<a href="modaleditmenusucursal/#= idMenuSucursal#" class="btn btn-success" data-modal="">Editar</a>
+    </script>

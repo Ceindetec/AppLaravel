@@ -130,7 +130,7 @@
 
 </script>
 
-<script id="edicion" type="text/x-kendo-tmpl">
+<script id="edicion " type="text/x-kendo-tmpl">
     <a href="modalsucursal/#= idSucursal#" class="btn btn-success" data-modal="">Editar</a>
 
 </script>

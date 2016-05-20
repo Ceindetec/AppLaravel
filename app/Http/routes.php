@@ -49,93 +49,155 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('inicio', 'gestionController@index')->name('inicio');
 
 /* MODULO GESTION ESTABLECIMIENTO   ############################################# */
-/*ruta de la vista del establecimiento */
+/*ruta de la vista del establecimiento que muestra la grid // y post que envia los datos */
 Route::get('establecimiento', 'gestionController@getEstablecimiento')->name('establecimiento');
+Route::post('postestablecimiento', 'gestionController@postEstablecimiento');
 
-Route::get('modaleditestablecimiento/{id}', 'gestionController@getEditEstablecimiento');
-Route::post('modaleditestablecimiento', 'gestionController@postEditEstablecimiento')->name('edit.establecimiento');
+/*ruta del modal que trae los todos los datos del estableimiento en el boton ver detalles*/
+Route::get('modalestablecimiento/{id}', 'gestionController@getModalEstablecimiento');
 
-/*ruta de la vista del establecimiento del cliente */
+/*ruta de la vista del establecimiento del cliente by login*/
 Route::get('establecimientocliente', 'gestionController@getEstablecimientoCliente')->name('establecimientocliente');
-//el alias tiene que ser diciente
-//manejar misma notacion
 
-/*modal ver detalles del establecimiento del cliente  */
+//####ruta que hay que averiguar que hace
+/*modal ver detalles del establecimiento del cliente by ID */
 Route::get('getModalEstablecimientoCliente/{id}', 'gestionController@getEstablecimientoCliente');
 
 
-/*RUTA DEL POST/ DE LA GRID DE ESTABLECIMIENTO ########################################## */
-Route::post('postbdestablecimiento', 'gestionController@postbdestablecimiento');
+/*rutas del registro de establecimiento // y post que registra los datos en la BD */
+Route::get('registroestablecimiento/{cliente}', 'registroController@getRegistroEstablecimiento');
+Route::post('registroestablecimiento', 'registroController@postRegistroEstablecimiento')->name('registroestablecimiento');
 
-//se debe colocar el comentariado antes de la linea en la que se ejecuta el codigo
-Route::get('modalestablecimiento/{id}', 'gestionController@getmodalestablecimiento');/* RUTA DEL MODAL/VER DETALLES/ DEL INFO RESTANTE DE ESTABLECIMIENTO ###########*/
-Route::get('registroestablecimiento/{cliente}', 'registroController@getRegistroEstablecimiento');/* RUTA DE LA VISTA DEL REGISTRO DEL ESTABLECIMIENTO  #################*/
-Route::post('registroestablecimiento', 'registroController@postRegistroEstablecimiento')->name('registroestablecimiento');/* RUTA DEL POST/ REGISTRO DEL ESTABLECIMINTO #############*/
-
+/*rutas modal editar del establecimiento by ID*/
+Route::get('modaleditestablecimiento/{id}', 'gestionController@getEditModalEstablecimiento');
+Route::post('modaleditestablecimiento', 'gestionController@postEditModalEstablecimiento')->name('edit.establecimiento');
 
 /* MODULO GESTION CLIENTE  #####################################################  */
-Route::get('cliente', 'gestionController@getCliente')->name('cliente'); /* RUTA DE LA VISTA/ DE LA GRID DE CLINTES######################################### */
-Route::post('postbusuario', 'gestionController@postbusuario'); /* RUTA DEL POST/ DE LA GRID DE LOS USUARIOS############################ */
-    Route::get('modalcliente/{id}', 'gestionController@getmodalcliente');/* RUTA DE MODAL / VER DETALLES/ DE LA INFO RESTANTE DE CLIENTES##### */
-Route::get('clienteestablecimiento', 'registroController@getClienteEstablecimiento');/* RUTA DE LA VISTA/ DEL REGISTRO DE  LA INFO FALTANTE EN CLIENTES########### */
-Route::post('clienteestablecimiento', 'registroController@postClienteEstablecimiento');/* RUTA DEL POST/ DEL REGISTRO DE LA INFO FALTANTE EN CLIENTES########################## */
+/*ruta de la vista del cliente que muestra la grid */
+Route::get('cliente', 'gestionController@getCliente')->name('cliente');
+
+/*rutas de la vista que envia los datos del cliente */
+Route::post('postbusuario', 'gestionController@postCliente');
+
+/*rutas del modal de la vista cliente que trae todos las datos de cliente by ID */
+Route::get('modalcliente/{id}', 'gestionController@getmodalcliente');
+
+/*ruta de la vista del registro de la informacion faltante  del cliente // y post que regitra por ID */
+Route::get('clienteestablecimiento', 'registroController@getClienteEstablecimiento');
+Route::post('clienteestablecimiento', 'registroController@postClienteEstablecimiento');
+
+/*ruta del modal editar de los cliente que trae los datos by ID // y post que edita by ID */
+Route::get('modaleditcliente/{id}', 'gestionController@getModalEditCliente');
+Route::post('modaleditcliente', 'gestionController@postModalEditCliente')->name('edit.cliente');
+
+/*ruta que del combobox que trae los tipos de usuarios  */
+Route::post('getDatosDropdDowntusuario', 'gestionController@getDropDownTusuario');
+
 
 /* MODULO GESTION MENU  ########################################################  */
-Route::get('menu', 'gestionController@getMenu')->name('menu'); /* RUTA DE LA VISTA/ DE LA GRID DE LAS CARTAS DE LOS MENUS########################### */
-Route::post('postbdmenu', 'gestionController@postbdmenu'); /* RUTA DEL POST/ DE LA GRID DE LAS CARTAS DE LOS MENUS############################ */
-Route::get('registromenu', 'registroController@getRegistroMenu');/* RUTA DE LA VISTA/ DEL REGISTRO DE LOS MENUS####################### */
+
+/*ruta de la vista del menu que muestra la grid  // y post que envia los datos del menu */
+Route::get('menu', 'gestionController@getMenu')->name('menu');
+Route::post('postbdmenu', 'gestionController@postMenu');
+
+/*ruta que trae la vista del registro del menu */
+Route::get('registromenu', 'registroController@getRegistroMenu');
+
+/*ruta del modal editar que trae los datos by ID// y post que edita los datos by ID */
+Route::get('modaleditmenu/{id}', 'gestionController@getModalEditMenu');
+Route::post('modaleditmenu', 'gestionController@postModalEditMenu')->name('edit.menu');
+/* */
+Route::post('getdatosdropdownmenu', 'gestionController@getDropDownMenu');
 
 /* MODULO GESTION PLATOS DEL MENU  #############################################  */
-Route::get('menuplato', 'gestionController@getMenuplato')->name('menuplatos');/* RUTA DE LA VISTA/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
-Route::post('postbdmenuplato',  'gestionController@postbdmenuplato');/* RUTA DE POST/ DE LA GRID DE LOS PLATOS DE LOS MENUS############################ */
+
+Route::get('menuplato', 'gestionController@getMenuplato')->name('menuplatos');
+Route::post('postbdmenuplato',  'gestionController@postbdmenuplato');
+
+Route::get('modaleditmenuplato/{id}', 'gestionController@getModalEditMenuPlato');
+Route::post('modaleditmenuplato', 'gestionController@postModalEditMenuPlato')->name('edit.menuplatos');
 
 
 /* MODULO GESTION CATEGORIAS DEL MENU  #########################################  */
-Route::get('menucategoria', 'gestionController@getMenuCategoria')->name('menucategorias'); /* RUTA DE LA VISTA/ DE LA GRID DE LAS CATEGORIAS DEL MENU############################ */
-Route::post('postbdmenucategoria', 'gestionController@postbdmenucategoria');/* RUTA DE POST/ DE LA GRID DE LAS CATEGORIAS DEL MENU############################ */
-Route::post('getDropDownCategoria', 'registroController@getDropDownCategoria');/* RUTA DEL POST/ DE LA LISTA DESPLEGABLE DE LAS CATEGORIAS############################ */
+
+/*ruta del la vista de las categorias por menu que muestra la grid // y post que envia los datos a la grid*/
+Route::get('menucategoria', 'gestionController@getMenuCategoria')->name('menucategorias');
+Route::post('postbdmenucategoria', 'gestionController@postMenuCategoria');
+
+/*ruta del post del combobox que trae las categorias de los menus*/
+Route::post('getDropDownCategoria', 'registroController@getDropDownCategoria');
 
 
 /* MODULO GESTION SUCURSALES DEL MENU  ##########################################  */
-Route::get('menusucursal', 'gestionController@getMenuSucursal')->name('menusucursal');/* RUTA DE  LA VISTA/ DE LA GRID DE LAS  SUCURSALES DE LOS MENUS############################ */
-Route::post('postbdmenusucursal', 'gestionController@postbdmenusucursal');/* RUTA DEL POST/ DE LA GRID DE LOS DE LAS SUCURSALES DE LOS MENUS############################ */
+/*ruta de la vista de sucursales que muestra la grid // y post que envia los datos a la grid*/
+Route::get('menusucursal', 'gestionController@getMenuSucursal')->name('menusucursal');
+Route::post('postbdmenusucursal', 'gestionController@postMenuSucursal');
+
+/*ruta de la del modal editar que trae los datos de la sucursal By ID // y post que envia los datos para editar*/
+Route::get('modaleditmenusucursal/{id}', 'gestionController@getEditMenuSucursal');
+Route::post('modaleditmenusucursal', 'gestionController@postEditMenuSucursal')->name('edit.menusucursal');;
 
 
 /* MODULO GESTION PLATOS  #######################################################  */
-Route::get('platos', 'gestionController@getPlatos')->name('platos');/* RUTA DE LA VISTA/ DE LA GRID DE LOS PLATOS############################ */
-Route::post('postbdplatos', 'gestionController@postbdplatos');/* RUTA DEL POST/ DE LA GRID DE LOS PLATOS############################ */
-Route::get('modalplato', 'registroController@modalPlato');/* RUTA DEL MODAL/ DE LOS PLATOS EN EL MENU############################ */
-Route::get('registroplato', 'registroController@getRegistroPlato');/* RUTA DE LA VISTA/ DEL REGISTRO DE PLATOS############################ */
-Route::post('postregistroplato', 'registroController@postRegistroPlato');/* RUTA DEL POST/ DEL REGISTRO DE PLATOS############################ */
 
-Route::get('modaleditplato/{id}', 'gestionController@getUpdateplato');
-Route::post('modaleditplato', 'gestionController@postUpdateplato');
+/*ruta de la vista de platos que muetra la grid// y el post que envia los datos a la grid */
+Route::get('platos', 'gestionController@getPlatos')->name('platos');
+Route::post('postbdplatos', 'gestionController@postPlatos');
+
+Route::get('modalplato', 'registroController@modalPlato');
+
+/*ruta de la vista de registro de los plato // y post que registra los datos*/
+Route::get('registroplato', 'registroController@getRegistroPlato');
+Route::post('postregistroplato', 'registroController@postRegistroPlato');
+
+/*ruta del modal editar del plato que trae los datos by ID // y post que enviar los datos y los edita en la BD*/
+Route::get('modaleditplato/{id}', 'gestionController@getEditPlato');
+Route::post('modaleditplato', 'gestionController@postEditPlato')->name('edit.plato');
 
 
 /* MODULO GESTION GALERIA  ######################################################  */
-Route::get('galeria', 'gestionController@getGaleria')->name('galeria');/* RUTA DE LA VISTA/ DE LA GRID DE LA GALERIA############################ */
-Route::post('postbdgaleria', 'gestionController@postbdgaleria');/* RUTA DEL POST/ DEL LA GRID DE LA GALERIA############################ */
+
+/*ruta de la vista de galeria que muestra la grid // y el post que envia los datos a la grid */
+Route::get('galeria', 'gestionController@getGaleria')->name('galeria');
+Route::post('postbdgaleria', 'gestionController@postGaleria');
 
 /* MODULO GESTION PUNTUACION  ###################################################  */
-Route::get('puntuacion', 'gestionController@getPuntuacion')->name('puntuacion');/* RUTA DE LA VISTA/ DEL LA GRID DE LAS PUNTUACIONES############################ */
-Route::post('postbdpuntuacion', 'gestionController@postbdpuntuacion');/* RUTA DEL POST/ DE LA GRID DE LAS PUNTUACIONES ########################## */
+
+/*ruta del la vista de puntuacion que muestra la grid // y el post que envia los datos a la grid*/
+Route::get('puntuacion', 'gestionController@getPuntuacion')->name('puntuacion');
+Route::post('postbdpuntuacion', 'gestionController@postPuntuacion');
 
 
 /* MODULO GESTION SUCURSALES  ###################################################  */
-Route::get('sucursal/{idEstablecimiento}', 'gestionController@getSucursal')->name('sucursal');/* RUTA DE LA VISTA/ DE LA GRID DE LAS SUCURSALES############################ */
-Route::post('getDatosSucursalById', 'gestionController@getDatosSucursalById');/* RUTA DEL POST/ DE LA GRID DE LAS SUCURSALES############################ */
+
+/*ruta la vista de la sucursal by ID del establecimiento*/
+Route::get('sucursal/{idEstablecimiento}', 'gestionController@getSucursal')->name('sucursal');
+
+/*ruta que trae los datos de la sucursal By ID*/
+Route::post('getDatosSucursalById', 'gestionController@getDatosSucursalById');
+
+/*ruta del modal By id que trae todos los datos de sucursal*/
 Route::get('sucursal/modalsucursal/{id}', 'gestionController@getModalSucursal');
-//no manejar mas de dos niveles
-/* RUTA DEL MODAL/VER DETALLES DE SUCURSALES############################ */
-Route::get('registrosucursal/{id}', 'registroController@getRegistroSucursal');/* RUTA DE LA VISTA/ DEL REGISTRO DE LAS SUCURSALES############################ */
-Route::post('procesarRegistroSucursal', 'registroController@postRegistroSucursal');/* RUTA DEL POST/ DEL REGISTRO DE LAS SUCURSALES############################ */
-Route::get('sucursalcliente/{id}', 'gestionController@getSucursalCliente')->name('sucursalCliente');/* RUTA DE LA VISTA/ DE LAS SUCURSALES DE LOS CLIENTES############################ */
+
+
+/*ruta del registro de la sucursal que recibe un ID // y post que registra los datos de la sucursal*/
+Route::get('registrosucursal/{id}', 'registroController@getRegistroSucursal');
+Route::post('procesarRegistroSucursal', 'registroController@postRegistroSucursal');
+
+/*ruta la vista de las sucursal del cliente By ID*/
+Route::get('sucursalcliente/{id}', 'gestionController@getSucursalCliente')->name('sucursalCliente');
+
+/* modal de la vista editar se las sucursales del cliente*/
+Route::get('sucursalcliente/modaleditsucursal/{id}', 'gestionController@getEditSucursal');
+Route::post('sucursalcliente/modaleditsucursal', 'gestionController@posttEditSucursal')->name('edit.sucursal');
+/*ruta para el desplegable de las sucursales existentes*/
+Route::post('getdatosdropdownsucursal', 'gestionController@getDropDownSucursal');
 
 
 /* MODULO GESTION INFORMACION BASICA ############################################  */
-
-Route::get('informacion', 'gestionController@getInformacion')->name('info');/* RUTA DE LA VISTA/  DE LA GRID DE LA INFORMACION BASICA Y COMENTARIOS############################ */
-Route::post('postbdinformacion', 'gestionController@postbdinformacion');/* RUTA DEL POST/DE LA GRID DE LA INFORMACION BASICA Y COMENTARIOS############################ */
+/*ruta la vista de las informacion basica  y comentarios que muestra la grid// y post que envia los datos a la grid*/
+Route::get('informacion', 'gestionController@getInformacion')->name('info');
+Route::post('postbdinformacion', 'gestionController@postInformacion');
 
 /* MODULO DE GEOLOCALIZACION ####################################################  */
 Route::get('mapa','mainController@mapa');

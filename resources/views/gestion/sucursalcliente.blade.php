@@ -1,6 +1,7 @@
 @extends('layouts.admin.principal')
 
 @section('content')
+
     <div class="form-group">
         <a href="../registrosucursal " class="btn btn-success"  >Registrar Sucursal</a>
 
@@ -8,6 +9,7 @@
     <?php
 
     for ($i = 0; $i < count($datos); $i++) {
+
     ?>
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -24,10 +26,10 @@
                                         srcset="http://vignette3.wikia.nocookie.net/outcast/images/f/f8/Imagen-no-disponible.png/revision/latest?cb=20160322191504&path-prefix=es">
                                 <source
                                         media="(min-width: 465px)"
-                                        srcset="images/kitten-sitting.png">
+                                        srcset="">
                                 <img
                                         src="http://vignette3.wikia.nocookie.net/outcast/images/f/f8/Imagen-no-disponible.png/revision/latest?cb=20160322191504&path-prefix=es"
-                                        alt="a cute kitten">
+                                        alt="not found">
                             </picture>
                         </div>
                         <div class="col-md-4">
@@ -61,11 +63,7 @@
 
 
 
-
-
-
-
-
+	<a href= "modaleditsucursal/{{$datos[$i]->idSucursal}}" class="btn btn-success" data-modal="">Editar</a>
 
         </div>
     </div>

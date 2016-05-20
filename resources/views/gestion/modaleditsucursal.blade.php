@@ -4,35 +4,45 @@ $Utils = new Utils();
 
 ?>
 
-{!! Form::model($datos[0], array('route' => array('edit.plato')))!!}
-<div id="plato">
+{!! Form::model($datos[0], array('route' => array('edit.sucursal')))!!}
+<div id="menuplato">
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4> Editar</h4>
     </div>
-    <div class="modal-body">
 
-        <div class="form-group">
-            {!!Form::hidden('idPlatos',null,['class'=>'form-control', 'required', 'id'=>'idPlatos'])!!}
+    <div class="modal-body" >
 
+        <div class="form-group" >
+            {!!Form::hidden('idSucursal',null,['class'=>'form-control', 'required', 'id'=>'idSucursal'])!!}
 
 
             <div class="form-group">
-                {!!Form::label('Nombre')!!}
+
+                {!!Form::label('nombre:')!!}
                 {!!Form::text('nombre',null,['class'=>'form-control', 'required', 'id'=>'nombre'])!!}
 
             </div>
 
             <div class="form-group">
-                {!!Form::label('Descripcion')!!}
-                {!!Form::text('descripcion',null,['class'=>'form-control', 'required', 'id'=>'descripcion'])!!}
+
+                {!!Form::label('direccion:')!!}
+                {!!Form::text('direccion',null,['class'=>'form-control', 'required', 'id'=>'direccion'])!!}
+
+            </div>
+
+            <div class="form-group">
+                {!!Form::label('telefono:')!!}
+                {!!Form::text('telefono',null,['class'=>'form-control', 'required', 'id'=>'telefono'])!!}
 
             </div>
 
             <div class="form-group">
                 <div col-md-4>
-                    {!!Form::label('nombre', 'Categoria')!!}
+                    {!!Form::label('nombre', 'Categorias')!!}
                 </div>
+
                 <div col-md-3>
                     <?php
                     $transport = new \Kendo\Data\DataSourceTransport();
@@ -53,7 +63,7 @@ $Utils = new Utils();
                     $dataSource->transport($transport);
 
 
-                    $dropDownList = new \Kendo\UI\DropDownList('categorias');
+                    $dropDownList = new \Kendo\UI\DropDownList('categoria');
 
                     $dropDownList->dataSource($dataSource)
                             ->dataTextField('nombre')
@@ -66,14 +76,9 @@ $Utils = new Utils();
                 </div>
             </div>
 
-
-
-
-
-
             <div class="form-group">
-                {!!Form::label('Estado')!!}
-                {{$datos[0]->estadoPlato}}
+                {!!Form::label('Estado:')!!}
+                {{$datos[0]->estado}}
             </div>
 
 

@@ -79,21 +79,33 @@ public function __construct(){}
         return json_encode($result);
     }
 
+//BL que debe borrarse si no es necesario
+/*
+    public function getEdiestablecimiento($id)
+    {
+        $editmodalEstablecimiento = \DB::select('CALL getAllEstablecimiento(?)', array($id));
+        return $editmodalEstablecimiento;
+    }*/
 
     public function postEditEstablecimiento($request)
     {
 
         //Parametros desde el formulario
-        $encargado = $request->input('Encargado');
-        $establecimiento= $request->input('establecimiento');
+
+
+
+        $establecimiento = $request->input('establecimiento');
         $web = $request->input('web');
-        $correo = $request->input('correo ');
-        $facebook = $request->input('telefono');
-        $twitter = $request->input('facebook');
+        $correo = $request->input('correo');
+        $facebook = $request->input('facebook');
+        $twitter = $request->input('twitter');
         $instagram = $request->input('instagram');
+        $id = $request->input('idestablecimiento');
 
 
-        $editEstablecimiento = \DB::select('CALL updDatosEstablecimiento(?,?,?,?,?,?,?)', array($encargado,$establecimiento,$web,$correo,$facebook,$twitter,$instagram));
+
+
+        $editEstablecimiento = \DB::select('CALL updDatosEstablecimiento(?,?,?,?,?,?,?)', array($establecimiento,$web,$correo,$facebook,$twitter,$instagram,$id));
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
@@ -147,6 +159,33 @@ public function __construct(){}
         return $usuario;
     }
 
+
+    public function postEditCliente($request)
+    {
+
+        //Parametros desde el formulario
+
+        $user = $request->input('user');
+        $pnombre = $request->input('pnombre');
+        $snombre = $request->input('snombre');
+        $papellido = $request->input('papellido');
+        $sapellido = $request->input('sapellido');
+        $email = $request->input('email');
+        $telefono = $request->input('telefono');
+        $celular = $request->input('celular');
+        $tusuario = $request->input('tusuarios');
+        $facebook = $request->input('facebook');
+        $id = $request->input('idusuario');
+
+        $editCliente = \DB::select('CALL updDatosCliente(?,?,?,?,?,?,?,?,?,?,?)', array($user,$pnombre,$snombre,$papellido,$sapellido,$email,$telefono,$celular,$facebook,$tusuario,$id));
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
+
+
+
     /* MODULO GESTION MENU   ####################################################### */
     /*
       function getDatosGridmenu
@@ -161,6 +200,20 @@ public function __construct(){}
         //$menu = \DB::table('menu')->get();
         return $menu;
     }
+
+    /**
+     * @return mixed
+     * funcion que llama a la consulta
+     * de los nombres de los menus para desplegable
+     */
+
+    public function getDatosDropdDownMenu()
+    {
+        $dropdDownMenu = \DB::select('CALL getDatosDropdDownMenu');
+        return $dropdDownMenu;
+    }
+
+
     /* MODULO GESTION PLATOS DEL MENU   ####################################################### */
     /*
      function getDatosGridmenuPlato
@@ -176,6 +229,59 @@ public function __construct(){}
 
         return $menuPlato;
     }
+
+
+    public function getDatosMenuById($id)
+    {
+        $getmenu = \DB::select('CALL getDatosIdmenu(?)', array($id));
+        return $getmenu;
+    }
+
+
+    public function postEditMenu($request)
+    {
+
+        //Parametros desde el formulario
+
+        $nombre = $request->input('nombreMenu');
+        $descripcion = $request->input('descripcionMenu');
+
+        $id = $request->input('idMenu');
+
+        $editmenu = \DB::select('CALL updDatosMenu(?,?,?)', array($nombre,$descripcion,$id));
+        $result['estado'] = true;
+
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
+    /**
+     * @param $id
+     * funcion que hace llamado a la consulta que trae los platos
+     * de los menus  By ID
+     * @return mixed
+     */
+
+    public function getDatosModalMenuPLatos($id)
+    {
+        $modalMenuPlatos = \DB::select('CALL getDatosIDmenuplatos(?)', array($id));
+        return $modalMenuPlatos;
+    }
+
+    public function postEditMenuPlato($request)
+    {
+
+        //Parametros desde el formulario
+
+        $valor = $request->input('valor');
+        $id = $request->input('idMenuPlato');
+
+        $editCliente = \DB::select('CALL updDatosMenuPlato(?,?)', array($valor,$id));
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
 
     /* MODULO GESTION CATEGORIA DEL MENU   ####################################################### */
     /*
@@ -208,6 +314,40 @@ public function __construct(){}
 
         return $menucategoria;
     }
+
+    /**
+     * @param $id
+     * funcion que hace llamado a Consulta que trae las variables
+     * de las sucursales del menu By ID
+     * @return mixed
+     */
+    public function getDatosModalMenuSucursal($id)
+    {
+        $modalMenuSucursal = \DB::select('CALL getDatosIdmenusucursal(?)', array($id));
+        return $modalMenuSucursal;
+    }
+
+    public function postEditMenuSucusal($request)
+    {
+        //Parametros desde el formulario
+
+        $nombre = $request->input('menu');
+
+
+        $id = $request->input('idMenuSucursal');
+
+        $editMenuSucursal= \DB::select('CALL updDatosMenuSucursal(?,?)', array($nombre,$id));
+
+
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
+
+
+
+
 
     /* MODULO GESTION PLATOS   ####################################################### */
     /*
@@ -263,10 +403,35 @@ public function __construct(){}
 
     }
 
+    public function getDatosGridPlatosById($id)
+    {
+        $editplatos = \DB::select('CALL getDatosIdplatos(?)', array($id));
+        return $editplatos;
+    }
 
 
 
 
+
+    public function postEditPlato($request)
+    {
+
+        //Parametros desde el formulario
+
+
+        $nombre = $request->input('nombre');
+        $descripcion = $request->input('descripcion');
+        $categoria = $request->input('categorias');
+        $id = $request->input('idPlatos');
+
+
+
+        $editPlato = \DB::select('CALL updDatosPlato(?,?,?,?)', array($nombre,$descripcion,$categoria,$id));
+
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
 
 
 
@@ -306,6 +471,14 @@ public function __construct(){}
         return $puntuacion;
     }
 
+
+    public function getDatosModalsucursal($id)
+    {
+        $sucursal = \DB::select('CALL getDatosIdsucursal(?)', array($id));
+        return $sucursal;
+
+    }
+
     /* MODULO GESTION SUCURSAL   ####################################################### */
     /*
     function getDatosGridSucursalById
@@ -343,11 +516,7 @@ public function __construct(){}
       detalles de las sucursales
       */
 
-    public function getDatosModalsucursal($id)
-    {
-        $sucursal = \DB::select('CALL getDatosIdsucursal(?)', array($id));
 
-    }
 
     /*
    function postRegistroSucursal
@@ -374,6 +543,42 @@ public function __construct(){}
         return json_encode($result);
 
 
+    }
+
+    /**
+     * @return mixed
+     * funcion que llama a la consulta
+     * de los nombres de las sucursales para desplegable
+     */
+
+    public function getDatosDropdDownSucursal()
+    {
+        $dropdDownsucursal = \DB::select('CALL getDatosDropdDownSucursal');
+        return $dropdDownsucursal;
+    }
+
+    /**
+     * @param $request
+     * @return string
+     */
+
+    public function postEditSucursal($request)
+    {
+        //Parametros desde el formulario
+
+        $nombre = $request->input('nombre');
+        $direccion = $request->input('direccion');
+        $telefono = $request->input('telefono');
+        $Categorias = $request->input('tcategorias');
+
+        $id = $request->input('idSucursal');
+
+        $editSucursal= \DB::select('CALL updDatosSucursal(?,?,?,?,?)', array($nombre,$direccion,$telefono,$Categorias,$id));
+
+
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
     }
 
 

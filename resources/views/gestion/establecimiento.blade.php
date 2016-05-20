@@ -19,7 +19,7 @@
 
             //Agregamos atributos al datasource de transporte de lectura
             $read
-                    ->url('postbdestablecimiento')
+                    ->url('postestablecimiento')
                     ->contentType('application/json')
                     ->type('POST');
 
