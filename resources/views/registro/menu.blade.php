@@ -156,30 +156,6 @@
 
                 $("#menu").append(divPanel);
 
-                /*
-                 var div = document.createElement('b');
-                 var div2 = document.createElement('div');
-                 var div3 = document.createElement('div');
-                 var br = document.createElement('br');
-                 var br2 = document.createElement('br');
-
-                 div2.innerHTML=datos[i].imagen;
-                 div.innerHTML=datos[i].nombre;
-                 div3.innerHTML=datos[i].descripcion;
-
-                 $(div).append(div3);
-                 $(div2).append(div);
-
-                 $(div2).append(br);
-                 $(div2).append(br2);
-
-
-                 $(div2).addClass('panel panel-primary')
-
-
-                 $("#menu").append(div2);
-                 $("#menu").append(div);
-                 */
 
 
             }

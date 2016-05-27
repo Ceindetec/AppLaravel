@@ -422,11 +422,10 @@ public function __construct(){}
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
         $categoria = $request->input('categorias');
+        $imagenBlob = file_get_contents($request->file('imagen')->getRealPath());
         $id = $request->input('idPlatos');
 
-
-
-        $editPlato = \DB::select('CALL updDatosPlato(?,?,?,?)', array($nombre,$descripcion,$categoria,$id));
+        $editPlato = \DB::select('CALL updDatosPlato(?,?,?,?,?)', array($nombre,$descripcion,$categoria,$imagenBlob,$id));
 
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
@@ -455,6 +454,47 @@ public function __construct(){}
         $galeria = \DB::select('CALL getDatosGaleria');
         return $galeria;
     }
+
+    public function getDatosModalIdgaleria($id)
+    {
+        $Idgaleria = \DB::select('CALL getDatosIdgaleria(?)', array($id));
+        return $Idgaleria;
+
+    }
+
+
+    public function postEditGaleria($request)
+    {
+        //Parametros desde el formulario
+
+        $imagenBlob = file_get_contents($request->file('imagen')->getRealPath());
+        $tgaleria = $request->input('tgaleria');
+        $id = $request->input('idGaleria');
+
+        $editGaleria= \DB::select('CALL updDatosGaleria(?,?,?)', array($imagenBlob,$tgaleria,$id));
+
+
+        $result['estado'] = true;
+        $result['mensaje'] = 'Registrado correctamente';
+        return json_encode($result);
+    }
+
+
+
+
+
+
+    /**
+     * @return mixed
+     * funcion que llama a la consulta que trae los tipo de galeria By ID
+     */
+    public function getDatosDropdDownTgaleria()
+    {
+        $dropdDowntgaleria = \DB::select('CALL getDatosDropdDowntgaleria');
+        return $dropdDowntgaleria;
+    }
+
+
     /* MODULO GESTION PUNTUACION   ####################################################### */
     /*
     function getDatosGridPuntuacion
@@ -535,7 +575,7 @@ public function __construct(){}
         $telefono = $request->input('numeroTelefonico');
         $establecimientoId = $request->input('establecimientoId');
         $categoria = $request->input('categorias');
-        $galeria = $request->path('galeria_id');
+        $galeria = $request->path('imagen');
 
         $registerSucursal = \DB::select('CALL insDatosSucursal(?,?,?,?,?,?,?)', array($nombre, $direccion, $telefono, $establecimientoId, $categoria, $id, $galeria));
         $result['estado'] = true;
@@ -564,16 +604,17 @@ public function __construct(){}
 
     public function postEditSucursal($request)
     {
+
         //Parametros desde el formulario
 
         $nombre = $request->input('nombre');
         $direccion = $request->input('direccion');
         $telefono = $request->input('telefono');
-        $Categorias = $request->input('tcategorias');
+        $categorias = $request->input('tcategoria');
 
         $id = $request->input('idSucursal');
 
-        $editSucursal= \DB::select('CALL updDatosSucursal(?,?,?,?,?)', array($nombre,$direccion,$telefono,$Categorias,$id));
+        $editSucursal= \DB::select('CALL updDatosSucursal(?,?,?,?,?)', array($nombre,$direccion,$telefono,$categorias,$id));
 
 
         $result['estado'] = true;

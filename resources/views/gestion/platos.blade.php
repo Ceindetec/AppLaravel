@@ -148,5 +148,5 @@
 
 <script id="edicion" type="text/x-kendo-tmpl">
 
-	<a href="modaleditplato/#= idPlatos#" class="btn btn-success" data-modal="modal">Editar</a>
+	<a href="modaleditplato/#= idPlatos#" class="btn btn-success">Editar</a>
     </script>

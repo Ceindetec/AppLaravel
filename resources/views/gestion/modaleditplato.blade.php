@@ -1,9 +1,12 @@
+@extends('layouts.admin.principal')
 
+@section('content')
 <?php
 $Utils = new Utils();
 
-?>
 
+?>
+{!!Form::hidden('idPlatos',null,['class'=>'form-control', 'required', 'id'=>'idPlatos'])!!}
 {!! Form::model($datos[0], array('route' => array('edit.plato')))!!}
 <div id="plato">
     <div class="modal-header">
@@ -39,7 +42,7 @@ $Utils = new Utils();
 
                     $read = new \Kendo\Data\DataSourceTransportRead();
 
-                    $read->url('getDropDownCategoria')
+                    $read->url('../getDropDownCategoria')
                             ->contentType('application/json')
                             ->type('POST');
 
@@ -69,6 +72,28 @@ $Utils = new Utils();
 
 
 
+            <div class="form-group">
+                <div col-md-3>
+                    <div class="form-group">
+                        {!!Form::label('galeria_id', 'Imagen:')!!}
+
+                        <?php
+                        $upload = new \Kendo\UI\Upload('imagen');
+
+                        echo $upload->render();
+                        ?>
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <div id="vista_previa"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
             <div class="form-group">
@@ -86,3 +111,7 @@ $Utils = new Utils();
     </div>
 </div>
 {!!Form::close()!!}
+
+@endsection
+
+

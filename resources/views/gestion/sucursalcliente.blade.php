@@ -3,12 +3,14 @@
 @section('content')
 
     <div class="form-group">
-        <a href="../registrosucursal " class="btn btn-success"  >Registrar Sucursal</a>
+        <a href="../registrosucursal/{id}" class="btn btn-success" data-modal="">Registrar Sucursal</a>
+
 
     </div>
     <?php
 
     for ($i = 0; $i < count($datos); $i++) {
+
 
     ?>
     <div class="panel panel-primary">
@@ -47,7 +49,7 @@
         <div class="panel-footer " align="right">
 
 
-            <a href="#" class="btn btn-primary" data-modal="">Menus</a>
+            <a href="" class="btn btn-primary">Menus</a>
 
 
             <?php if ($datos[$i]->estado == 'activo') {?>
@@ -61,9 +63,7 @@
             <?php } ?>
 
 
-
-
-	<a href= "modaleditsucursal/{{$datos[$i]->idSucursal}}" class="btn btn-success" data-modal="">Editar</a>
+            <a href="modaleditsucursal/{{$datos[$i]->idSucursal}}" class="btn btn-success" data-modal="">Editar</a>
 
         </div>
     </div>
