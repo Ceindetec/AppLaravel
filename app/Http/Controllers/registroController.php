@@ -163,23 +163,23 @@ class registroController extends Controller
     vista que maneja la gestion de los establecimientos registrados
     */
     public function modalPlato()
-    {
+{
 
-        $Bl = new GestionBL();
+    $Bl = new GestionBL();
 
-        $datos = $Bl->getDatosGridPlatos();
+    $datos = $Bl->getDatosGridPlatos();
 
-        $total = count($datos);
+    $total = count($datos);
 
-        for ($i = 0; $i < $total; $i++) {
-            $datos[$i]->galeria = base64_encode($datos[$i]->galeria);
-        }
-
-
-        return view('registro.modalplatos', compact('datos'));
-
-
+    for ($i = 0; $i < $total; $i++) {
+        $datos[$i]->galeria = base64_encode($datos[$i]->galeria);
     }
+
+
+    return view('registro.modalplatos', compact('datos'));
+
+
+}
 
     /*
    function getCategoria

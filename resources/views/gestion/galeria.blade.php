@@ -102,6 +102,7 @@
 		->addColumn( $idgaleria,$nombreGaleria, $descripcion, $nombreEstablecimiento,$imagen,$nombreGaleria,$estadoGaleria,$Column,$accion,$edicion)
 		->dataSource($dataSource)	
 		->sortable(true)
+				->dataBound('handleAjaxModal')
 		->filterable($gridFilterable)
 		->pageable(true);
 
@@ -140,6 +141,7 @@
 
 
 <script id="edicion" type="text/x-kendo-tmpl">
-		<a href="#= idGaleria#" class="btn btn-success" data-modal="">Editar</a>
+
+		<a href="modaleditgaleria/#= idGaleria#" class="btn btn-success" data-modal="">Editar</a>
 </script>
 

@@ -17,8 +17,6 @@ use Hash;
 use JWTAuth;
 
 
-
-
 class GestionController extends Controller
 {
 
@@ -48,34 +46,34 @@ class GestionController extends Controller
 
     /**
      * Funcion encargada de procesar la peticion post del formulario de login por el  modal.
-     * @param  Request => trae los datos que son enviados del formulario.    
-     * @return [result] => json de respuesta para saber si el login fue exitoso o no. 
+     * @param  Request => trae los datos que son enviados del formulario.
+     * @return [result] => json de respuesta para saber si el login fue exitoso o no.
      */
     public function modalpostLogin(Request $request)
     {
 
         $username = $request->input('username');
         $password = $request->input('password');
-        if (Auth::attempt(array('username' => $username, 'password' => $password))){
-            $result['estado']=true;
-            $result['usuario']= ['username'=> Auth::User()->username, 'avatar'=> base64_encode(Auth::User()->avatar)];
-            $result['mensaje'] = 'Bienvenido '.Auth::User()->username;
-        }else{
-            $result['estado']=false;
+        if (Auth::attempt(array('username' => $username, 'password' => $password))) {
+            $result['estado'] = true;
+            $result['usuario'] = ['username' => Auth::User()->username, 'avatar' => base64_encode(Auth::User()->avatar)];
+            $result['mensaje'] = 'Bienvenido ' . Auth::User()->username;
+        } else {
+            $result['estado'] = false;
         }
         return json_encode($result);
-            
-        
+
+
     }
 
-    
+
     /*VISTA DEL ESTABLECIMIENTO ######################################### */
 
 
     public function getEstablecimiento()
     {
-      return view('gestion.establecimiento');
-  }
+        return view('gestion.establecimiento');
+    }
 
     /**
      * @param Request $rq
@@ -112,7 +110,6 @@ class GestionController extends Controller
         $result = $Bl->postEditEstablecimiento($request);
         return $result;
     }
-
 
 
     /*VISTA DEL ESTABLECIMIENTOS DEL CLIENTE ######################################### */
@@ -152,12 +149,11 @@ class GestionController extends Controller
     }
 
 
-
     public function getModalEditCliente($id)
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosModalusuario($id);
-        return view('gestion.modaleditcliente',compact('datos'));
+        return view('gestion.modaleditcliente', compact('datos'));
     }
 
 
@@ -177,8 +173,6 @@ class GestionController extends Controller
 
         return $datos;
     }
-
-
 
 
     /*VISTA DEL MENU ######################################### */
@@ -211,7 +205,7 @@ class GestionController extends Controller
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosMenuById($id);
-        return view('gestion.modaleditmenu',compact('datos'));
+        return view('gestion.modaleditmenu', compact('datos'));
     }
 
 
@@ -229,11 +223,6 @@ class GestionController extends Controller
         $datos = $Bl->getDatosDropdDownMenu();
         return $datos;
     }
-
-
-
-
-
 
 
     /*VISTA DEL PLATO DEL MENU ######################################### */
@@ -275,7 +264,6 @@ class GestionController extends Controller
         $result = $Bl->postEditMenuPlato($request);
         return $result;
     }
-
 
 
     /*VISTA DEL CATEGORIA DEL MENU ######################################### */
@@ -348,6 +336,23 @@ class GestionController extends Controller
 
     /*VISTA DE LOS PLATOS ######################################### */
 
+
+    public function getEditPlato($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosGridPlatosById($id);
+        return view('gestion.modaleditplato', compact('datos'));
+
+    }
+
+    public function postEditPlato(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditPlato($request);
+        return $result;
+    }
+
+
     public function getPlatos()
     {
         return view('gestion.platos');
@@ -378,6 +383,67 @@ class GestionController extends Controller
     }
 
     /*VISTA DE LA GALERIA ######################################### */
+
+
+    public function postIdGaleria(Request $rq)
+    {
+
+        $Bl = new GestionBL();
+
+        $datos = $Bl->getDatosGridGaleria();
+
+        $total = count($datos);
+
+        for ($i = 0; $i < $total; $i++) {
+            $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
+        }
+
+
+        $request = file_get_contents('php://input');
+
+        $input = json_decode($request);
+
+        $util = new Utils();
+
+        return $util->getDataRequest($datos, $input);
+
+    }
+
+
+    public function modalimagenplato()
+    {
+        return view('gestion.modalimagenplato');
+    }
+
+
+    /**
+     * funcion comobox del tipo de galeria
+     * @return mixed
+     */
+    public function getDropDownTgaleria()
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosDropdDownTgaleria();
+        return $datos;
+    }
+
+
+    public function getEditGaleria($id)
+    {
+        $Bl = new GestionBL();
+        $datos = $Bl->getDatosModalIdgaleria($id);
+        return view('gestion.modaleditgaleria', compact('datos'));
+
+    }
+
+    public function postEditGaleria(Request $request)
+    {
+        $Bl = new GestionBL();
+        $result = $Bl->postEditGaleria($request);
+        return $result;
+    }
+
+
     public function getGaleria()
     {
         return view('gestion.galeria');
@@ -404,6 +470,7 @@ class GestionController extends Controller
 
         $util = new Utils();
         return $util->getDataRequest($datos, $input);
+
 
     }
 
@@ -470,17 +537,15 @@ class GestionController extends Controller
     {
         $Bl = new GestionBL();
         $datos = $Bl->getDatosModalsucursal($id);
-        return view('gestion.modaleditsucursal',compact('datos'));
+        return view('gestion.modaleditsucursal', compact('datos'));
     }
 
-    public function posttEditSucursal(Request $request)
+    public function postEditSucursal(Request $request)
     {
         $Bl = new GestionBL();
-        $result = $Bl->postEditMenuSucusal($request);
+        $result = $Bl->postEditSucursal($request);
         return $result;
     }
-
-
 
 
     /**

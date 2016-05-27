@@ -161,6 +161,16 @@ Route::post('modaleditplato', 'gestionController@postEditPlato')->name('edit.pla
 Route::get('galeria', 'gestionController@getGaleria')->name('galeria');
 Route::post('postbdgaleria', 'gestionController@postGaleria');
 
+/*ruta de la la vista para editar la galeria By ID // y post que envia los datos para editar */
+Route::get('modaleditgaleria/{id}', 'gestionController@getEditGaleria');
+Route::post('modaleditgaleria', 'gestionController@postEditGaleria')->name('edit.galeria');
+/*combobox que trae los tipos de galeria */
+Route::post('getDatosDropdDowntgaleria', 'gestionController@getDropDownTgaleria');
+
+Route::get('modalimagenplato', 'gestionController@modalimagenplato');
+Route::post('idgaleria', 'gestionController@postIdGaleria');
+
+
 /* MODULO GESTION PUNTUACION  ###################################################  */
 
 /*ruta del la vista de puntuacion que muestra la grid // y el post que envia los datos a la grid*/
@@ -189,7 +199,7 @@ Route::get('sucursalcliente/{id}', 'gestionController@getSucursalCliente')->name
 
 /* modal de la vista editar se las sucursales del cliente*/
 Route::get('sucursalcliente/modaleditsucursal/{id}', 'gestionController@getEditSucursal');
-Route::post('sucursalcliente/modaleditsucursal', 'gestionController@posttEditSucursal')->name('edit.sucursal');
+Route::post('sucursalcliente/modaleditsucursal', 'gestionController@postEditSucursal')->name('edit.sucursal');
 /*ruta para el desplegable de las sucursales existentes*/
 Route::post('getdatosdropdownsucursal', 'gestionController@getDropDownSucursal');
 

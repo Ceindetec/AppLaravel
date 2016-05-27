@@ -4,7 +4,7 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"> Seleccion de Platos</h3>
+                <h3 class="panel-title"> Seleccion de Imagen</h3>
             </div>
             <div class="modal-body">
                 <?php
@@ -14,7 +14,7 @@
 
                 //Agregamos atributos al datasource de transporte de lectura
                 $read
-                        ->url('postbdplatos')
+                        ->url('../postbdgaleria')
                         ->contentType('application/json')
                         ->type('POST');
 
@@ -56,39 +56,37 @@
 
                 //Inicializamos las columnas de la grid
 
-                $idplato = new \Kendo\UI\GridColumn();
-                $idplato->field('idPlatos')->title('idplato')->hidden(true);
+                $grid = new \Kendo\UI\Grid('grid');
+
+                //Inicializamos las columnas de la grid
+
+                $idgaleria = new \Kendo\UI\GridColumn();
+                $idgaleria->field('idGaleria')->title('id');
+
+
+
+                $imagen = new \Kendo\UI\GridColumn();
+                $imagen->field('imagen')->title('Imagen')->hidden(true);
+
 
                 $accion = new \Kendo\UI\GridColumn();
                 $accion->field('accion')->title('Acción')->templateId('accion')->width('20%');
-
-                $galeria = new \Kendo\UI\GridColumn();
-                $galeria->field('galeria')->title('Galería')->hidden(true);
-
-                $descripcion = new \Kendo\UI\GridColumn();
-                $descripcion->field('descripcion')->title('Descripcion');
-
-
-
-                $nombre = new \Kendo\UI\GridColumn();
-                $nombre->field('nombre')->title('Nombre');
-
-
-                $gridFilterable = new \Kendo\UI\GridFilterable();
-                $gridFilterable->mode("row");
 
 
 
                 $Column = new \Kendo\UI\GridColumn();
                 $Column->field('ColumnName')
-                        ->title('Galería')
+                        ->title('Imagen')
                         //->attributes(' bgcolor = '.getColorForValue(#: Column #) )
                         ->templateId('ColumnTemplate');
 
 
+                $gridFilterable = new \Kendo\UI\GridFilterable();
+                $gridFilterable->mode("row");
+
                 //agregamo columnas y atributos al grid
                 $grid
-                        ->addColumn($idplato, $accion, $galeria, $nombre, $Column,$descripcion)
+                        ->addColumn($idgaleria, $imagen,  $Column,$accion)
                         ->dataSource($dataSource)
                         ->sortable(true)
                         ->filterable(false)
@@ -106,11 +104,12 @@
         </div>
 
 
-        <script id="ColumnTemplate" type="text/x-kendo-tmpl">
-             <img src="data:image/png;base64,#= galeria #" width="100" height="100" />
-        </script>
 
+        <script id="ColumnTemplate" type="text/x-kendo-tmpl">
+   <img src="data:image/png;base64,#= imagen #" width="100" height="100" />
+</script>
 
         <script id="accion" type="text/x-kendo-tmpl">
-         <input type="checkbox" name="check" value="#= idPlatos#"> Seleccionar<br>
+    <input type="radio" name="check" value="#= idGaleria#"> Seleccionar <br>
         </script>
+

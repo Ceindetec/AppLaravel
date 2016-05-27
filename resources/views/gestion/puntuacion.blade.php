@@ -88,15 +88,14 @@
 		$accion = new \Kendo\UI\GridColumn();
 		$accion->field('accion')->title('Acción')->templateId('accion');
 
-		$edicion = new \Kendo\UI\GridColumn();
-		$edicion->field('edicion')->title('Editar')->templateId('edicion');
+
 
 		$gridFilterable = new \Kendo\UI\GridFilterable();
 	    $gridFilterable->mode("row");
 
 	    //agregamo columnas y atributos al grid
 		$grid
-		->addColumn( $nombreSucursal, $nombreUsuario,$titulo, $comentario,$puntuacion,$fecha,$hora,$estadoPuntuacion,$accion,$edicion)
+		->addColumn( $nombreSucursal, $nombreUsuario,$titulo, $comentario,$puntuacion,$fecha,$hora,$estadoPuntuacion,$accion)
 		->dataSource($dataSource)	
 		->sortable(true)
 		->filterable($gridFilterable)
@@ -128,10 +127,5 @@
 	}
 	?>
 </script>
-
-<script id="edicion" type="text/x-kendo-tmpl">
-
-	<a href="#= idPuntuacion#" class="btn btn-success" data-modal="">Editar</a>
-    </script>
 
 
