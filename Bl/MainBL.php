@@ -19,7 +19,6 @@ class MainBl{
 		$longitud = $request->input('longitud');
 		
 		$result = \DB::select('CALL getDatosSucursalByQuery(?,?,?)', array($txtBuscar,$latitud,$longitud));
-
 		return $result;
 	}
 
@@ -27,7 +26,6 @@ class MainBl{
 	public function getDatosSucursalPuntuada(){
 	
 		$result = \DB::select('CALL getTopPuntuado');
-
 		return $result;
 	}
 
@@ -35,7 +33,6 @@ class MainBl{
 	public function getDatosSucursalEditor(){
 	
 		$result = \DB::select('CALL getTopEditor');
-
 		return $result;
 	}
 
@@ -43,7 +40,6 @@ class MainBl{
 	public function getDatosSucursalVisitados(){
 	
 		$result = \DB::select('CALL getTopVisitado');
-
 		return $result;
 	}
  
@@ -51,7 +47,6 @@ class MainBl{
 	public function getDatosSucursalPuntuadaList(){
 	
 		$result = \DB::select('CALL getListTopPuntuadoOrderPuntuacionConteo');
-
 		return $result;
 	}
 
@@ -59,7 +54,6 @@ class MainBl{
 	public function getDatosSucursalVisitadoList(){
 	
 		$result = \DB::select('CALL getListTopVisitadoOrderConteoPuntuacion');
-
 		return $result;
 	}
 
@@ -67,14 +61,12 @@ class MainBl{
 	public function getDatosSucursalEditorList(){
 	
 		$result = \DB::select('CALL getListTopEditorOrderConteoPuntuacion');
-
 		return $result;
 	}
 	/* Funcion para traer los datos de una unica Sucursal Buscando por su ID*/
 	public function getDatosPorSucursal($id){
 		
 		$result = \DB::select('CALL getDataSucursalById(?)', array($id));
-
 		return $result;
 	}
 
@@ -82,10 +74,32 @@ class MainBl{
 	public function getDataPuntuacionComentariosBySucursal($id){
 		
 		$result = \DB::select('CALL getDataPuntuacionBySucursal(?)', array($id));
-		
+		return $result;
+	}
+
+	/* Funcion para traer los Menu de la Sucursal Seleccionada */
+	public function getDataMenuSucursal($id){
+		$result = \DB::select('CALL getDataMenuBySucursal(?)', array($id));
 		return $result;
 	}
 	
+	/* Funcion para ingresar los comentarios realizados */
+	public function postDataComentario($request, $id)
+    {
+        $result = [];
+
+        $IdSucursal = $request->input('nombre');
+        $IdUsuario = $request->input('web');
+        $TituloComentario = $request->input('correo');
+        $TextoComentario = $request->input('facebook');
+        $Puntuacion = $request->input('twitter');
+        $Fecha = $request->input('instagram');
+        $Hora = $request->input('instagram');
+
+        $inComentarios = \DB::select('CALL insDatosEstablecimiento(?,?,?,?,?,?,?)', array($IdSucursal, $IdUsuario, $TituloComentario, $TextoComentario, $Puntuacion, $Fecha, $Hora));
+            
+        return json_encode($result);
+    }
 
 	/*public function insTesData($request){
 
