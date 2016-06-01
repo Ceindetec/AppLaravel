@@ -11,6 +11,7 @@ use TestBl;
 use MainBl;
 use Socialite;
 use RegistroBl;
+use Auth;
 
 class mainController extends Controller
 {
@@ -198,7 +199,6 @@ class mainController extends Controller
 
     /* VISTA DE LA LISTA DE TOP EDITOR  ####################### */
     public function topEditorList(){
-    
         $Bl = new MainBl();
         $dataTopEditorList = $Bl->getDatosSucursalEditorList();
 
@@ -236,6 +236,18 @@ class mainController extends Controller
         //Retorno de la vista con los datos de las lista de editor de sucursales
         return view('main.Sucursal',compact('data'));
     }
+
+    
+
+    /* MODAL PARA LA MUESTRA DE LOS MENUS DE LA SUCURSAL SELECCIONADA */
+    public function modalMenuSucursal($id){
+
+        $Bl = new MainBl();
+        $dataSucursal = $Bl->getDataMenuSucursal($id);
+        dd($dataSucursal);
+        return view('main.modalMenuSucursal');
+    }
+
 
     /* VISTA DEL MAPA ######################################### */
     public function mapa()

@@ -226,6 +226,8 @@ Route::get('edirtorlist','mainController@topEditorList');
 
 /* Muestra las datos de una Sucursal Seleccionada */
 Route::get('sucursalunica/{id}','mainController@unicaSucursal');
+Route::get('modalMenuSucursal/{id}', 'mainController@modalMenuSucursal')->name('madalmenusucursal');
+
 
 
 /* METODOS DE PRUEBA ############################################################ */
