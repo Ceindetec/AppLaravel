@@ -9,13 +9,13 @@
     </div>
     <?php
 
-    for ($i = 0; $i < count($datos); $i++) {
+    for ($i = 0; $i < count($datosSucursal); $i++) {
 
 
     ?>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <b>{{$datos[$i]->nombresucursal}} </b>
+            <b>{{$datosSucursal[$i]->nombresucursal}} </b>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -35,8 +35,8 @@
                             </picture>
                         </div>
                         <div class="col-md-4">
-                            <br><b>Establecimiento:&nbsp;</b>{{$datos[$i]->nombreEstablecimiento}} </br>
-                            <br><b>Categoria:&nbsp;</b>{{$datos[$i]->nombreCategoria}} </br>
+                            <br><b>Establecimiento:&nbsp;</b>{{$datosSucursal[$i]->nombreEstablecimiento}} </br>
+                            <br><b>Categoria:&nbsp;</b>{{$datosSucursal[$i]->nombreCategoria}} </br>
 
                         </div>
                         <div class="col-md-4">
@@ -52,18 +52,18 @@
             <a href="" class="btn btn-primary">Menus</a>
 
 
-            <?php if ($datos[$i]->estado == 'activo') {?>
+            <?php if ($datosSucursal[$i]->estado == 'activo') {?>
 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Deshabilitar</button>
             <?php } ?>
 
-            <?php if ($datos[$i]->estado == 'inactivo') {?>
+            <?php if ($datosSucursal[$i]->estado == 'inactivo') {?>
 
             <button type="button" class="btn btn-success" data-dismiss="modal">Habilitar</button>
             <?php } ?>
 
 
-            <a href="modaleditsucursal/{{$datos[$i]->idSucursal}}" class="btn btn-success" data-modal="">Editar</a>
+            <a href="modaleditsucursal/{{$datosSucursal[$i]->idSucursal}}" class="btn btn-success" data-modal="">Editar</a>
 
         </div>
     </div>

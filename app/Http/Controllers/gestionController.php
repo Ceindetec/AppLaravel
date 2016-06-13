@@ -51,7 +51,6 @@ class GestionController extends Controller
      */
     public function modalpostLogin(Request $request)
     {
-
         $username = $request->input('username');
         $password = $request->input('password');
         if (Auth::attempt(array('username' => $username, 'password' => $password))) {
@@ -62,47 +61,54 @@ class GestionController extends Controller
             $result['estado'] = false;
         }
         return json_encode($result);
-
-
     }
 
 
     /*VISTA DEL ESTABLECIMIENTO ######################################### */
 
-
+    /**
+     * funcion encargadad de llamar  a la vista del establecimiento
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getEstablecimiento()
     {
         return view('gestion.establecimiento');
     }
 
     /**
+     * funcion encargada de procesar la peticion post del establecimiento
      * @param Request $rq
+     *
      * @return array
      */
     public function postEstablecimiento(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridestablecimiento();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
-
     }
+
+    /**
+     * funcion encargada de obtener los datos para editar del establecimiento
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function getEditModalEstablecimiento($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalestablecimiento($id);
-        return view('gestion.modaleditestablecimiento', compact('datos'));
-
+        $datosEstablecimiento = $Bl->getDatosModalestablecimiento($id);
+        return view('gestion.modaleditestablecimiento', compact('datosEstablecimiento'));
     }
+
+    /**
+     * funcion encargada de procesar la peticion post del modal de editar del establecimiento
+     * @param Request $request
+     * @return string
+     */
 
     public function postEditModalEstablecimiento(Request $request)
     {
@@ -112,49 +118,64 @@ class GestionController extends Controller
     }
 
 
+
     /*VISTA DEL ESTABLECIMIENTOS DEL CLIENTE ######################################### */
-
-
+    /**
+     * funcion encargada de obtener los datos del establecimiento del cliente
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getEstablecimientoCliente(Request $request)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getEstablecimientoCliente($request, $this->auth->user()->id);
-        return view('gestion.establecimientocliente', compact('datos'));
+        $datosEstablcimiento = $Bl->getEstablecimientoCliente($request, $this->auth->user()->id);
+        return view('gestion.establecimientocliente', compact('datosEstablcimiento'));
     }
 
 
     /*VISTA DEL CLIENTE ######################################### */
-
+    /**
+     * funcion que hace el llamado a la vista del cliente
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCliente()
     {
         return view('gestion.cliente');
     }
 
-
+    /**funcion que procesa la peticion post de la vista del cliente
+     * @param Request $rq
+     * @return array
+     */
     public function postCliente(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridusuario();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
+    /**
+     * funcion que obtiene los datos del cliente para editar
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function getModalEditCliente($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalusuario($id);
-        return view('gestion.modaleditcliente', compact('datos'));
+        $datosCliente = $Bl->getDatosModalusuario($id);
+        return view('gestion.modaleditcliente', compact('datosCliente'));
     }
+
+    /**
+     * funcion que procesa la peticion post del modal editar del cliente
+     * @param Request $request
+     * @return string
+     */
 
 
     public function postModalEditCliente(Request $request)
@@ -164,49 +185,63 @@ class GestionController extends Controller
         return $result;
     }
 
+    /**
+     * funcion que retorna los datos del tipo de usuario
+     * @return mixed
+     */
+
     public function getDropDownTusuario()
     {
-
         $Bl = new RegistroBl();
-
-        $datos = $Bl->getDatosDropdDownTusuario();
-
-        return $datos;
+        $datosUsuario = $Bl->getDatosDropdDownTusuario();
+        return $datosUsuario;
     }
 
 
     /*VISTA DEL MENU ######################################### */
 
+    /**
+     * funcion encargada de llamar a la vista del menu
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getMenu()
     {
         return view('gestion.menu');
-
     }
 
-
+    /**
+     * funcion que procesa la peticion post del menu
+     * @param Request $rq
+     * @return array
+     */
     public function postMenu(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridmenu();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
-
     }
+
+    /**
+     * funcion que obtiene los datos del menu para editar
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function getModalEditMenu($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosMenuById($id);
-        return view('gestion.modaleditmenu', compact('datos'));
+        $datosMenu = $Bl->getDatosMenuById($id);
+        return view('gestion.modaleditmenu', compact('datosMenu'));
     }
+
+    /**
+     * funcion que procesa la peticion post de editar el menu
+     * @param Request $request
+     * @return string
+     */
 
 
     public function postModalEditMenu(Request $request)
@@ -216,46 +251,65 @@ class GestionController extends Controller
         return $result;
     }
 
+    /**
+     * funcion que obtiene los datos del menu
+     * @return mixed
+     */
+
 
     public function getDropDownMenu()
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosDropdDownMenu();
-        return $datos;
+        $datosMenu = $Bl->getDatosDropdDownMenu();
+        return $datosMenu;
     }
 
 
     /*VISTA DEL PLATO DEL MENU ######################################### */
+    /**
+     * funcion encargada de llamar a la vista de los platos de los menus
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getMenuPlato()
     {
         return view('gestion.menuplato');
     }
 
-
+    /**
+     * funcion que procesa la peticion post de los platos de los menus
+     * @param Request $rq
+     * @return array
+     */
     public function postbdmenuplato(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridmenuPlato();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
+    /**
+     * funcion encargada de procesar los datos de los platos de los menus para su edicion
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+
     public function getModalEditMenuPlato($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalMenuPLatos($id);
+        $datosMenuplato = $Bl->getDatosModalMenuPLatos($id);
 
-        return view('gestion.modaleditmenuplato', compact('datos'));
+        return view('gestion.modaleditmenuplato', compact('datosMenuplato'));
     }
+
+    /**
+     * funcion encargada deprocesar la peticion post del los platos de los menus para editar
+     * @param Request $request
+     * @return string
+     */
 
 
     public function postModalEditMenuPlato(Request $request)
@@ -268,63 +322,74 @@ class GestionController extends Controller
 
     /*VISTA DEL CATEGORIA DEL MENU ######################################### */
 
+    /**funcion encargada de llamar la vista de las categorias de los menus
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getMenuCategoria()
     {
         return view('gestion.menucategoria');
     }
 
+    /**
+     * funcion encargada de procesar la peticion post de las categorias de los menus
+     * @param Request $rq
+     * @return array
+     */
+
     public function postMenuCategoria(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridmenuCategoria();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
-
     }
 
     /*VISTA DEL SUCURSAL DEL MENU ######################################### */
+    /**
+     * funcion encargada de llamar la vista de las sucursales de los menus
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getMenuSucursal()
     {
         return view('gestion.menusucursal');
     }
 
+    /**
+     * funcion encargada de procesar la peticion post de las sucursales de los menus
+     * @param Request $rq
+     * @return array
+     */
+
     public function postMenuSucursal(Request $rq)
     {
-
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridmenuSucursal();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
-
     }
 
     /**
-     * @param $id
      * funciones para editar las sucursales del menu
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEditMenuSucursal($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalMenuSucursal($id);
-        return view('gestion.modaleditmenusucursal', compact('datos'));
+        $datosMenusucursal = $Bl->getDatosModalMenuSucursal($id);
+        return view('gestion.modaleditmenusucursal', compact('datosMenusucursal'));
 
     }
+
+    /**
+     * funcion encargada de procesar la peticion post de las sucursales del menu para editar
+     * @param Request $request
+     * @return string
+     */
 
     public function postEditMenuSucursal(Request $request)
     {
@@ -336,15 +401,24 @@ class GestionController extends Controller
 
     /*VISTA DE LOS PLATOS ######################################### */
 
-
+    /**
+     * funcion encargada de obtener lo datos del los plato para editar
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getEditPlato($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosGridPlatosById($id);
-        return view('gestion.modaleditplato', compact('datos'));
+        $datosPlatos = $Bl->getDatosGridPlatosById($id);
+        return view('gestion.modaleditplato', compact('datosPlatos'));
 
     }
 
+    /**
+     * funcion encargada de procesarla peticion post de plato para editar
+     * @param Request $request
+     * @return string
+     */
     public function postEditPlato(Request $request)
     {
         $Bl = new GestionBL();
@@ -352,63 +426,67 @@ class GestionController extends Controller
         return $result;
     }
 
-
+    /**
+     * funcion encargada de llamar la vista de lospaltos
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getPlatos()
     {
         return view('gestion.platos');
     }
 
+    /**
+     * funcion encargada de procesar la peticion post de los platos
+     * @param Request $rq
+     * @return array
+     */
+
     public function postPlatos(Request $rq)
     {
 
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridPlatos();
-
         $total = count($datos);
-
         for ($i = 0; $i < $total; $i++) {
             $datos[$i]->galeria = base64_encode($datos[$i]->galeria);
         }
 
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
     /*VISTA DE LA GALERIA ######################################### */
-
+    /**
+     * funcion encargada de procesar la peticion post del ID de la galeria
+     * @param Request $rq
+     * @return array
+     */
 
     public function postIdGaleria(Request $rq)
     {
 
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridGaleria();
-
         $total = count($datos);
-
         for ($i = 0; $i < $total; $i++) {
             $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
         }
 
 
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
+    /**
+     * funcion encargada de llamar a la vista del modal de la imagen del plato
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function modalimagenplato()
     {
@@ -423,18 +501,27 @@ class GestionController extends Controller
     public function getDropDownTgaleria()
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosDropdDownTgaleria();
-        return $datos;
+        $datosGaleria = $Bl->getDatosDropdDownTgaleria();
+        return $datosGaleria;
     }
 
-
+    /**
+     * funcion encargada de obtener los datos de la galeria para editars
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getEditGaleria($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalIdgaleria($id);
-        return view('gestion.modaleditgaleria', compact('datos'));
-
+        $datosGaleria = $Bl->getDatosModalIdgaleria($id);
+        return view('gestion.modaleditgaleria', compact('datosGaleria'));
     }
+
+    /**
+     * funcion encargada de procesar la peticion post de la galeria para editar
+     * @param Request $request
+     * @return string
+     */
 
     public function postEditGaleria(Request $request)
     {
@@ -443,31 +530,33 @@ class GestionController extends Controller
         return $result;
     }
 
-
+    /**
+     * funcion encargada de llamar a la vista de la galeria
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getGaleria()
     {
         return view('gestion.galeria');
     }
 
+    /**
+     * funcion que procesa la peticion post de la galeria
+     * @param Request $rq
+     * @return array
+     */
     public function postGaleria(Request $rq)
     {
 
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridGaleria();
-
         $total = count($datos);
-
         for ($i = 0; $i < $total; $i++) {
 
             $datos[$i]->imagen = base64_encode($datos[$i]->imagen);
         }
 
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
         return $util->getDataRequest($datos, $input);
 
@@ -475,63 +564,83 @@ class GestionController extends Controller
     }
 
     /*VISTA DE LA PUNTUACION ######################################### */
-
+    /**
+     * funcion encargada de llamar a la vista de la puntuacion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getPuntuacion()
     {
         return view('gestion.puntuacion');
     }
 
+    /**
+     * funcion que procesa la peticion post de la puntuacion
+     * @param Request $rq
+     * @return array
+     */
 
     public function postPuntuacion(Request $rq)
     {
 
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridPuntuacion();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
 
     /*VISTA DE LA SUCURSAL ######################################### */
+    /**
+     * funcion encargada de hacer el llamado a la vista de la sucursal
+     * @param $idEstablecimiento
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getSucursal($idEstablecimiento)
     {
-
         return view('gestion.sucursal', compact('idEstablecimiento'));
-
     }
+
+    /**
+     * funcion  que encargada de obtener los datos de la sucursal By ID
+     * @param Request $request
+     * @return array
+     */
 
     public function getDatosSucursalById(Request $request)
     {
         $id = $request->input('id');
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridSucursalById($id);
 
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
 
+    /**
+     * funcion encargada de llamar a la vista de la sucursal del cliente
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+
     public function getSucursalCliente(Request $request)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getSucursalCliente($request, $this->auth->user()->id);
-        return view('gestion.sucursalcliente', compact('datos'));
-
+        $datosSucursal = $Bl->getSucursalCliente($request, $this->auth->user()->id);
+        return view('gestion.sucursalcliente', compact('datosSucursal'));
 
     }
+
+    /**
+     * funcion encargada de llamar la vista del modal para editar de la sucursal
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function getEditSucursal($id)
     {
@@ -539,6 +648,12 @@ class GestionController extends Controller
         $datos = $Bl->getDatosModalsucursal($id);
         return view('gestion.modaleditsucursal', compact('datos'));
     }
+
+    /**
+     * funcion encargada de procesar la peticion post de la sucursal
+     * @param Request $request
+     * @return string
+     */
 
     public function postEditSucursal(Request $request)
     {
@@ -549,6 +664,7 @@ class GestionController extends Controller
 
 
     /**
+     * funcion encargada de procesar los datos de la sucursal para un desplegable
      * @return mixed
      *
      */
@@ -560,24 +676,28 @@ class GestionController extends Controller
     }
 
     /*VISTA DE LA INFORMACION BASICA ######################################### */
+    /**
+     * funcion encargada de hacer llamado  de la vista de la informacion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getInformacion()
     {
         return view('gestion.informacion');
     }
 
+    /**
+     * funcion encargada de procesar la peticion post de la vista de la informacion
+     * @param Request $rq
+     * @return array
+     */
     public function postInformacion(Request $rq)
     {
 
         $Bl = new GestionBL();
-
         $datos = $Bl->getDatosGridInformacion();
-
         $request = file_get_contents('php://input');
-
         $input = json_decode($request);
-
         $util = new Utils();
-
         return $util->getDataRequest($datos, $input);
 
     }
@@ -597,17 +717,17 @@ class GestionController extends Controller
     public function getmodalcliente($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalusuario($id);
+        $datosCliente = $Bl->getDatosModalusuario($id);
 
-        return view('gestion.modalcliente', compact('datos'));
+        return view('gestion.modalcliente', compact('datosCliente'));
     }
 
     /*VISTA DEL MODAL DEL SUCURSAL ######################################### */
     public function getModalSucursal($id)
     {
         $Bl = new GestionBL();
-        $datos = $Bl->getDatosModalsucursal($id);
-        return view('gestion.modalsucursal', compact('datos'));
+        $datosSucursal = $Bl->getDatosModalsucursal($id);
+        return view('gestion.modalsucursal', compact('datosSucursal'));
     }
 
 

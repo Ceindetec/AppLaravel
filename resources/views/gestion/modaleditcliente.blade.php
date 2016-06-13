@@ -4,7 +4,7 @@ $Utils = new Utils();
 
 ?>
 
-{!! Form::model($datos[0], array('route' => array('edit.cliente')))!!}
+{!! Form::model($datosCliente[0], array('route' => array('edit.cliente')))!!}
 <div id="cliente">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -106,7 +106,7 @@ $Utils = new Utils();
 
             <div class="form-group">
                 {!!Form::label('Estado')!!}
-                {{$datos[0]->estadousuario}}
+                {{$datosCliente[0]->estadousuario}}
             </div>
 
 

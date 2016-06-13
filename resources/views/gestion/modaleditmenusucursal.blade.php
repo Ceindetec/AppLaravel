@@ -4,7 +4,7 @@ $Utils = new Utils();
 
 ?>
 
-{!! Form::model($datos[0], array('route' => array('edit.menusucursal')))!!}
+{!! Form::model($datosMenusucursal[0], array('route' => array('edit.menusucursal')))!!}
 <div id="menusucursal">
 
     <div class="modal-header">
@@ -58,20 +58,18 @@ $Utils = new Utils();
                     </div>
 
 
-
-
             </div>
 
             <div class="form-group">
 
                 {!!Form::label('Sucursal')!!}
-                {{$datos[0]->nombreSucursal}}
+                {{$datosMenusucursal[0]->nombreSucursal}}
 
             </div>
 
             <div class="form-group">
                 {!!Form::label('Estado')!!}
-                {{$datos[0]->estadoSucursal}}
+                {{$datosMenusucursal[0]->estadoSucursal}}
             </div>
 
 

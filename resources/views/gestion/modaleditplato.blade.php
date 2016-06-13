@@ -7,7 +7,7 @@ $Utils = new Utils();
 
 ?>
 {!!Form::hidden('idPlatos',null,['class'=>'form-control', 'required', 'id'=>'idPlatos'])!!}
-{!! Form::model($datos[0], array('route' => array('edit.plato')))!!}
+{!! Form::model($datosPlatos[0], array('route' => array('edit.plato')))!!}
 <div id="plato">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -83,9 +83,8 @@ $Utils = new Utils();
                         echo $upload->render();
                         ?>
 
-
-
                     </div>
+
                     <div class="form-group">
                         <div id="vista_previa"></div>
                     </div>
@@ -98,7 +97,7 @@ $Utils = new Utils();
 
             <div class="form-group">
                 {!!Form::label('Estado')!!}
-                {{$datos[0]->estadoPlato}}
+                {{$datosPlatos[0]->estadoPlato}}
             </div>
 
 

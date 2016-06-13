@@ -79,21 +79,17 @@ public function __construct(){}
         return json_encode($result);
     }
 
-//BL que debe borrarse si no es necesario
-/*
-    public function getEdiestablecimiento($id)
-    {
-        $editmodalEstablecimiento = \DB::select('CALL getAllEstablecimiento(?)', array($id));
-        return $editmodalEstablecimiento;
-    }*/
+
+    /**
+     * @param $request
+     *funcion que llama al update de los datos del establecimiento y actualiza en la BD
+     * @return string
+     *
+     */
 
     public function postEditEstablecimiento($request)
     {
-
         //Parametros desde el formulario
-
-
-
         $establecimiento = $request->input('establecimiento');
         $web = $request->input('web');
         $correo = $request->input('correo');
@@ -101,9 +97,6 @@ public function __construct(){}
         $twitter = $request->input('twitter');
         $instagram = $request->input('instagram');
         $id = $request->input('idestablecimiento');
-
-
-
 
         $editEstablecimiento = \DB::select('CALL updDatosEstablecimiento(?,?,?,?,?,?,?)', array($establecimiento,$web,$correo,$facebook,$twitter,$instagram,$id));
         $result['estado'] = true;
@@ -145,24 +138,34 @@ public function __construct(){}
     detalles del usuario
     */
 
-
+    /**
+     * @param $id
+     * funcion que trae los datos del cliente By ID
+     * @return mixed
+     */
     public function getDatosModalusuario($id)
     {
         $bb = \DB::select('CALL getDatosIdusuario(?)', array($id));
         return $bb;
     }
 
-
+    /**
+     * @return mixed
+     * funcion que trae todos los datos de los usuarios
+     */
     public function getDatosGridusuario()
     {
         $usuario = \DB::select('CALL getDatosUsuario');
         return $usuario;
     }
 
-
+    /**
+     * @param $request
+     * funcion que hace llamado al procedimiento de alamacenado para editar los datoss de lo clientes
+     * @return string
+     */
     public function postEditCliente($request)
     {
-
         //Parametros desde el formulario
 
         $user = $request->input('user');
@@ -183,10 +186,8 @@ public function __construct(){}
         return json_encode($result);
     }
 
-
-
-
     /* MODULO GESTION MENU   ####################################################### */
+
     /*
       function getDatosGridmenu
       params in: null
@@ -195,7 +196,6 @@ public function __construct(){}
       */
     public function getDatosGridmenu()
     {
-
         $menu = \DB::select('CALL getDatosMenu');
         //$menu = \DB::table('menu')->get();
         return $menu;
@@ -215,6 +215,7 @@ public function __construct(){}
 
 
     /* MODULO GESTION PLATOS DEL MENU   ####################################################### */
+
     /*
      function getDatosGridmenuPlato
      params in: null
@@ -224,12 +225,15 @@ public function __construct(){}
 
     public function getDatosGridmenuPlato()
     {
-
         $menuPlato = \DB::select('CALL getDatosMenuPlatos');
-
         return $menuPlato;
     }
 
+    /**
+     * @param $id
+     * funcion que trae los datos del menu By ID
+     * @return mixed
+     */
 
     public function getDatosMenuById($id)
     {
@@ -237,20 +241,21 @@ public function __construct(){}
         return $getmenu;
     }
 
-
+    /**
+     * @param $request
+     *funcion que llama a el procedimiento de almacenado y edita los campos del menu en la BD
+     * @return string
+     */
     public function postEditMenu($request)
     {
-
         //Parametros desde el formulario
 
         $nombre = $request->input('nombreMenu');
         $descripcion = $request->input('descripcionMenu');
-
         $id = $request->input('idMenu');
 
         $editmenu = \DB::select('CALL updDatosMenu(?,?,?)', array($nombre,$descripcion,$id));
         $result['estado'] = true;
-
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
     }
@@ -268,6 +273,11 @@ public function __construct(){}
         return $modalMenuPlatos;
     }
 
+    /**
+     * @param $request
+     *  funcion que llama al procedimiento de almacenado y updatosmenuplato para editar los datos de los platos de los menus
+     * @return string
+     */
     public function postEditMenuPlato($request)
     {
 
@@ -293,9 +303,7 @@ public function __construct(){}
 
     public function getDatosGridmenuCategoria()
     {
-
         $menucategoria = \DB::select('CALL getDatosMenuCategoria');
-
         return $menucategoria;
     }
 
@@ -309,9 +317,7 @@ public function __construct(){}
      */
     public function getDatosGridmenuSucursal()
     {
-
         $menucategoria = \DB::select('CALL getDatosMenuSucursal');
-
         return $menucategoria;
     }
 
@@ -327,27 +333,23 @@ public function __construct(){}
         return $modalMenuSucursal;
     }
 
+    /**
+     * @param $request
+     *funcion para editar los datos de las sucursales del menu
+     * @return string
+     */
     public function postEditMenuSucusal($request)
     {
         //Parametros desde el formulario
 
         $nombre = $request->input('menu');
-
-
         $id = $request->input('idMenuSucursal');
 
         $editMenuSucursal= \DB::select('CALL updDatosMenuSucursal(?,?)', array($nombre,$id));
-
-
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
     }
-
-
-
-
-
 
     /* MODULO GESTION PLATOS   ####################################################### */
     /*
@@ -358,38 +360,27 @@ public function __construct(){}
    */
     public function getDatosGridPlatos()
     {
-
         $platos = \DB::select('CALL getDatosPlatos');
-
         return $platos;
     }
 
 
-
+    /**
+     * @param $request
+     * funcion que llama a un procedimiento de almacenado para registrar los platos
+     * @return string
+     */
     public function postRegistroPlato($request)
     {
         $result = [];
-
-
-
         $categoria = $request->input('categorias');
-
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
-
         $mintype = $request->file('imagen')->getClientMimeType();
         $imgname = $request->file('imagen')->getClientOriginalName();
         $imagenBlob = file_get_contents($request->file('imagen')->getRealPath());
         $variable= 1;
 
-        var_dump($categoria);
-
-        var_dump($nombre);
-        var_dump($descripcion);
-
-        var_dump($variable);
-        var_dump($mintype);
-        var_dump($imgname);
 
         try {
             $registrEstablecimiento = \DB::select('CALL insDatosPlato(?,?,?,?,?,?,?)', array($nombre,$categoria,$descripcion,$variable,$mintype,$imgname,$imagenBlob));
@@ -403,21 +394,27 @@ public function __construct(){}
 
     }
 
+    /**
+     * @param $id
+     * funcion que trae los daots de los platos By ID
+     * @return mixed
+     */
+
     public function getDatosGridPlatosById($id)
     {
         $editplatos = \DB::select('CALL getDatosIdplatos(?)', array($id));
         return $editplatos;
     }
 
-
-
-
+    /**
+     * @param $request
+     * funcion para editar los datos de los platos
+     * @return string
+     */
 
     public function postEditPlato($request)
     {
-
         //Parametros desde el formulario
-
 
         $nombre = $request->input('nombre');
         $descripcion = $request->input('descripcion');
@@ -433,13 +430,6 @@ public function __construct(){}
     }
 
 
-
-
-
-
-
-
-
     /* MODULO GESTION GALERIA   ####################################################### */
     /*
     function getDatosGridGaleria
@@ -450,11 +440,15 @@ public function __construct(){}
 
     public function getDatosGridGaleria()
     {
-
         $galeria = \DB::select('CALL getDatosGaleria');
         return $galeria;
     }
 
+    /**
+     * @param $id
+     * funcion que trae los datos de la galeria By ID
+     * @return mixed
+     */
     public function getDatosModalIdgaleria($id)
     {
         $Idgaleria = \DB::select('CALL getDatosIdgaleria(?)', array($id));
@@ -462,6 +456,11 @@ public function __construct(){}
 
     }
 
+    /**
+     * @param $request
+     * funcion para editar los datos de la galeria
+     * @return string
+     */
 
     public function postEditGaleria($request)
     {
@@ -472,17 +471,10 @@ public function __construct(){}
         $id = $request->input('idGaleria');
 
         $editGaleria= \DB::select('CALL updDatosGaleria(?,?,?)', array($imagenBlob,$tgaleria,$id));
-
-
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
     }
-
-
-
-
-
 
     /**
      * @return mixed
@@ -505,13 +497,15 @@ public function __construct(){}
 
     public function getDatosGridPuntuacion()
     {
-
         $puntuacion = \DB::select('CALL getDatosPuntuacion');
-
         return $puntuacion;
     }
 
-
+    /**
+     * @param $id
+     * funcion que trae los datos de la sucursal By ID
+     * @return mixed
+     */
     public function getDatosModalsucursal($id)
     {
         $sucursal = \DB::select('CALL getDatosIdsucursal(?)', array($id));
@@ -575,9 +569,12 @@ public function __construct(){}
         $telefono = $request->input('numeroTelefonico');
         $establecimientoId = $request->input('establecimientoId');
         $categoria = $request->input('categorias');
-        $galeria = $request->path('imagen');
+        $imagenBlob = file_get_contents($request->file('imagen')->getRealPath());
 
-        $registerSucursal = \DB::select('CALL insDatosSucursal(?,?,?,?,?,?,?)', array($nombre, $direccion, $telefono, $establecimientoId, $categoria, $id, $galeria));
+
+
+
+        $registerSucursal = \DB::select('CALL insDatosSucursal(?,?,?,?,?,?,?)', array($nombre, $direccion, $telefono, $establecimientoId, $categoria, $id, $imagenBlob));
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
@@ -599,6 +596,7 @@ public function __construct(){}
 
     /**
      * @param $request
+     * funcion para editar los datos de la sucursal
      * @return string
      */
 
@@ -615,28 +613,12 @@ public function __construct(){}
         $id = $request->input('idSucursal');
 
         $editSucursal= \DB::select('CALL updDatosSucursal(?,?,?,?,?)', array($nombre,$direccion,$telefono,$categorias,$id));
-
-
         $result['estado'] = true;
         $result['mensaje'] = 'Registrado correctamente';
         return json_encode($result);
     }
 
 
-    //EJEMPLO DE FUNCIION DE ALMACENAMIENTO
-
-    public function insTesData($request)
-    {
-
-        $usuario = $request->input('usuario');
-        $direccion = $request->input('email');
-        $telefono = $request->input('contra');
-        $prueba = \DB::select('CALL InsertarTest(?,?,?)', array($usuario, $direccion, $telefono));
-        $result['estado'] = true;
-        $result['mensaje'] = 'Registrado correctamente';
-        return json_encode($result);
-
-    }
 }
 
 ?>
