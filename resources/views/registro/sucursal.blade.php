@@ -1,25 +1,27 @@
 
     <body style="background-color: silver">
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Registro de la Sucursal </h3>
                 </div>
+
+
                 {!!Form::open(array('url' => 'procesarRegistroSucursal'))!!}
                 <div class="panel-body">
-                    <form role="form">
 
-                        <div class="form-group">
-                            <div col-md-4>
-                                {!!Form::label('nombre', 'Nombre De la Sucursal: (*)')!!}
-                            </div>
+                    <div class="form-group">
+                        <div col-md-4>
+                            {!!Form::label('nombre', 'Nombre De la Sucursal: (*)')!!}
+                        </div>
+
                             <div col-md-3>
                                 {!!Form::text('nombre',null,['class'=>'form-control', 'required',  'placeholder'=>''])!!}
                                 {!!Form::hidden('establecimientoId',$id,['required'])!!}
-
                             </div>
-                        </div>
+                    </div>
+
 
 
                         <div class="form-group">
@@ -34,8 +36,8 @@
 
                             $transport->read($read)
                                     ->parameterMap('function(data) {
-              return kendo.stringify(data);
-           }');
+                             return kendo.stringify(data);
+                             }');
 
                             $dataSource = new \Kendo\Data\DataSource();
 
@@ -62,7 +64,6 @@
                             <div col-md-3>
                                 {!!Form::text('direccion',null,['class'=>'form-control', 'required',  'placeholder'=>''])!!}
                             </div>
-
                         </div>
 
 
@@ -81,30 +82,23 @@
                                     {!!$numeroTelefonico->render()!!}
                                 </div>
                             </div>
-
-
-
-
-                                </div>
+                        </div>
 
 
                         <div class="form-group">
                             <div col-md-3>
                                 <div class="form-group">
                                     {!!Form::label('galeria_id', 'Imagen:')!!}
-
                                     <?php
                                     $upload = new \Kendo\UI\Upload('imagen');
-
                                     echo $upload->render();
                                     ?>
-
-
-
                                 </div>
+
                                 <div class="form-group">
                                     <div id="vista_previa"></div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -113,10 +107,11 @@
                         <div class="form-group">
                                 <input type="submit" class="btn btn-lg btn-success btn-block" value="Registrar"/>
 
-                            </div>
+                        </div>
 
-                    </form>
+
                 </div>
+
                 {!!Form::close()!!}
             </div>
         </div>
